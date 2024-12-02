@@ -13,11 +13,14 @@ import 'vm_urine.dart';
 
 
 class MenuButton extends StatelessWidget {
+
   final HomeButtonType type;
+  final String label;
 
   const MenuButton({
     super.key,
     required this.type,
+    required this.label,
   });
 
   @override
@@ -58,10 +61,12 @@ class MenuButton extends StatelessWidget {
                   ),
 
                   SizedBox(
-                    height: size.height * 0.045,
+                    height: size.height * 0.052,
                     child: StyleText(
-                        text: type.label,
-                        size: AppDim.fontSizeXLarge,
+                        text: label,
+                        softWrap: true,
+                        maxLinesCount: 2,
+                        size: AppDim.fontSizeMedium,
                         fontWeight: AppDim.weightBold,
                         align: TextAlign.center,
                     ),
@@ -79,8 +84,8 @@ class MenuButton extends StatelessWidget {
 
     if (!isLocationEnabled && context.mounted) {
       CustomDialog.showMyDialog(
-        title: '위치정보',
-        content: '휴대폰의 위치정보를 켜주시기 바랍니다.',
+        title: 'location_info'.tr(),
+        content: 'location_content'.tr(),
         mainContext: context,
       );
     }

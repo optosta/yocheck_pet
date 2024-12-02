@@ -25,7 +25,7 @@ class LoginButton extends StatelessWidget {
           ),
         ),
         child: StyleText(
-          text: Texts.loginLabel,
+          text: 'login'.tr(),
           color: AppColors.whiteTextColor,
           size: AppDim.fontSizeMedium,
           fontWeight: AppDim.weightBold,

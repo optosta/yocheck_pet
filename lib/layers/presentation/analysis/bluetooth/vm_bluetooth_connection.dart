@@ -315,54 +315,54 @@ class BluetoothConnectionViewModel extends ChangeNotifier{
     switch(status){
       case BluetoothStatus.scan: {
         imagePath = '${Texts.imagePath}/urine/bluetooth/search.png';
-        _stateText = status.message;
+        _stateText = status.message.tr();
         _buttonText = '';
         _isErrorWidget = false;
       }
       case BluetoothStatus.connect: {
         imagePath = '${Texts.imagePath}/urine/bluetooth/connection.png';
-        _stateText = status.message;
+        _stateText = status.message.tr();
       }
       case BluetoothStatus.inspection: {
         imagePath = '${Texts.imagePath}/urine/bluetooth/inspection.png';
-        _stateText = status.message;
+        _stateText = status.message.tr();
         _buttonText = '';
         _isErrorWidget = false;
       }
       case BluetoothStatus.scanError: {
         imagePath = '${Texts.imagePath}/urine/bluetooth/search_failure.png';
-        _stateText = status.message;
-        _buttonText = '재 검색';
+        _stateText = status.message.tr();
+        _buttonText = 're-search'.tr();
         _isErrorWidget = true;
       }
       case BluetoothStatus.connectError: {
         imagePath = '${Texts.imagePath}/urine/bluetooth/connection_failure.png';
-        _stateText = status.message;
-        _buttonText = '재 연결';
+        _stateText = status.message.tr();
+        _buttonText = 'reconnect'.tr();
         _isErrorWidget = true;
       }
       case BluetoothStatus.inspectionError: {
         imagePath = '${Texts.imagePath}/urine/bluetooth/inspection_failure.png';
-        _stateText = status.message;
-        _buttonText = '재 검사';
+        _stateText = status.message.tr();
+        _buttonText = 'examination'.tr();
         _isErrorWidget = true;
       }
       case BluetoothStatus.stripError: {
         imagePath = '${Texts.imagePath}/urine/bluetooth/inspection_failure.png';
-        _stateText = status.message;
-        _buttonText = '재 검사';
+        _stateText = status.message.tr();
+        _buttonText = 're-search'.tr();
         _isErrorWidget = true;
       }
       case BluetoothStatus.cutoff: {
         imagePath = '${Texts.imagePath}/urine/bluetooth/connection_failure.png';
-        _stateText = status.message;
-        _buttonText = '재 검색';
+        _stateText = status.message.tr();
+        _buttonText = 're-search'.tr();
         _isErrorWidget = true;
       }
       case BluetoothStatus.unableError:{
         imagePath = '${Texts.imagePath}/urine/bluetooth/connection.png';
-        _stateText = status.message;
-        _buttonText = '재 검색';
+        _stateText = status.message.tr();
+        _buttonText = 're-search'.tr();
         _isErrorWidget = true;
       }
     }
@@ -372,20 +372,13 @@ class BluetoothConnectionViewModel extends ChangeNotifier{
 
   /// 에러 발생시 재 검색, 재 연결, 재 검사를 할 수 있다.
   onPressedError(){
-    switch(_buttonText){
-      case '재 검색': {
-        allClean();
-        startScan();
-        break;
-      }
-      case '재 연결': {
-        retryConnection();
-        break;
-      }
-      case '재 검사': {
-        retryWrite();
-        break;
-      }
+    if(_buttonText == 're-search'.tr()){
+      allClean();
+      startScan();
+    } else if(_buttonText == 'reconnect'.tr()){
+      retryConnection();
+    } else if(_buttonText == 'examination'.tr()){
+      retryWrite();
     }
   }
 

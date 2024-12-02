@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class AnalysisTrendView extends StatefulWidget {
 
 class _AnalysisTrendViewState extends State<AnalysisTrendView> {
 
-  String get title => '검사 내역 추이';
+  String get title => '성분별 추이';
   String get intro => '✓ 추이 검색';
   String get searchText => '검색';
 
@@ -34,7 +35,7 @@ class _AnalysisTrendViewState extends State<AnalysisTrendView> {
     return ChangeNotifierProvider(
       create: (BuildContext context) => AnalysisTrendViewModel(),
       child: FrameScaffold(
-        appBarTitle: title,
+        appBarTitle: 'trends_title'.tr(),
         backgroundColor: AppColors.greyBoxBg,
         bodyPadding: EdgeInsets.all(0),
         body: SingleChildScrollView(
@@ -50,7 +51,7 @@ class _AnalysisTrendViewState extends State<AnalysisTrendView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         StyleText(
-                          text: intro,
+                          text: 'transition_header'.tr(),
                           size: AppDim.fontSizeXLarge,
                           color: AppColors.primaryColor,
                           fontWeight: AppDim.weightBold,
@@ -83,7 +84,7 @@ class _AnalysisTrendViewState extends State<AnalysisTrendView> {
 
                         /// 검색 버튼
                         DefaultButton(
-                          btnName: searchText,
+                          btnName: 'search'.tr(),
                           buttonHeight: AppDim.xXLarge,
                           onPressed: () => provider.fetchUrineChartDio(context)
                         ),
@@ -96,13 +97,13 @@ class _AnalysisTrendViewState extends State<AnalysisTrendView> {
                         const Gap(AppDim.medium),
 
                         StyleText(
-                          text: 'Tip) 좌우로 이동 가능합니다',
+                          text: 'tip'.tr(),
                           color: AppColors.blackTextColor,
                           fontWeight: AppDim.weightBold,
                           align: TextAlign.start,
-                          decoration: TextDecoration.underline,
-                          decorationColor: Colors.red.withOpacity(0.3),
-                          decorationThickness: 5,
+                          // decoration: TextDecoration.underline,
+                          // decorationColor: Colors.red.withOpacity(0.3),
+                          // decorationThickness: 5,
                         ),
 
                         const Gap(AppDim.medium),

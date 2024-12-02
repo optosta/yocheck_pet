@@ -24,15 +24,12 @@ class SettingView extends StatefulWidget   {
 
 class _SettingViewState extends State<SettingView>{
 
-  String get title => '설정';
-
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => SettingViewModel(),
       child: FrameScaffold(
-        appBarTitle: title,
+        appBarTitle: 'setting'.tr(),
         body: SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.only(top: AppDim.small),
@@ -44,10 +41,10 @@ class _SettingViewState extends State<SettingView>{
                    visible: Authorization().userID == 'sim3383' ? true : false,
                    child: _buildMenu('관리자'),
                  ),
-                _buildMenu('버전 정보'),
-                _buildMenu('이용약관 및 정책'),
-                _buildMenu('오픈소스 라이선스'),
-                _buildMenu('로그 아웃'),
+                _buildMenu('version_info'.tr()),
+                _buildMenu('trm_policy'.tr()),
+                _buildMenu('opensource_license'.tr()),
+                _buildMenu('logout'.tr()),
               ],
             ),
           ),
@@ -62,32 +59,21 @@ class _SettingViewState extends State<SettingView>{
       builder: (context, provider, child) {
         return InkWell(
           onTap: () {
-            switch(text){
-              case '관리자': {
-                Nav.doPush(context, const ManagerView());
-                break;
-              }
-              case '버전 정보': {
-                Nav.doPush(context, const VersionView());
-                break;
-              }
-              case '이용약관 및 정책': {
-                Nav.doPush(context, TermsFullView());
-                break;
-              }
-              case '오픈소스 라이선스': {
-                Nav.doPush(context, const OpensourceView());
-                break;
-              }
-              case '로그 아웃': {
-                CustomDialog.showSettingDialog(
-                    title: '로그아웃',
-                    text: '\n로그아웃 하시겠습니까?',
-                    mainContext: context,
-                    onPressed: ()=> provider.logout(context),
-                );
-                break;
-              }
+            if (text == '관리자') {
+              Nav.doPush(context, const ManagerView());
+            } else if (text == 'version_info'.tr()) {
+              Nav.doPush(context, const VersionView());
+            } else if (text == 'trm_policy'.tr()) {
+              Nav.doPush(context, TermsFullView());
+            } else if (text == 'opensource_license'.tr()) {
+              Nav.doPush(context, const OpensourceView());
+            } else if (text == 'logout'.tr()) {
+              CustomDialog.showSettingDialog(
+                title: 'logout'.tr(),
+                text: 'logout_content'.tr(),
+                mainContext: context,
+                onPressed: () => provider.logout(context),
+              );
             }
           },
           child: Column(

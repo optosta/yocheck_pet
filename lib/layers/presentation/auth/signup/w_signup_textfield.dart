@@ -10,13 +10,15 @@ import '../../../model/enum/signup_type.dart';
 
 class SignupTextField extends StatelessWidget {
 
-  final dynamic type;
+  final SignupType type;
+  final String hint;
   final TextEditingController controller;
 
   const SignupTextField({
     super.key,
     required this.type,
     required this.controller,
+    required this.hint,
   });
 
   @override
@@ -41,7 +43,7 @@ class SignupTextField extends StatelessWidget {
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 contentPadding: const EdgeInsets.only(left: AppDim.large),
-                hintText: type.hint,
+                hintText: hint,
                 hintStyle: const TextStyle(
                   color: AppColors.grey,
                   fontWeight: AppDim.weight500,

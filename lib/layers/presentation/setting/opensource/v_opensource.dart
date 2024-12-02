@@ -39,7 +39,7 @@ class _OpensourceViewState extends State<OpensourceView> {
   Widget build(BuildContext context) {
     logger.d('packageList.length: ${packageList.length}');
     return FrameScaffold(
-      appBarTitle: title,
+      appBarTitle: 'opensource_license'.tr(),
       body: ListView.separated(
         itemBuilder: (context, index) => OpensourceItem(packageList[index]),
         itemCount: packageList.length,

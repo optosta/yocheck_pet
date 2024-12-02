@@ -19,14 +19,13 @@ class BluetoothConnectionView extends StatefulWidget {
 }
 
 class _BluetoothConnectionViewState extends State<BluetoothConnectionView> {
-  String get title => '소변 검사';
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => BluetoothConnectionViewModel(context),
       child: FrameScaffold(
-        appBarTitle: title,
+        appBarTitle: 'insp_title'.tr(),
         gradient: AppConstants.gradient,
         body: Consumer<BluetoothConnectionViewModel>(
           builder: (context, provider, child) {

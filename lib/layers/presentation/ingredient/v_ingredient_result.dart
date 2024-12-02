@@ -8,6 +8,7 @@ import 'package:yocheck_pet/layers/presentation/ingredient/w_result_content_box.
 import 'package:yocheck_pet/layers/presentation/ingredient/w_vitamin_info_box.dart';
 import 'package:yocheck_pet/layers/presentation/widget/scaffold/frame_scaffold.dart';
 
+import '../../../main.dart';
 import '../../model/enum/ai_analysis_results.dart';
 
 /// 성분 분석 결과 화면
@@ -29,11 +30,6 @@ class IngredientResultView extends StatefulWidget {
 class _IngredientResultViewState extends State<IngredientResultView> {
   late AiAnalysisResults resultContent;
 
-  String get title => '성분분석';
-  String get symptomTitle => '✓ 예상 증상';
-  String get diseaseTitle => '✓ 건강관리 가이드';
-  String get ingredientAnalysisText => '성분 관련 질환 더보기';
-
   @override
   void initState() {
     resultContent = Branch.aiAnalysisToContent(widget.resultText);
@@ -42,8 +38,10 @@ class _IngredientResultViewState extends State<IngredientResultView> {
 
   @override
   Widget build(BuildContext context) {
+    logger.i('IngredientResultView - build: ${widget.resultText}');
+    logger.i('IngredientResultView - build: $resultContent');
     return FrameScaffold(
-      appBarTitle: title,
+      appBarTitle: 'result_analysis'.tr(),
       backgroundColor: AppColors.greyBoxBg,
       bodyPadding: const EdgeInsets.all(0),
       body: SingleChildScrollView(
@@ -53,15 +51,15 @@ class _IngredientResultViewState extends State<IngredientResultView> {
 
             /// 성분 분석 결과 헤더
             IngredientHeader(
-              disease: widget.resultText,
+              disease: resultContent.name,
               statusList: widget.statusList,
             ),
-            const Gap(AppDim.small),
+            //const Gap(AppDim.small),
 
 
             /// 성분 관련 질환 더보기
             const DiseaseBox(),
-            const Gap(AppDim.small),
+           // const Gap(AppDim.small),
 
             /// 비타민 검출 영향 -> 요로감염 체크로 변경
             /// 백혈구, 아질산염항목으로 변경
@@ -71,17 +69,17 @@ class _IngredientResultViewState extends State<IngredientResultView> {
             ),
 
             /// 예상증상 결과 내용
-            const Gap(AppDim.small),
+            //const Gap(AppDim.small),
             ResultContentBox(
-              title: symptomTitle,
-              content: resultContent.symptomContent,
+              title: 'symptoms'.tr(),
+              content: resultContent.symptomContent.tr(),
             ),
 
-            /// 예상 질병 결과 내용
-            const Gap(AppDim.small),
+            /// 건강관리 가이드 결과 내용
+           // const Gap(AppDim.small),
             ResultContentBox(
-              title: diseaseTitle,
-              content: resultContent.diseaseContent,
+              title: 'health_care_guide'.tr(),
+              content: resultContent.diseaseContent.tr(),
             ),
 
             const Gap(AppDim.xXLarge),

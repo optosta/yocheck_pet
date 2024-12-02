@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:yocheck_pet/common/dart/kotlin_style/function_invokes.dart';
-import 'package:yocheck_pet/common/util/snackbar_utils.dart';
-
+import 'package:yocheck_pet/common/util/snackbar_utils.dart'
+;
 import '../../../../common/util/nav.dart';
 import '../bluetooth/v_bluetooth_connection.dart';
+import 'package:easy_localization/src/exceptions.dart';
+import 'package:easy_localization/src/localization.dart';
 
 class InspectionArrangementViewModel extends ChangeNotifier{
 
@@ -42,12 +43,13 @@ class InspectionArrangementViewModel extends ChangeNotifier{
   onChangedDevice(BuildContext context) {
     _isDeviceActive = !_isDeviceActive;
 
+
+
     // 24.07.27 - 검사기 전원 on/off 상태에 따라 검사진행버튼 화면 하단에 보여주기 자동으로 전환
     // 블루투스, 검사기 모두 ON일때 검사진행버튼 화면 하단에 보여주기
     //_visibleStartButton = _isBluetoothActive && _isDeviceActive;
     if(_isBluetoothActive && _isDeviceActive) {
-      SnackBarUtils.showPrimarySnackBar(context,
-          '잠시 후 검사를 진행합니다',
+      SnackBarUtils.showProgrssSnackBar(context,
           seconds: delayedSeconds,
       );
       Future.delayed(delayedSeconds.seconds, (){

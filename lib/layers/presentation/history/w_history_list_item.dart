@@ -19,8 +19,6 @@ class HistoryListItem extends StatelessWidget {
     required this.history,
   }) : super(key: key);
 
-  String get negativeText => '음성';
-  String get positiveText => '양성';
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +65,7 @@ class HistoryListItem extends StatelessWidget {
                                 border: Border.all(color: AppColors.blue),
                               ),
                               child: StyleText(
-                                  text: negativeText,
+                                  text: 'negative'.tr(),
                                   color: AppColors.blue,
                               ),
                             ),
@@ -91,7 +89,7 @@ class HistoryListItem extends StatelessWidget {
                                 border: Border.all(color: AppColors.red),
                               ),
                               child: StyleText(
-                                text: positiveText,
+                                text: 'positive'.tr(),
                                 color: AppColors.red
                               ),
                             ),

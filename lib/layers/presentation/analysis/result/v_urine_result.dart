@@ -2,16 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/layers/model/authorization.dart';
 import 'package:yocheck_pet/layers/presentation/analysis/result/vm_urine_result.dart';
-import 'package:yocheck_pet/layers/presentation/analysis/result/w_result_summary_chart.dart';
 import 'package:yocheck_pet/layers/presentation/analysis/result/w_urine_result_item.dart';
 import 'package:yocheck_pet/layers/presentation/widget/default_button.dart';
 import 'package:yocheck_pet/layers/presentation/widget/scaffold/frame_scaffold.dart';
 import 'package:yocheck_pet/layers/presentation/widget/style_text.dart';
-
-import '../../../../common/util/text_format.dart';
-import '../../widget/result_item_box.dart';
 
 /// 검사 결과 화면 (검사기와 검사후, 히스토리에서 터치 이벤트시)
 class UrineResultView extends StatefulWidget {
@@ -34,19 +29,12 @@ class UrineResultView extends StatefulWidget {
 
 class _UrineResultViewState extends State<UrineResultView> {
 
-  String get title => '소변 검사 결과';
-  String get ingredientAnalysisText => '성분분석';
-  String get intro  => '가정에서 정기적으로\n소변건강 상태를 체크하세요.';
-
-  String get guide1  => '✓ 정기적인 검진을 통해 변화를 확인해보세요.';
-  String get guide2  => '✓ 지속적으로 수치가 높으면 의료 검진 권장';
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => UrineResultViewModel(context),
       child: FrameScaffold(
-        appBarTitle: title,
+        appBarTitle: 'result_title'.tr(),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -62,7 +50,7 @@ class _UrineResultViewState extends State<UrineResultView> {
 
               const Gap(AppDim.small),
               StyleText(
-                text: intro,
+                text: 'header_title'.tr(),
                 color: AppColors.primaryColor,
                 size: AppDim.fontSizeXxLarge,
                 fontWeight: AppDim.weightBold,
@@ -87,35 +75,18 @@ class _UrineResultViewState extends State<UrineResultView> {
               ),
               const Gap(AppDim.xXLarge),
 
-              /// 신규 검사 결과 리스트 GridView 3x4
-              // Consumer<UrineResultViewModel>(
-              //   builder: (context, provider, child) {
-              //     return GridView.builder(
-              //       physics: const NeverScrollableScrollPhysics(),
-              //       shrinkWrap: true,
-              //       itemCount: 11,
-              //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //         crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
-              //         childAspectRatio: 1 / 0.95, //item 의 가로 1, 세로 1 의 비율
-              //         mainAxisSpacing: 1, //수평 Padding
-              //         crossAxisSpacing: 1, //수직 Padding
-              //       ),
-              //       itemBuilder: (BuildContext context,int index){
-              //         // return Text(index.toString());
-              //         return ResultItemBox(
-              //                 index: index,
-              //                 status: widget.urineList[index],
-              //                 chartData: provider.chartData,
-              //               );
-              //       },
-              //     );
-              //   }
-              // ),
-
-              const Gap(AppDim.xSmall),
+              StyleText(
+                text: 'result_grade_1'.tr(),
+                size: AppDim.fontSizeLarge,
+                color: AppColors.blackTextColor,
+                fontWeight: AppDim.weight500,
+                softWrap: true,
+                maxLinesCount: 2,
+              ),
+              const Gap(AppDim.medium),
 
               StyleText(
-                text: guide1,
+                text: 'result_grade_2'.tr(),
                 size: AppDim.fontSizeLarge,
                 color: AppColors.blackTextColor,
                 fontWeight: AppDim.weight500,
@@ -123,26 +94,13 @@ class _UrineResultViewState extends State<UrineResultView> {
                 maxLinesCount: 2,
               ),
               const Gap(AppDim.xSmall),
-
-              StyleText(
-                text: guide2,
-                size: AppDim.fontSizeLarge,
-                color: AppColors.blackTextColor,
-                fontWeight: AppDim.weight500,
-                softWrap: true,
-                maxLinesCount: 2,
-              ),
-              const Gap(AppDim.xSmall),
-
-
-
 
               /// 성분 분석 버튼
               const Gap(AppDim.xLarge),
               Consumer<UrineResultViewModel>(
                 builder: (context, provider, child) {
                   return  DefaultButton(
-                    btnName: ingredientAnalysisText,
+                    btnName: 'result_analysis'.tr(),
                     onPressed: () {
                       provider.fetchAiAnalyze(widget.urineList);
                     }, // 성분분석 결과 화면 이동

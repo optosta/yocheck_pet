@@ -31,7 +31,7 @@ class VitaminInfoBox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           StyleText(
-            text: '✓ 요로감염 체크',
+            text: 'tract_check'.tr(),
             size: AppDim.fontSizeXLarge,
             color: AppColors.primaryColor,
             fontWeight: AppDim.weightBold,
@@ -55,7 +55,7 @@ class VitaminInfoBox extends StatelessWidget {
 
               Expanded( 
                 child: StyleText(
-                  text: status1 == '0' ? additionalText1 : additionalText2,
+                  text: status1 == '0' ? 'tract_grade_1'.tr() : 'tract_grade_2'.tr(),
                   color: AppColors.blackTextColor,
                   maxLinesCount: 5,
                   softWrap: true,

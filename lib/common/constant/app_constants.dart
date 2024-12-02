@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AppConstants {
@@ -29,17 +30,17 @@ class AppConstants {
   static EdgeInsets viewPadding = const EdgeInsets.all(5.0);
 
   static List<String> get urineLabelList => [
-    '잠혈',
-    '빌리루빈',
-    '우로빌리노겐',
-    '케톤체',
-    '단백질',
-    '아질산염',
-    '포도당',
-    '산성도',
-    '비중',
-    '백혈구',
-    '비타민',
+    'blood'.tr(),
+    'bilirubin'.tr(),
+    'urobilnogen'.tr(),
+    'ketones'.tr(),
+    'protein'.tr(),
+    'nitrate'.tr(),
+    'glucosuria'.tr(),
+    'ph'.tr(),
+    'gravity'.tr(),
+    'leukocytes'.tr(),
+    'vitamins'.tr(),
   ];
 
   static LinearGradient gradient = const LinearGradient(

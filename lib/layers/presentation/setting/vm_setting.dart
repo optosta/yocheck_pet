@@ -1,5 +1,6 @@
 
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/util/nav.dart';
@@ -37,7 +38,7 @@ class SettingViewModel extends ChangeNotifier {
    Authorization().clean();
     SnackBarUtils.showPrimarySnackBar(
       context,
-      '로그아웃 되었습니다.',
+      'logout_success'.tr(),
     );
     Nav.doAndRemoveUntil(context, const LoginView());
   }

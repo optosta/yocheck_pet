@@ -17,20 +17,15 @@ class IngredientHeader extends StatelessWidget {
     required this.statusList,
   });
 
-  String get nameText => '${Authorization().name} 성분 분석 결과 입니다';
-  String get adjText1 => '✓ 측정된 성분과 관련된 질환은 ';
-  String get resultText => '\"$disease 등\"';
-  String get adjText2 => ' 이 있으며 참고하시기 바랍니다.';
+  String get nameText => '${Authorization().name} ${'analysis_header'.tr()}';
+  String get adjText1 => 'adjText1'.tr();
+  String get resultText => '\"${disease.tr()} \"';
+  String get adjText2 => 'adjText2'.tr();
 
 
-  String get emptyText => '측정 성분 분석 결과 ';
-  String get emptyText2 => '\"소변건강양호\"';
-  String get emptyText3 => '으로 측정되었으며, 주기적인 검사를 권장합니다.';
-
-
-  String get adjText4 => '✓ 성분의 농도와 존재 여부를 통해 여러 질환 정보를 제공합니다.';
-  String get adjText5 => ' [성분관련 질환 더보기]';
-
+  String get emptyText => 'adjEmptyText1'.tr();
+  String get emptyText2 => 'adjResultText'.tr();
+  String get emptyText3 => 'adjEmptyText2'.tr();
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +45,7 @@ class IngredientHeader extends StatelessWidget {
                   color: AppColors.primaryColor,
                   fontWeight: AppDim.weightBold,
                   maxLinesCount: 2,
+                  softWrap: true,
                   height: 1.2,
                 ),
                 const Gap(AppDim.small),
@@ -66,15 +62,15 @@ class IngredientHeader extends StatelessWidget {
                           );
                         });
                   },
-                  child: const Row(
+                  child:  Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       StyleText(
-                        text: '더보기',
+                        text: 'see_more'.tr(),
                         size: AppDim.fontSizeMedium,
                         fontWeight: AppDim.weightBold,
                       ),
-                      Icon(Icons.add, size: AppDim.iconSmall),
+                      const Icon(Icons.add, size: AppDim.iconSmall),
                     ],
                   ),
                 ),
@@ -83,7 +79,7 @@ class IngredientHeader extends StatelessWidget {
                 _buildMainPointResultBox(),
                 const Gap(AppDim.large),
 
-                disease == '정기 검사'
+                disease == 'health'
                     ? RichText(
                     text: TextSpan(
                       text: emptyText,

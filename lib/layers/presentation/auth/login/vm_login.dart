@@ -29,7 +29,7 @@ class LoginViewModel extends ChangeNotifier{
   /// 로그인 진행
   Future login(BuildContext context) async {
     if (_idController.text.isEmpty || _passController.text.isEmpty) {
-      loginDialog(context, Texts.loginEmptyField);
+      loginDialog(context, 'empty_field'.tr());
       return;
     }
     try {
@@ -45,7 +45,7 @@ class LoginViewModel extends ChangeNotifier{
           Nav.doAndRemoveUntil(context, const HomeView());
         }
         else {
-          loginDialog(context, Texts.loginFailed);
+          loginDialog(context, 'login_error'.tr());
         }
     } on DioException catch (e) {
       final msg = DioExceptions.fromDioError(e).toString();
@@ -76,7 +76,7 @@ class LoginViewModel extends ChangeNotifier{
   /// 로그인 다이얼로그
   loginDialog(BuildContext context, String message){
     CustomDialog.showMyDialog(
-      title: Texts.loginLabel,
+      title: 'login'.tr(),
       content: message,
       mainContext: context,
     );

@@ -25,22 +25,21 @@ class InspectionArrangementView extends StatefulWidget {
 }
 
 class _InspectionArrangementViewState extends State<InspectionArrangementView>{
-  String get title => '소변 검사';
 
-  String get startText => '검사 진행';
 
   List<String> get checkList => [
-        '✓ 모든 체크박스가 체크 되면 자동으로 검사가 진행됩니다.',
-        '✓ 검사기 전원을 키고 체크박스를 클릭해주세요.',
-        '✓ 블루투스를 켜면 자동으로 체크됩니다.',
-      ];
+        'insp_guide_1'.tr(),
+        'insp_guide_2'.tr(),
+        'insp_guide_3'.tr(),
+
+  ];
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => InspectionArrangementViewModel(),
       child: FrameScaffold(
-        appBarTitle: title,
+        appBarTitle: 'insp_title'.tr(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -122,7 +121,7 @@ class _InspectionArrangementViewState extends State<InspectionArrangementView>{
                 return  Visibility(
                   visible: provider.visibleStartButton,
                   child: DefaultButton(
-                      btnName: startText,
+                      btnName: 'insp_start'.tr(),
                       onPressed: () => {
                         Nav.doPop(context), // 검사전 준비 화면 pop
                         Nav.doPush(context, const BluetoothConnectionView())

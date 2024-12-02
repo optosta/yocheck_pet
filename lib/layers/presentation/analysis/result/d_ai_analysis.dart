@@ -10,8 +10,7 @@ import 'package:yocheck_pet/layers/presentation/widget/style_text.dart';
 class AiAnalysisAlertDialog extends StatelessWidget {
   const AiAnalysisAlertDialog({super.key});
 
-  String get title => '성분 분석';
-  String get contentText => '${Authorization().name} 데이터 분석중입니다.';
+  String get contentText => '${Authorization().name} ${'analysis_dialog'.tr()}';
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class AiAnalysisAlertDialog extends StatelessWidget {
               children: [
                 const Gap(AppDim.xXLarge),
                 StyleText(
-                  text: title,
+                  text: 'result_analysis'.tr(),
                   size: AppDim.fontSizeLarge,
                   fontWeight: AppDim.weightBold,
                 ),

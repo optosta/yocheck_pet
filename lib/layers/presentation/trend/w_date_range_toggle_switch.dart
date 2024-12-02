@@ -12,7 +12,12 @@ class DateRangeToggleSwitch extends StatelessWidget {
     required this.onToggle,
   });
 
-  List<String> get toggleLabel => ['직접', '1주일', '1달', '6개월'];
+  List<String> get toggleLabel => [
+    'period_direct'.tr(),
+    'period_week'.tr(),
+    'period_month'.tr(),
+    'period_six_month'.tr(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +33,11 @@ class DateRangeToggleSwitch extends StatelessWidget {
               cornerRadius: AppConstants.radiusValue10,
               initialLabelIndex: toggleIndex,
               totalSwitches: 4,
-              minWidth: width / 4,
+              minWidth: width / 4 -11 ,
               inactiveBgColor: Colors.grey.shade200,
               activeBgColor: [AppColors.primaryColor],
               labels: toggleLabel,
-              fontSize: AppDim.fontSizeSmall,
+              fontSize: AppDim.fontSizeXSmall,
               onToggle: onToggle,
             ),
           ],

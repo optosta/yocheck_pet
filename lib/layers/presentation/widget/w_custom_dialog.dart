@@ -86,8 +86,8 @@ class CustomDialog {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const StyleText(
-                            text: '확인',
+                          child: StyleText(
+                            text: 'check'.tr(),
                             color: AppColors.white,
                             fontWeight: AppDim.weightBold,
                           )
@@ -351,8 +351,8 @@ class CustomDialog {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: const StyleText(
-                                  text: '취소', color: AppColors.white),
+                              child: StyleText(
+                                  text: 'cancel'.tr(), color: AppColors.white),
                             ),
                           ),
                         ),
@@ -372,8 +372,8 @@ class CustomDialog {
                                       borderRadius:  BorderRadius.only(
                                           bottomRight: AppConstants.lightRadius))),
                               onPressed: () => onPressed(),
-                              child: const StyleText(
-                                  text: '확인',
+                              child: StyleText(
+                                  text: 'yes'.tr(),
                                   color: AppColors.white,
                               ),
                             ),

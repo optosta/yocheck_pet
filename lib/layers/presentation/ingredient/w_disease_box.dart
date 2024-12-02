@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:yocheck_pet/layers/presentation/ingredient/v_disease_info.dart';
@@ -21,7 +22,7 @@ class DiseaseBox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           StyleText(
-            text: '✓ 성분별 질환',
+            text: 'diseases_component'.tr(),
             size: AppDim.fontSizeXLarge,
             color: AppColors.primaryColor,
             fontWeight: AppDim.weightBold,
@@ -37,13 +38,13 @@ class DiseaseBox extends StatelessWidget {
                 child: Column(
                   children: [
                     DefaultButton(
-                      btnName: '질환정보 보기   ->',
+                      btnName: '${'view_disease_info'.tr()}   ->',
                       buttonHeight: 45,
                       onPressed: () => Nav.doPush(context, const DiseaseInfoView()),
                     ),
                     const Gap(AppDim.small),
                     StyleText(
-                      text: '✓ 성분별 질환 정보를 확인하실 수 있습니다.',
+                      text: 'disease_grade'.tr(),
                       maxLinesCount: 2,
                       softWrap: true,
                     )

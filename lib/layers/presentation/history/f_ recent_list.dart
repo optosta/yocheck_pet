@@ -16,8 +16,6 @@ class RecentListFragment extends StatelessWidget {
     required this.historyList,
   });
 
-  String get emptyText => '검사 이력이 없습니다.';
-
   int get recentListMaxCount => 5;
 
   @override
@@ -25,7 +23,7 @@ class RecentListFragment extends StatelessWidget {
     return Container(
       padding: AppDim.paddingLarge,
       child: historyList.isEmpty
-          ? DataEmpty(message: emptyText)
+          ? DataEmpty(message: 'history_empty'.tr())
           : ListView.separated(
               physics: const BouncingScrollPhysics(),
               itemCount: historyList.length > recentListMaxCount

@@ -17,18 +17,18 @@ class UrineHomeLower extends StatelessWidget {
           width: double.infinity,
           child: Image.asset('${Texts.imagePath}/urine/home/home_bottom.png', fit: BoxFit.fitWidth,),
         ),
-        const Positioned(
+         Positioned(
           bottom: 40,
           left: 40,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               StyleText(
-                text:'반려동물의 건강한 생활을 위한',
+                text:'home_bottom'.tr(),
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
-              Row(
+              const Row(
                 children: [
                   StyleText(
                       text:'YO',

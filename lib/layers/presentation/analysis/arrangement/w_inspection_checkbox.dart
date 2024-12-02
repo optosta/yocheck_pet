@@ -53,10 +53,10 @@ class InspectionCheckBox extends StatelessWidget {
                   ),
                   const Gap(AppDim.xSmall),
                   StyleText(
-                      text: type.stateOn,
+                      text: type.stateOn.tr(),
                       fontWeight: AppDim.weightBold,
                       color: AppColors.primaryColor,
-                      size: AppDim.fontSizeSmall,
+                      size: AppDim.fontSizeXSmall,
                   )
                 ],
               ),
@@ -71,7 +71,8 @@ class InspectionCheckBox extends StatelessWidget {
             const Gap(AppDim.large),
 
             StyleText(
-              text: type.recommend,
+              text: type.recommend.tr(),
+              softWrap: true,
               fontWeight: AppDim.weightBold,
               color: AppColors.greyTextColor,
               size: AppDim.fontSizeSmall,

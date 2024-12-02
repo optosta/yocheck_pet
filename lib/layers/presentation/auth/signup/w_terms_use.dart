@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
@@ -51,7 +52,7 @@ class TermsUse extends StatelessWidget {
 
                 const Gap(AppDim.small),
                 StyleText(
-                  text: infoTermsText,
+                  text: 'personal_information'.tr(),
                   fontWeight: AppDim.weight500,
                   color: AppColors.greyTextColor,
                   size: AppDim.fontSizeSmall,
@@ -74,7 +75,7 @@ class TermsUse extends StatelessWidget {
                 const Gap(AppDim.small),
 
                 StyleText(
-                  text: serviceTermsText,
+                  text: 'service_terms'.tr(),
                   fontWeight: AppDim.weight500,
                   color: AppColors.greyTextColor,
                   size: AppDim.fontSizeSmall,
@@ -88,7 +89,7 @@ class TermsUse extends StatelessWidget {
         TextButton(
           onPressed: showTerms,
           child: StyleText(
-            text: viewTerms,
+            text: 'terms_view'.tr(),
             color: AppColors.primaryColor,
             decoration: TextDecoration.underline,
             decorationColor: AppColors.primaryColor,

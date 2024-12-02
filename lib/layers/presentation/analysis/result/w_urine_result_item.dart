@@ -47,14 +47,15 @@ class UrineResultListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         StyleText(
+                          maxLinesCount: 2,
+                          softWrap: true,
                           text: AppConstants.urineLabelList[index],
                           fontWeight: AppDim.weight500,
-                          size: AppDim.fontSizeLarge,
                           color: AppColors.blackTextColor,
                           align: TextAlign.start,
                         ),
                         const Gap(AppDim.xSmall),
-                        Icon(Icons.info_outline, size: 15, color: AppColors.grey),
+                        const Icon(Icons.info_outline, size: 15, color: AppColors.grey),
                       ],
                     )
                 ),
@@ -70,7 +71,7 @@ class UrineResultListItem extends StatelessWidget {
 
                 /// 결과 Text
                 Container(
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     minWidth: 50,
                     maxWidth: 60,
                     minHeight: 20,

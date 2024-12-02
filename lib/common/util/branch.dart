@@ -12,6 +12,7 @@ class Branch {
   static AiAnalysisResults aiAnalysisToContent(String resultText) {
     String result = resultText.split(',')[0];
 
+    ///TODO : 추후에 다국어 지원을 위해 수정 필요
     if(result == '만성신장질환'){
       return AiAnalysisResults.kidneys;
     } else if(result == '방광염'){
@@ -26,7 +27,7 @@ class Branch {
       return AiAnalysisResults.nephritis;
     } else if(result == '다낭성신장염'){
       return AiAnalysisResults.polycysticnephritis;
-    } else if(result == '급성간염'){
+    } else if(result == '간염'){
       return AiAnalysisResults.acutehepatitis;
     } else if(result == '갑상선기능항진증'){
       return AiAnalysisResults.hyperthyroidism;
@@ -53,11 +54,14 @@ class Branch {
     if(index == 8){ // 비중
       switch(status){
         case '0' : return '1.000';
-        case '1' : return '1.005';
-        case '2' : return '1.010';
-        case '3' : return '1.020';
-        case '4' : return '1.025';
-        default  : return '1.030';
+        case '1' : return '1.010';
+        case '2' : return '1.020';
+        case '3' : return '1.030';
+        case '4' : return '1.040';
+        case '5' : return '1.050';
+        case '6' : return '1.060';
+        case '7' : return '1.070';
+        default  : return '1.000';
       }
     }
 
@@ -73,54 +77,54 @@ class Branch {
 
     else if(index == 7){ // PH
       switch(status){
-        case '0' : return '음성';
-        case '1' : return '산성';
-        case '2' : return '중성';
-        case '3' : return '알칼리성';
-        case '4' : return '강알칼리성';
+        case '0' : return 'acidic'.tr();
+        case '1' : return 'acidic'.tr();
+        case '2' : return 'neutrality'.tr();
+        case '3' : return 'alkaline'.tr();
+        case '4' : return 'strong_alkaline'.tr();
         default  : return '-';
       }
     }
 
     else if(index == 0 || index == 1 || index == 9){ // 잠혈, 빌리루빈, 백혈구
       switch(status){
-        case '0' : return '안심';
-        case '1' : return '관심';
-        case '2' : return '주의';
-        case '3' : return '위험';
+        case '0' : return 'safety'.tr();
+        case '1' : return 'attention'.tr();
+        case '2' : return 'caution'.tr();
+        case '3' : return 'danger'.tr();
         default  : return '-';
       }
     }
 
     else if(index == 2){ // 우로빌리노겐
       switch(status){
-        case '0' : return '안심';
-        case '1' : return '관심';
-        case '2' : return '주의';
-        case '3' : return '위험';
-        case '4' : return '심각';
+        case '0' : return 'safety'.tr();
+        case '1' : return 'attention'.tr();
+        case '2' : return 'caution'.tr();
+        case '3' : return 'danger'.tr();
+        case '4' : return 'serious'.tr();
         default  : return '-';
       }
     }
 
     else if(index == 3) { // 케톤체
       switch(status){
-        case '0' : return '안심';
-        case '1' : return '관심';
-        case '2' : return '주의';
-        case '3' : return '위험';
-        default  : return '안심';
+        case '0' : return 'safety'.tr();
+        case '1' : return 'attention'.tr();
+        case '2' : return 'caution'.tr();
+        case '3' : return 'danger'.tr();
+        default  : return 'safety'.tr();
       }
     }
 
     else if(index == 4 ) { // 단백질, 포도당
       switch(status){
-        case '0' : return '안심';
-        case '1' : return '관심';
-        case '2' : return '주의';
-        case '3' : return '위험';
-        case '4' : return '심각';
-        default  : return '안심';
+        case '0' : return 'safety'.tr();
+        case '1' : return 'attention'.tr();
+        case '2' : return 'caution'.tr();
+        case '3' : return 'danger'.tr();
+        case '4' : return 'serious'.tr();
+        default  : return 'safety'.tr();
       }
     }
 
@@ -137,9 +141,9 @@ class Branch {
 
     else if(index == 5) { // 아질산염
       switch(status){
-        case '0' : return '안심';
-        case '1' : return '관심';
-        default  : return '안심';
+        case '0' : return 'safety'.tr();
+        case '1' : return 'attention'.tr();
+        default  : return 'safety'.tr();
       }
     }
 
@@ -191,6 +195,9 @@ class Branch {
         case '2' : return '${Texts.imagePath}/urine/result/plus_2.png';
         case '3' : return '${Texts.imagePath}/urine/result/plus_3.png';
         case '4' : return '${Texts.imagePath}/urine/result/plus_4.png';
+        case '5' : return '${Texts.imagePath}/urine/result/plus_4.png';
+        case '6' : return '${Texts.imagePath}/urine/result/plus_4.png';
+        case '7' : return '${Texts.imagePath}/urine/result/plus_4.png';
         default  : return '${Texts.imagePath}/urine/result/plus_1.png';
       }
     }
@@ -416,309 +423,114 @@ class Branch {
       }
   }
   static urineLabelToUrineDataType(String urineName) {
-    switch (urineName) {
-      case '잠혈':
-        return 'DT01';
-      case '빌리루빈':
-        return 'DT02';
-      case '우로빌리노겐':
-        return 'DT03';
-      case '케톤체':
-        return 'DT04';
-      case '단백질':
-        return 'DT05';
-      case '아질산염':
-        return 'DT06';
-        case '포도당':
-        return 'DT07';
-        case '산성도':
-        return 'DT08';
-        case '비중':
-        return 'DT09';
-      case '백혈구':
-        return 'DT10';
-      case '비타민':
-        return 'DT11';
-      default:
-        return 'DT00';
+    if (urineName == 'blood'.tr()) {
+      return 'DT01';
+    } else if (urineName == 'bilirubin'.tr()) {
+      return 'DT02';
+    } else if (urineName == 'urobilnogen'.tr()) {
+      return 'DT03';
+    } else if (urineName == 'ketones'.tr()) {
+      return 'DT04';
+    } else if (urineName == 'protein'.tr()) {
+      return 'DT05';
+    } else if (urineName == 'nitrate'.tr()) {
+      return 'DT06';
+    } else if (urineName == 'glucosuria'.tr()) {
+      return 'DT07';
+    } else if (urineName == 'ph'.tr()) {
+      return 'DT08';
+    } else if (urineName == 'gravity'.tr()) {
+      return 'DT09';
+    } else if (urineName == 'leukocytes'.tr()) {
+      return 'DT10';
+    } else if (urineName == 'vitamins'.tr()) {
+      return 'DT11';
+    } else {
+      return 'DT00';
     }
   }
 
-  static Color calculateBloodStatusColor(BloodDataType type, double value,
-      {required Color badColor, required Color goodColor}) {
-    switch (type) {
-      case BloodDataType.hemoglobin:
-        //TODO: gender 부분 수정해줘야됨 (type.label임시)
-        if (type.label == 'M') {
-          if (13.0 <= value && 16.5 >= value) {
-            return goodColor;
-          } else {
-            return badColor;
-          }
-        } else {
-          // 여자
-          if (12.0 <= value && 15.5 >= value) {
-            return goodColor;
-          } else {
-            return badColor;
-          }
-        }
-      case BloodDataType.fastingBloodSugar:
-        if (100 > value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.totalCholesterol:
-        if (200 > value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.highDensityCholesterol:
-        if (60 < value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.neutralFat:
-        if (150 > value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.lowDensityCholesterol:
-        if (130 > value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.serumCreatinine:
-        if (1.5 >= value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.shinsugularFiltrationRate:
-        if (60 <= value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.astSgot:
-        if (40 >= value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.altSGpt:
-        if (35 >= value) {
-          return goodColor;
-        } else {
-          return badColor;
-        }
-      case BloodDataType.gammaGtp:
-        //TODO: (type.label) 임시
-        if (type.label == 'M') {
-          if (63.0 >= value) {
-            return goodColor;
-          } else {
-            return badColor;
-          }
-        } else {
-          // 여자
-          if (35.0 >= value) {
-            return goodColor;
-          } else {
-            return badColor;
-          }
-        }
-    }
-  }
-
-  static Color getBloodPressureColor(String resultText, String resultLabel) {
-    Color borderColor = Colors.blueAccent;
-
-    if(resultLabel == '청력(좌/우)') {
-      if(resultText.contains('비정상') || resultText.contains('비 정상')) {
-        borderColor = Colors.red;
-      }
-    } else if(resultLabel == '혈압') {
-
-      List<int> values = resultText
-          .split('/')
-          .map((value) => int.tryParse(value.trim()) ?? 0)
-          .toList();
-
-      // 추출한 혈압 값이 유효한지 확인
-      if (values.length == 2) {
-        int systolic = values[0];
-        int diastolic = values[1];
-
-        // 혈압이 정상 범위인 경우 파랑색 반환
-        if (systolic <= 120 && diastolic <= 80) {
-          return borderColor;
-        }
-        // 그 외의 경우 빨간색을 반환
-        else {
-          return Colors.red;
-        }
-      } else {
-        // 혈압 값이 올바르게 구성되지 않은 경우 파랑색 반환
-        return borderColor;
-      }
-    }
-    return borderColor;
-  }
-
-
-  /// 차트 x축 갯수에 따른 bar차트 폭 비율 리턴
-  static double calculateChartWidthRatio(int length) {
-    switch (length) {
-      case 1:
-        return 0.2;
-      case 2:
-        return 0.2;
-      case 3:
-        return 0.25;
-      case 4:
-        return 0.3;
-      default:
-        return 0.35;
-    }
-  }
-
-
-  /// 피 검사 기준 수치 반환
-  static double bloodTestStandardValue(BloodDataType type) {
-    switch (type) {
-      case BloodDataType.hemoglobin:
-        return 0.0;
-      case BloodDataType.fastingBloodSugar:
-        return 100.0;
-      case BloodDataType.totalCholesterol:
-        return 200.0;
-      case BloodDataType.highDensityCholesterol:
-        return 60.0;
-      case BloodDataType.neutralFat:
-        return 150.0;
-      case BloodDataType.lowDensityCholesterol:
-        return 130.0;
-      case BloodDataType.serumCreatinine:
-        return 1.5;
-      case BloodDataType.shinsugularFiltrationRate:
-        return 60.0;
-      case BloodDataType.astSgot:
-        return 40.0;
-      case BloodDataType.altSGpt:
-        return 35.0;
-      case BloodDataType.gammaGtp:
-        //TODO: 임시
-       // if (Authorization().gender == 'M') {
-          return 63.0;
-       // } else {
-          // 여자
-          return 35.0;
-       // }
-    }
-  }
-
-
-  /// 수면, 걷기 달성률 계산
-  static calculateAchievementRate(int value, int target) {
-    if (target == 0 || value == 0) {
-      return 0.0;
-    }
-
-    if (value > target) {
-      return 100.0;
-    }
-
-    // 달성률 계산
-    double rate = (value / target) * 100;
-    return rate;
-  }
 
   /// 소변 검사 결과 등급 함수
   static String urineGradeResult(String type, double x) {
     switch (type) {
       case 'DT01': // 잠혈
-        if (x >= 50 && x <= 58) return "0"; //54
-        if (x >= 59 && x <= 85) return "1"; //79
-        if (x >= 86 && x <= 110) return "2"; //110
-        if (x >= 110.0) return "3"; //140
+        if (x < 70 ) return "0"; //54
+        if (x >= 70 && x <= 95) return "1"; //79
+        if (x >= 95 && x <= 120) return "2"; //110
+        if (x >= 120) return "3"; //140
         break;
 
       case 'DT02': // 빌리루빈
-        if (x >= 42) return "0"; //42
-        if (x >= 39 && x <= 41) return "1"; //40
-        if (x >= 34 && x <= 38) return "2"; //33
-        if (x <= 33) return "3"; //25
+        if (x > 44) return "0"; //42
+        if (x > 42 && x <= 44) return "1"; //40
+        if (x > 38  && x <= 42) return "2"; //33
+        if (x <= 38) return "3"; //25
         break;
 
       case 'DT03': // 우로빌리노겐
-        if (x >= 43) return "0"; //44
-        if (x >= 38 && x <= 42) return "1"; //41
-        if (x >= 33 && x <= 37) return "2"; //32
-        if (x >= 22 && x <= 32) return "3"; //23
-        if (x <= 21) return "4"; //19
+        if (x >= 37) return "0";
+        if (x > 26 && x <= 37) return "1";
+        if (x > 20 && x <= 26) return "2";
+        if (x > 16 && x <= 20) return "3";
+        if (x <= 16) return "4";
         break;
 
       case 'DT04': //케톤체
-        if (x >= 41) return "0";//43
-        if (x >= 30 && x <= 40) return "1"; //35
-        if (x >= 26 && x <= 29) return "2"; //35
-        if (x <= 25.9) return "3"; //23
+        if (x > 38) return "0";//43
+        if (x > 28 && x <= 38) return "1"; //35
+        if (x > 20.7 && x <= 28) return "2"; //35
+        if (x <= 20.7) return "3"; //23
         break;
 
       case 'DT05': //단백질
-        if (x <= 55) return "0"; //53
-        if (x >= 56 && x <= 72) return "1"; // 62
-        if (x >= 73 && x <= 83) return "2"; //75
-        if (x >= 84 && x <= 118) return "3"; //125
-        if (x >= 119.0) return "4"; //149
+        if (x < 63) return "0"; //53
+        if (x >= 63 && x < 80) return "1"; // 62
+        if (x >= 80  && x < 100) return "2"; //75
+        if (x >= 100 && x < 120) return "3"; //125
+        if (x >= 120) return "4"; //149
         break;
 
       case 'DT06': //아질산염
-        return x >= 42 ? "0" : "1"; //44,31
+        return x >= 43 ? "0" : "1"; //44,31
 
       case 'DT07': //포도당
-        if (x >= 190) return "0"; //205
-        if (x >= 103 && x <= 189) return "1"; //130
-        if (x >= 72 && x <= 102) return "2"; //105
-        if (x >= 29 && x <= 71) return "3"; //52
-        if (x < 28) return "4"; //10
+        if (x > 100) return "0"; //205
+        if (x > 75 && x <= 100) return "1"; //130
+        if (x > 60 && x <= 75) return "2"; //105
+        if (x > 30 && x <= 60) return "3"; //52
+        if (x <= 30) return "4"; //10
         break;
 
       case 'DT08': //산성도
-        if (x >= 5 && x <= 28) return "0"; // 음성, 10
-        if (x >= 29 && x <= 65) return "1"; // 산성, 25
-        if (x >= 66 && x <= 120) return "2"; // 중성, 56
-        if (x >= 121 && x <= 165) return "3"; // 알칼리성, 118
-        if (x >= 166) return "4"; // 강알칼리성, 204
+        if (x < 65) return "1"; // 산성, 25
+        if (x >= 65 && x < 140) return "2"; // 중성, 56
+        if (x >= 140 && x < 165) return "3"; // 알칼리성, 118
+        if (x >= 165) return "4"; // 강알칼리성, 204
         break;
 
       case 'DT09': //비중
-        if (x >= 145) return "0"; //207
-        if (x >= 135 && x <= 144) return "1"; //164
-        if (x >= 93 && x <= 134) return "2"; //93
-        if (x >= 71 && x <= 92) return "3"; //77
-        if (x >= 61 && x <= 70) return "4"; //39
-        if (x <= 60) return "4"; //37
+        if (x > 180) return "0"; //207
+        if (x > 100 && x <= 180) return "1"; //164
+        if (x > 70 && x <= 100) return "2"; //93
+        if (x > 50 && x <= 70) return "3"; //77
+        if (x > 38 && x <= 50) return "4"; //39
+        if (x > 30 && x <= 38) return "5"; //39
+        if (x > 28 && x <= 30) return "6"; //39
+        if (x <= 28) return "7"; //37
         break;
 
       case 'DT10': //백혈구
-        if (x >= 43) return "0"; //44
-        if (x >= 40 && x <= 39) return "1"; //41
-        if (x >= 35 && x < 38) return "2"; //38
-        if (x <= 34) return "3"; //32
+        if (x > 42) return "0"; // 44
+        if (x > 38 && x <= 42) return "1"; // 41
+        if (x <= 38) return "3"; // 32
         break;
 
       case 'DT11': //비타민
-        if (x >= 140) return "0"; //146
-        if (x >= 95 && x <= 139) return "1"; //101
-        if (x >= 58 && x <= 94) return "2"; //18
-        if (x <= 57) return "3"; //4
+        if (x > 110) return "0"; //146
+        if (x > 70 && x <= 110) return "1"; //101
+        if (x > 59 && x <= 70) return "2"; //18
+        if (x <= 59) return "3"; //4
         break;
 
       default:

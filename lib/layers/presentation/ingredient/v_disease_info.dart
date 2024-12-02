@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,13 +38,11 @@ class DiseaseInfoView extends StatefulWidget {
 
 class _DiseaseInfoViewState extends State<DiseaseInfoView> {
 
-  String get title => '관련 질환';
-  String get intro => '성분별 여러 질환 정보를 제공합니다.';
 
   @override
   Widget build(BuildContext context) {
     return FrameScaffold(
-      appBarTitle: title,
+      appBarTitle: 'related_diseases'.tr(),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
@@ -55,37 +54,37 @@ class _DiseaseInfoViewState extends State<DiseaseInfoView> {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    rowContents('잠혈', '잠혈, 급성신장염, 만성신장염, 빈혈, 요로감염 등'),
+                    rowContents('blood'.tr(), 'related_blood'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('빌리루빈', '간염, 담석, 췌장염, 담도폐쇄 등'),
+                    rowContents('bilirubin'.tr(), 'related_bilirubin'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('유로빌리노겐', '급성간염, 만성 간염, 담관폐쇄, 변비 등'),
+                    rowContents('urobilnogen'.tr(), 'related_urobilnogen'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('케톤체', '급성신장염, 만성신장염, 빈혈, 요로감염 등'),
+                    rowContents('ketones'.tr(), 'related_ketones'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('단백질', '신장질환(사구체신염, 신우신염), 심부전(심장기능상실) 등'),
+                    rowContents('protein'.tr(), 'related_protein'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('아질산염', '방광염, 신우신염'),
+                    rowContents('nitrate'.tr(), 'related_nitrate'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('포도당', '당뇨, 췌장염, 갑상선항진증 등'),
+                    rowContents('glucosuria'.tr(), 'related_glucosuria'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('PH', '산성 : 콩팥결핵, 중증당뇨증, 신장염, 알콜중독 등 \n염기성 : 요로감염증, 결석증, 과호흡 등'),
+                    rowContents('ph'.tr(), 'related_ph'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('비중', '저비중 : 신부전, 신우신염\n고비중 : 당뇨병, 탈수증, 설사 등'),
+                    rowContents('gravity'.tr(), 'related_gravity'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('백혈구', '신우신염, 방광염, 요로결석, 신장결핵 등'),
+                    rowContents('leukocytes'.tr(), 'related_leukocytes'.tr()),
                     const DottedLine(mWidth: double.infinity),
 
-                    rowContents('비타민', '비타민C 과잉의경우 요당, 단백질, 알칼리요등이 측정오류가 발생 할 수 있습니다.'),
+                    rowContents('vitamins'.tr(), 'related_vitamins'.tr()),
                   ],
                 )
             ),

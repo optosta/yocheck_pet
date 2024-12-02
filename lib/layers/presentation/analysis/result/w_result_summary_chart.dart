@@ -19,10 +19,6 @@ class ResultSummaryChart extends StatelessWidget {
     required this.chartData,
   });
 
-  String get guide1  => '✓ 가장 최근 7일간의 검사 결과를 보여줍니다.';
-  String get guide2  => '✓ 좌측 부터 가장 최근 데이터 입니다. ';
-  String get guide3  => '✓ 하루에 여러번 검사시 가장 최근 데이터 기준으로 표기됩니다.';
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,7 +31,7 @@ class ResultSummaryChart extends StatelessWidget {
         const Gap(AppDim.large),
 
         StyleText(
-          text: guide1,
+          text: 'guide1'.tr(),
           size: AppDim.fontSizeSmall,
           color: AppColors.greyTextColor,
           fontWeight: AppDim.weight500,
@@ -43,7 +39,7 @@ class ResultSummaryChart extends StatelessWidget {
         const Gap(AppDim.xSmall),
 
         StyleText(
-          text: guide2,
+          text: 'guide2'.tr(),
           size: AppDim.fontSizeSmall,
           color: AppColors.greyTextColor,
           fontWeight: AppDim.weight500,
@@ -51,7 +47,7 @@ class ResultSummaryChart extends StatelessWidget {
         const Gap(AppDim.xSmall),
 
         StyleText(
-          text: guide3,
+          text: 'guide3'.tr(),
           size: AppDim.fontSizeSmall,
           color: AppColors.greyTextColor,
           fontWeight: AppDim.weight500,

@@ -2,16 +2,16 @@ import '../../../common/constant/constants.dart';
 
 enum ArrangementType {
   bluetooth(
-    '블루투스 ON',
-    '블루투스 OFF',
+    'insp_bluetooth_on',
+    'insp_bluetooth_off',
     '${Texts.imagePath}/urine/arrangement/bluetooth_icon.png',
-    '블루투스를 활성화\n해주세요.',
+    'insp_enable_bluetooth',
   ),
   device(
-    '검사기 ON',
-    '검사기 OFF',
+    'insp_device_on',
+    'insp_device_off',
     '${Texts.imagePath}/urine/arrangement/power_icon.png',
-    '검사기가 켜져 있는지\n확인 해주세요.',
+    'insp_enable_device',
   );
 
   const ArrangementType(

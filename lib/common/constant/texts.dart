@@ -15,9 +15,9 @@ class Texts {
 
   /// [화면][상태][목적] 형식으로 네이밍
   // login
-  static const loginLabel = '로그인';
-  static const loginEmptyField = '아이디와 비밀번호를 입력해주세요.';
-  static const loginFailed = '아이디, 비밀번호가 일치하지 않습니다.';
+  // static const loginLabel = '로그인';
+  // static const loginEmptyField = '아이디와 비밀번호를 입력해주세요.';
+  // static const loginFailed = '아이디, 비밀번호가 일치하지 않습니다.';
 
   // signup
   static const signupLabel = '회원가입';
@@ -35,7 +35,6 @@ class Texts {
   static const enterNickNameMsg = '닉네임 입력해주세요.';
   static const nicknameShortMsg = '닉네임이 너무 짧습니다.';
   static const nicknameMinLengthMsg = '닉네임 7자 이내로 작성해주세요.';
-
 
   static const allTermsAgreementMsg = '이용약관 모두 동의해주세요.';
 

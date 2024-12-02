@@ -29,7 +29,7 @@ class _UrineHomeViewState extends State<HomeView> {
       appBar: HomeAppBar(onPressed: ()=> Nav.doPush(context, const SettingView())),
       body: ChangeNotifierProvider(
         create: (BuildContext context) => UrineViewModel(),
-        child: SafeArea(
+        child: const SafeArea(
           child: Stack(
             children: [
               Align(
@@ -39,13 +39,12 @@ class _UrineHomeViewState extends State<HomeView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:
                     [
-                      Gap(AppDim.large),
 
                       /// 소변검사 헤더
                       UrineHomeHeader(),
 
                       /// 버튼 4개(검사진행, 검사내역, 성분분석, 나의 추이)
-                      Gap(AppDim.medium),
+                      Gap(AppDim.large),
                       UrineHomeBody(),
                     ],
                   ),

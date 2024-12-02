@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,6 @@ class _UrineHistoryViewViewState extends State<UrineHistoryView> with TickerProv
 
   late final TabController tabController;
 
-  String get title => '검사내역';
   int get tabItemCount => 2;
 
   @override
@@ -44,7 +44,7 @@ class _UrineHistoryViewViewState extends State<UrineHistoryView> with TickerProv
     return ChangeNotifierProvider(
       create: (BuildContext context) => HistoryViewModel(),
       child: FrameScaffold(
-        appBarTitle: title,
+        appBarTitle: 'history'.tr(),
         body: Consumer<HistoryViewModel>(
           builder: (context, provider, child) {
             return FutureHandler(

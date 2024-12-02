@@ -9,7 +9,6 @@ import 'package:yocheck_pet/layers/presentation/auth/login/w_login_button.dart';
 import 'package:yocheck_pet/layers/presentation/auth/login/w_login_textfield.dart';
 
 import '../../../../common/util/app_keyboard_util.dart';
-import '../../widget/scaffold/frame_scaffold.dart';
 import '../../widget/style_text.dart';
 import 'w_signup_guide_button.dart';
 

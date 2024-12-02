@@ -5,9 +5,9 @@ import 'package:yocheck_pet/layers/presentation/widget/bottomsheet/vm_urine_defi
 import 'package:yocheck_pet/layers/presentation/widget/w_future_handler.dart';
 
 import '../../../../common/common.dart';
+import '../../../model/urine_desc.dart';
 import '../../analysis/result/w_result_summary_chart.dart';
 import '../style_text.dart';
-
 
 class UrineDefineInfoBottomSheetView extends StatefulWidget {
   final String urineLabel;
@@ -53,7 +53,7 @@ class _UrineDefineInfoBottomSheetViewState extends State<UrineDefineInfoBottomSh
                         _buildTopBar(),
                         _buildCancelButton(),
                         SingleChildScrollView(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -61,7 +61,7 @@ class _UrineDefineInfoBottomSheetViewState extends State<UrineDefineInfoBottomSh
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   StyleText(
-                                      text: provider.urineDesc?[widget.index]['title'] ?? '-',
+                                      text: urineDesc[widget.index]['title']?.tr() ?? '-',
                                       color: AppColors.blackTextColor,
                                       fontWeight: AppDim.weightBold,
                                       maxLinesCount: 2,
@@ -72,8 +72,7 @@ class _UrineDefineInfoBottomSheetViewState extends State<UrineDefineInfoBottomSh
                               const Gap(AppDim.xXLarge),
 
                               StyleText(
-                                text:
-                                'Q. 나의 ${provider.urineDesc?[widget.index]['label'] ?? ''} 추이는?',
+                                text: urineDesc[widget.index]['trend']?.tr() ?? '-',
                                 color: AppColors.blackTextColor,
                                 fontWeight: AppDim.weightBold,
                                 maxLinesCount: 1,
@@ -89,8 +88,8 @@ class _UrineDefineInfoBottomSheetViewState extends State<UrineDefineInfoBottomSh
                               const Gap(AppDim.xXLarge),
 
                               StyleText(
-                                text: provider.urineDesc?[widget.index]['subTitle'] ??
-                                    'Q. -',
+                                text: urineDesc[widget.index]['subTitle']?.tr() ??
+                                    '-',
                                 color: AppColors.blackTextColor,
                                 fontWeight: AppDim.weightBold,
                                 maxLinesCount: 1,
@@ -102,7 +101,7 @@ class _UrineDefineInfoBottomSheetViewState extends State<UrineDefineInfoBottomSh
                               ),
                               const Gap(AppDim.small),
                               StyleText(
-                                  text: provider.urineDesc?[widget.index]['description'] ?? '-',
+                                  text: urineDesc[widget.index]['description']?.tr() ?? '-',
                                   color: AppColors.blackTextColor,
                                   height: 1.2,
                                   fontWeight: AppDim.weight500,
@@ -115,12 +114,9 @@ class _UrineDefineInfoBottomSheetViewState extends State<UrineDefineInfoBottomSh
                       ],
                     ),
                 );
-              })
-
-
+              },
+          )
         ),
-
-
     );
   }
 

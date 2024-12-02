@@ -53,8 +53,8 @@ class LoginTextField extends StatelessWidget {
                         color: AppColors.primaryColor,
                     ),
                       hintText: type == LoginInputType.password
-                          ? Texts.passhintMsg
-                          : Texts.enterIdMsg,
+                          ? 'password_hint'.tr()
+                          : 'id_hint'.tr(),
                       hintStyle: const TextStyle(
                         fontSize: AppDim.fontSizeSmall,
                         color: Colors.grey,

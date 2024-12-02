@@ -12,12 +12,11 @@ class TermsFullView extends StatelessWidget {
 
   final termsText = TermsContent();
 
-  String get title => '이용약관 및 정책';
 
   @override
   Widget build(BuildContext context) {
     return FrameScaffold(
-      appBarTitle: title,
+      appBarTitle: 'trm_policy'.tr(),
       body:  SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

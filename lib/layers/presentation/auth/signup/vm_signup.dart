@@ -83,9 +83,9 @@ class SignupViewModel extends ChangeNotifier {
           Nav.doPop(context); // 회원가입 화면 pop
           SnackBarUtils.showPrimarySnackBar(context, Texts.signupSuccess);
         } else if (response!.status.code == Texts.duplicationCode) {
-          signDialog(context, Texts.duplicateIdMsg);
+          signDialog(context, 'duplicateIdMsg'.tr());
         } else {
-          signDialog(context, Texts.signupFailed);
+          signDialog(context, 'signupFailed'.tr());
         }
     } on DioException catch (e) {
       final msg = DioExceptions.fromDioError(e).toString();

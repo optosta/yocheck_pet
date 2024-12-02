@@ -9,8 +9,7 @@ import '../../widget/style_text.dart';
 class InspectionHeader extends StatelessWidget {
   const InspectionHeader({super.key});
 
-  String get helloText => '안녕하세요. ${Authorization().name}';
-  String get guideText => '검사기를 연결해주세요.';
+  String get helloText => '${'insp_hello'.tr()} ${Authorization().name}';
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class InspectionHeader extends StatelessWidget {
         ),
         const Gap(AppDim.xSmall),
         StyleText(
-          text: guideText,
+          text: 'insp_connection'.tr(),
           size: AppDim.fontSizeXLarge,
           fontWeight: AppDim.weightBold,
           maxLinesCount: 2,

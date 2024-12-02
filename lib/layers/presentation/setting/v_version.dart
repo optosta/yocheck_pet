@@ -12,10 +12,10 @@ class VersionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FrameScaffold(
-      appBarTitle: title,
+      appBarTitle: 'app_version'.tr(),
       body: Center(
         child: StyleText(
-          text: '현재 앱 버전 ${Texts.appVersion}',
+          text: '${'current_version'.tr()} ${Texts.appVersion}',
           color: AppColors.greyTextColor,
           size: AppDim.fontSizeLarge,
         ),

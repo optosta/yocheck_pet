@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/common/constant/app_dimensions.dart';
 import 'package:yocheck_pet/layers/presentation/auth/signup/vm_signup.dart';
 import 'package:yocheck_pet/layers/presentation/auth/signup/w_signup_button.dart';
 import 'package:yocheck_pet/layers/presentation/auth/signup/w_signup_row_form.dart';
@@ -30,7 +29,7 @@ class _SignupViewState extends State<SignupView> {
         builder: (context, provider, child) {
           return  FrameScaffold(
             isKeyboardHide: true,
-            appBarTitle: Texts.signupLabel,
+            appBarTitle: 'signup'.tr(),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
@@ -45,37 +44,42 @@ class _SignupViewState extends State<SignupView> {
 
                             /// 아이디 입력
                             SignupRowForm(
-                              title: SignupType.id.title,
+                              title: 'id'.tr(),
                               child: SignupTextField(
                                 type: SignupType.id,
                                 controller: provider.idController,
+                                hint: 'id_hint'.tr(),
                               ),
                             ),
                             const DottedLine(mWidth: double.infinity),
 
                             /// 비밀번호 입력
                             SignupRowForm(
-                              title: SignupType.pass.title,
+                              title: 'password'.tr(),
                               child: SignupTextField(
                                 type: SignupType.pass,
                                 controller: provider.passController,
+                                hint: 'password_hint'.tr(),
                               ),
                             ),
+                            /// 비밀번호 재입력
                             SignupRowForm(
-                              title: SignupType.pass2.title,
+                              title: 'password_confirm'.tr(),
                               child: SignupTextField(
                                 type: SignupType.pass2,
                                 controller: provider.pass2Controller,
+                                hint: 're_enter_password'.tr(),
                               ),
                             ),
                             const DottedLine(mWidth: double.infinity),
 
-                            /// 닉네임 입력
+                            /// 펫명 입력
                             SignupRowForm(
-                              title: SignupType.nickname.title,
+                              title: 'pat_name'.tr(),
                               child: SignupTextField(
                                 type: SignupType.nickname,
                                 controller: provider.nickNameController,
+                                hint: 'pat_hint'.tr(),
                               ),
                             ),
 

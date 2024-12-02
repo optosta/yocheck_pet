@@ -130,7 +130,7 @@ class UrineViewModel extends ChangeNotifier {
   aiDialog(BuildContext context, String message){
     Nav.doPop(context); // showAiAnalysisDialog pop
     CustomDialog.showMyDialog(
-      title: '성분 분석',
+      title: 'result_analysis'.tr(),
       content: message,
       mainContext: context,
     );

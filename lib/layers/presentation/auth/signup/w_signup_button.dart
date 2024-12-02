@@ -23,7 +23,7 @@ class SignUpButton extends StatelessWidget {
         ),
       ),
       child: StyleText(
-        text: Texts.signupLabel,
+        text: 'signup'.tr(),
         color: AppColors.whiteTextColor,
         size: AppDim.fontSizeMedium,
         fontWeight: AppDim.weightBold,

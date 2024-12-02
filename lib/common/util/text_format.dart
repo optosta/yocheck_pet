@@ -86,7 +86,7 @@ class TextFormat {
     return flutterTimestamp
         .replaceAll(RegExp(r'[^\d]'), '')
         .replaceAllMapped(RegExp(r'(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})'),
-            (Match m) => '${m[1]}년${m[2]}월${m[3]}일 / ${m[4]}시${m[5]}분');
+            (Match m) => '${m[1]}${'year'.tr()}${m[2]}${'month'.tr()}${m[3]}${'day'.tr()} / ${m[4]}${'hour'.tr()}${m[5]}${'m'.tr()}');
   }
 
 }

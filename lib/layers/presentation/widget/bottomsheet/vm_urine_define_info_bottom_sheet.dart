@@ -52,32 +52,33 @@ class UrineDefineInfoBottomSheetViewModel extends ChangeNotifier {
       'searchStartDate': _rangeStartDate,
       'searchEndDate': _rangeEndDate,
     };
+
     try {
-      final loadStringFuture = rootBundle.loadString('assets/json/urine_desc.json');
-      final urineChartFuture = UrineChartCase().execute(toMap);
+      //final loadStringFuture = rootBundle.loadString('assets/json/urine_desc.json');
+      final urineChartFuture = await UrineChartCase().execute(toMap);
 
-      final List futureResults =
-          await Future.wait([loadStringFuture, urineChartFuture]);
+      // final List futureResults =
+      //     await Future.wait([loadStringFuture, urineChartFuture]);
 
-      String stringRes = futureResults[0];
-      UrineChartDTO? urineChartDTO = futureResults[1];
+      // String stringRes = futureResults[0];
+      // UrineChartDTO? urineChartDTO = futureResults[1];
 
-      final List<dynamic> data = json.decode(stringRes);
-      _urineDesc = data
-          .map((item) => {
-                'title': item['title'].toString(),
-                'subTitle': item['subTitle'].toString(),
-                'description': item['description'].toString(),
-                'label': item['label'].toString(),
-              })
-          .toList();
+      // final List<dynamic> data = json.decode(stringRes);
+      // _urineDesc = data
+      //     .map((item) => {
+      //           'title': item['title'].toString(),
+      //           'subTitle': item['subTitle'].toString(),
+      //           'description': item['description'].toString(),
+      //           'label': item['label'].toString(),
+      //         })
+      //     .toList();
 
-      if (urineChartDTO?.status.code == '200') {
+      if (urineChartFuture?.status.code == '200') {
         chartData.clear();
 
         // 서버에서 불러온데이터를 사용자가 선택한 [_selectedUrineName]를 통해
         // 같은 dataType으로만 골라 x,y축 데이터를 만들어 _chartData에 추가한다.
-        for (var value in urineChartDTO!.data) {
+        for (var value in urineChartFuture!.data) {
           if (value.dataType == Branch.urineLabelToUrineDataType(urineLabel)) {
             if (!_chartData.any((element) => element.x
                 .toString()
@@ -92,7 +93,7 @@ class UrineDefineInfoBottomSheetViewModel extends ChangeNotifier {
 
           if (_chartData.length == dateRange) break;
         }
-      } else if (urineChartDTO?.status.code == 'ERR_MS_4003') {
+      } else if (urineChartFuture?.status.code == 'ERR_MS_4003') {
         print('해당 날짜에 검사한 이력이 없습니다.');
       }
       _isLoading = false;

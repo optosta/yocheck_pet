@@ -10,14 +10,12 @@ import '../../../../common/common.dart';
 class UrineHomeHeader extends StatelessWidget {
   const UrineHomeHeader({super.key});
 
-  String get subTitle => 'home_subtitle'.tr();
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.1,
+      height: size.height * 0.12,
       margin: const EdgeInsets.only(left: AppDim.large),
       width: double.infinity,
       child: Column(
@@ -44,7 +42,9 @@ class UrineHomeHeader extends StatelessWidget {
           const Gap(AppDim.xSmall),
 
           StyleText(
-              text: subTitle,
+              text: 'home_subtitle'.tr(),
+              softWrap: true,
+              maxLinesCount: 2,
               color: AppColors.white,
               size: AppDim.fontSizeLarge,
               align: TextAlign.start

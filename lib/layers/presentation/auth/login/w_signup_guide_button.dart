@@ -8,22 +8,20 @@ import 'package:yocheck_pet/layers/presentation/widget/style_text.dart';
 class SignUpGuideButton extends StatelessWidget {
   const SignUpGuideButton({super.key});
 
-  String get signupQuestionText => '아직 회원이 아니신가요?';
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         StyleText(
-          text: signupQuestionText,
+          text: 'no_account'.tr(),
           color: AppColors.greyTextColor,
           size: AppDim.fontSizeMedium,
         ),
         TextButton(
           onPressed: () => Nav.doPush(context, const SignupView()),
           child: StyleText(
-              text: Texts.signupLabel,
+              text: 'signup'.tr(),
               color: AppColors.greyTextColor,
               size: AppDim.fontSizeMedium,
               fontWeight: AppDim.weightBold,

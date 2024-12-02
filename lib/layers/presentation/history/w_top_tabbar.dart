@@ -33,12 +33,12 @@ class TopTabBar extends StatelessWidget {
         unselectedLabelColor: AppColors.blackTextColor,
         tabs: [
           Tab(
-            text: recentText,
+            text: 'his_recent'.tr(),
 
           ),
 
           Tab(
-            text: allText,
+            text: 'his_all'.tr(),
           ),
         ],
       ),

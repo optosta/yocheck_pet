@@ -16,7 +16,7 @@ import 'd_date_range.dart';
 class AnalysisTrendViewModel extends ChangeNotifier {
 
   /// 조회할 검사 항목 요소
-  String _selectedUrineName = '잠혈';
+  String _selectedUrineName = 'blood'.tr();
 
   /// 서버 조회용 [DateTime] 데이터 포멧
   String _rangeStartDate = DateTime.now().formattedClean;
