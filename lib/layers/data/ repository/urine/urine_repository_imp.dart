@@ -4,8 +4,8 @@ import 'package:yocheck_pet/layers/entity/urine_save_dto.dart';
 import 'package:yocheck_pet/layers/entity/user_name_dto.dart';
 import 'package:yocheck_pet/layers/model/vo_history.dart';
 
-import '../../../../common/util/dio/dio_manager.dart';
-import '../../../../main.dart';
+import '../../../../common/utils/dio/dio_manager.dart';
+import '../../../../common/utils/my_logger.dart';
 import '../../../domain/repository/urine_repository.dart';
 import '../../../entity/history_dto.dart';
 import '../../../entity/urine_result_dto.dart';

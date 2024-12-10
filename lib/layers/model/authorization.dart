@@ -1,35 +1,53 @@
-
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common/data/preference/prefs.dart';
-import '../../main.dart';
+import '../../common/utils/my_logger.dart';
+import '../domain/usecase/auth_usecase.dart';
+import '../entity/login_dto.dart';
 
-/// Attributes to store user authorization information
-class Authorization{
-  late String userID; //ex)U00000
+/// 사용자 인증 및 권한 관리 클래스
+class Authorization {
+  late String userID; // ex) U00000
   late String password; // 비밀번호
-  late String token; //ex)eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJV
-  late String name; //ex)홍길동
-  late bool toggleGatt = false; //ex)홍길동
+  late String token; // ex) eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJV
+  late String name; // ex) 홍길동
+  late bool toggleGatt = false;
 
+  /// 싱글톤 인스턴스
+  static final Authorization _authInstance = Authorization._internal();
 
-  @override
-  String toString() {
-    return 'Authorization{userID: $userID, password: $password, token: $token}';
-  } // 목표 걸음수
-
-  // Authorization 클래스의 싱글톤 인스턴스
-  static final Authorization _authInstance = Authorization.internal();
-
-  // 싱글톤 패턴을 위한 비공개 생성자
-  factory Authorization(){
+  /// Authorization 클래스의 단일 인스턴스 제공
+  factory Authorization() {
     return _authInstance;
   }
 
-  // 사용자 권한 값을 설정하는 메서드
-  // Authorization 초기화
+  /// 비공개 생성자
+  Authorization._internal() {
+    init();
+  }
+
+  /// 권한 초기화
+  void init() {
+    userID = '';
+    password = '';
+    token = '';
+    toggleGatt = false;
+  }
+
+  /// SharedPreferences 초기화 데이터 삭제
+  Future<void> clearSetStringData() async {
+    var pref = await SharedPreferences.getInstance();
+    pref.clear();
+  }
+
+  /// 권한 초기화
+  void clean() {
+    init();
+    clearSetStringData();
+  }
+
+  /// 사용자 정보 설정
   void setValues({
     required String userID,
     required String password,
@@ -40,28 +58,60 @@ class Authorization{
     this.token = token;
   }
 
-  /// Authorization의 단일 인스턴스를 제공하기 위한 팩토리 메서드
-  Authorization.internal() {
-    init();
+  /// 사용자 정보를 초기화하고 필요 시 로그인 수행
+  Future<void> initAuthorization() async {
+    logger.i('Initializing Authorization');
+
+    final storedUserID = Prefs.userID.get();
+    final storedPassword = Prefs.password.get();
+    final storedToken = Prefs.token.get();
+    final storedToggleGatt = Prefs.toggelGatt.get();
+
+    setValues(
+      userID: storedUserID,
+      password: storedPassword,
+      token: storedToken,
+    );
+    toggleGatt = storedToggleGatt;
+
+    // 로그인 필요 시 수행
+    if (userID.isNotEmpty) {
+      await login();
+    }
   }
 
-  /// 권한 값을 초기화하는 메서드
-  clean() {
-    init();
-    clearSetStringData();
+  /// 로그인 수행
+  Future<void> login() async {
+    try {
+      LoginDTO? response = await LoginUseCase().execute({
+        'userID': userID,
+        'password': password,
+      });
+      if (response?.status.code == '200' && response != null) {
+        token = response.data!;
+        Prefs.token.set(response.data!);
+        logger.d('로그인 성공: $userID');
+      } else {
+        _handleLoginFailure();
+      }
+    } on DioException catch (e) {
+      logger.e('DioException during login: $e');
+      _handleLoginFailure();
+    } catch (e) {
+      logger.e('Exception during login: $e');
+      _handleLoginFailure();
+    }
   }
 
-  /// 권한 값을 초기화하는 메서드
-  init() {
-    userID = '';
+  /// 로그인 실패 처리
+  void _handleLoginFailure() {
+    userID = '-';
     password = '';
     token = '';
-    toggleGatt = false;
   }
 
-  /// SharedPreferences clear
-  clearSetStringData() async {
-    var pref = await SharedPreferences.getInstance();
-    pref.clear();
+  @override
+  String toString() {
+    return 'Authorization{userID: $userID, password: $password, token: $token}';
   }
 }

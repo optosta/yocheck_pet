@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yocheck_pet/common/dart/extension/snackbar_context_extension.dart';
 
-import '../../../layers/presentation/widget/w_custom_dialog.dart';
+import '../../../layers/presentation/widgets/w_custom_dialog.dart';
 import '../../common.dart';
 
 /// 회원가입 유효성 확인 클래스

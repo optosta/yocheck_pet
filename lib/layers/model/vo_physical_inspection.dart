@@ -1,5 +1,5 @@
 
-import '../../common/util/text_format.dart';
+import '../../common/utils/text_format.dart';
 import '../entity/summary_dto.dart';
 
 class PhysicalInspection {

@@ -1,51 +1,24 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
+import 'package:after_layout/after_layout.dart';
 
-import 'app.dart';
 import 'common/common.dart';
 import 'common/data/preference/app_preferences.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'common/data/preference/prefs.dart';
 import 'common/di/di.dart';
-import 'layers/domain/usecase/auth_usecase.dart';
-import 'layers/entity/login_dto.dart';
 import 'layers/model/authorization.dart';
-
-
-/// TODO
-/// 1) 포도당 수치 max 4
-
-var logger = Logger(
-    printer: PrettyPrinter(
-        methodCount: 1,      // number of method calls to be displayed
-        errorMethodCount: 8, // number of method calls if stacktrace is provided
-        lineLength: 120,     // width of the output
-        colors: true,        // Colorful log messages
-        printEmojis: false,  // Print an emoji for each log message
-        printTime: false     // Should each log print contain a timestamp
-    )
-);
+import 'layers/presentation/routes/routes.dart';
 
 Future<void> main() async {
-  // 플랫폼 채널의 위젯 바인딩을 보장해야한다.
-  final bindings = WidgetsFlutterBinding.ensureInitialized();
+  final bindings = WidgetsFlutterBinding.ensureInitialized(); // 플랫폼 채널의 위젯 바인딩을 보장해야한다.
+  FlutterNativeSplash.preserve(widgetsBinding: bindings); // Flutter 초기화가 완료될 때까지 스플래시 화면을 표시합니다.
 
-  // Flutter 초기화가 완료될 때까지 스플래시 화면을 표시합니다.
-  FlutterNativeSplash.preserve(widgetsBinding: bindings);
-
-  // EasyLocalization 패키지를 초기화하여 로컬라이제이션을 지원합니다.
-  await EasyLocalization.ensureInitialized();
-
-  // SharedPreferences 초기화
-  await AppPreferences.init();
-
-  // Locator 초기화
-  initLocator();
-
-  // 사용자 정보 초기화
-  await initAuthorization();
+  await EasyLocalization.ensureInitialized(); // EasyLocalization 패키지를 초기화하여 로컬라이제이션을 지원합니다.
+  await AppPreferences.init(); // SharedPreferences 초기화
+  await Authorization().initAuthorization(); // 사용자 정보 초기화
+  initLocator(); // Locator 초기화
 
   runApp(
     EasyLocalization(
@@ -58,53 +31,37 @@ Future<void> main() async {
   );
 }
 
-/// 사용자 정보 초기화
-Future<void> initAuthorization() async {
-  logger.i('afterFirstLayout');
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
-  final userID = Prefs.userID.get();
-  final password = Prefs.password.get();
-  final token = Prefs.token.get();
-  final toggleGatt = Prefs.toggelGatt.get();
-
-  Authorization().setValues(
-      userID: userID,
-      password: password,
-      token: token,
-  );
-  Authorization().toggleGatt = toggleGatt;
-
-  if(Authorization().userID.isNotEmpty){
-    await login();
-  }
+  @override
+  State<MyApp> createState() => _MyAppState();
 }
 
+class _MyAppState extends State<MyApp> with AfterLayoutMixin {
+  final themeData = ThemeData();
 
-/// 로그인 진행
-Future<void> login() async {
-  Map<String, dynamic> toMap(){
-    return {
-      'userID'   : Authorization().userID,
-      'password' :  Authorization().password,
-    };
+  @override
+  Widget build(BuildContext context) {
+    // 앱 화면 세로 방향 고정
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+    return MaterialApp.router(
+      title: 'Yocheck Pet',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      debugShowCheckedModeBanner: false,
+      theme: Theme.of(context).copyWith(
+        colorScheme: themeData.colorScheme.copyWith(primary: AppColors.primaryColor),
+      ),
+      routerConfig: router,
+    );
   }
 
-  try {
-   LoginDTO? response = await LoginUseCase().execute(toMap());
-        if (response?.status.code == '200' && response != null){
-          Authorization().token = response.data!;
-          Prefs.token.set(response.data!);
-          logger.d('로그인 성공: ${Authorization().userID}');
-        } else {
-          Authorization().userID = '-';
-        }
-  } on DioException catch (e) {
-    logger.e(e);
-    Authorization().userID = '-';
-  } catch (e) {
-    logger.e(e);
-    Authorization().userID = '-';
+  @override
+  Future<void> afterFirstLayout(BuildContext context) async {
+    FlutterNativeSplash.remove();
   }
 }
-
 

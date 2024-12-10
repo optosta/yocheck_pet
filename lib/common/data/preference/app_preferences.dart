@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../main.dart';
 import '../../theme/custom_theme.dart';
+import '../../utils/my_logger.dart';
 import 'item/preference_item.dart';
 
 export 'package:get/get_rx/get_rx.dart';
