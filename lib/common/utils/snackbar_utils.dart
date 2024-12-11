@@ -39,7 +39,7 @@ class SnackBarUtils {
           ScaffoldMessenger.of(context).hideCurrentSnackBar();
         },
       ),
-      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 225.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 225.0),
       content: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

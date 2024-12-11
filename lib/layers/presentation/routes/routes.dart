@@ -1,9 +1,9 @@
 import 'package:go_router/go_router.dart';
 
 import '../../model/authorization.dart';
-import '../pages/auth/login/v_login.dart';
+import '../pages/auth/login/login_view.dart';
 import '../pages/home/home_view.dart';
-import '../pages/ingredient/v_ingredient_result.dart';
+import '../pages/ingredient/ingredient_view.dart';
 import 'route_path.dart';
 
 final GoRouter router = GoRouter(
@@ -25,7 +25,7 @@ final GoRouter router = GoRouter(
         final Map<String, dynamic> args = state.extra as Map<String, dynamic>;
         final resultText = args['resultText'];
         final statusList = args['statusList'];
-        return IngredientResultView(resultText: resultText, statusList: statusList);
+        return IngredientView(resultText: resultText, statusList: statusList);
       }
     ),
   ],

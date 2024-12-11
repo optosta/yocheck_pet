@@ -94,7 +94,7 @@ class _ResultBoxAllBottomSheetState extends State<ResultBoxAllBottomSheet> {
         Container(
           width: 70,
           height: 3,
-          margin: EdgeInsets.only(top: AppDim.xSmall),
+          margin: const EdgeInsets.only(top: AppDim.xSmall),
           decoration: BoxDecoration(
             color: AppColors.grey,
             borderRadius: AppConstants.borderLightRadius,
@@ -110,7 +110,7 @@ class _ResultBoxAllBottomSheetState extends State<ResultBoxAllBottomSheet> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         IconButton(
-          icon: Icon(Icons.cancel, color: AppColors.grey, size: AppDim.iconSmall),
+          icon: const Icon(Icons.cancel, color: AppColors.grey, size: AppDim.iconSmall),
           onPressed: () {
             Navigator.pop(context);
           },

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/common/constant/app_dimensions.dart';
 
 import 'style_text.dart';
 

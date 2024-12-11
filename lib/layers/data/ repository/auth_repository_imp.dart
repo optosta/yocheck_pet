@@ -3,13 +3,10 @@ import 'package:yocheck_pet/common/utils/dio/dio_manager.dart';
 import 'package:yocheck_pet/layers/entity/change_pass_dto.dart';
 import 'package:yocheck_pet/layers/entity/login_dto.dart';
 import 'package:yocheck_pet/layers/entity/logout_dto.dart';
-import 'package:yocheck_pet/layers/model/vo_login.dart';
 
 import '../../../common/utils/my_logger.dart';
-import '../../../main.dart';
 import '../../domain/repository/auth_repository.dart';
 import '../../entity/signup_dto.dart';
-import '../../model/vo_signup.dart';
 
 class AuthRepositoryImp implements AuthRepository {
 

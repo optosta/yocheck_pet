@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:yocheck_pet/common/common.dart';
 import 'package:flutter/material.dart';
 

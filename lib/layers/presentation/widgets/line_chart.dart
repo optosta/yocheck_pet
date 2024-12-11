@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import 'package:intl/intl.dart';
 import 'package:yocheck_pet/common/common.dart';
 import 'package:yocheck_pet/common/utils/branch.dart';
 
@@ -32,7 +31,7 @@ class BarChart{
           maximum: 4,
           axisLine: const AxisLine(width: 2),
           labelFormat: '{value}',
-          labelStyle: TextStyle(fontSize: 12),
+          labelStyle: const TextStyle(fontSize: 12),
           majorTickLines: const MajorTickLines(size: 0)),
       series: _getColumnSeries(),
       trackballBehavior: TrackballBehavior(
@@ -58,7 +57,7 @@ class BarChart{
             labelAlignment: ChartDataLabelAlignment.outer,
             isVisible: true,
             textStyle: TextStyle(color: AppColors.blackTextColor, fontWeight: FontWeight.w600, fontSize: 15)),
-         markerSettings: MarkerSettings(
+         markerSettings: const MarkerSettings(
              borderWidth: 7,
              isVisible: true,
              shape: DataMarkerType.circle,

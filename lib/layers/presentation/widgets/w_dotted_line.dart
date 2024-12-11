@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/common/constant/app_dimensions.dart';
 
 class DottedLine extends StatelessWidget {
   const DottedLine({super.key, required this.mWidth});

@@ -7,7 +7,7 @@ import 'package:yocheck_pet/layers/presentation/pages/home/component/home_body.d
 import 'package:yocheck_pet/layers/presentation/pages/home/home_viewmodel.dart';
 
 import '../../../../common/common.dart';
-import '../setting/v_setting.dart';
+import '../setting/setting_view.dart';
 import 'component/home_appbar.dart';
 import 'component/home_bg_layout.dart';
 import 'component/home_header.dart';

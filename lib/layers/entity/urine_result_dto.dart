@@ -39,7 +39,7 @@ class UrineResultDataDTO {
     );
   }
 
-  static List<UrineResultDataDTO> jsonList(dynamic? json) {
+  static List<UrineResultDataDTO> jsonList(dynamic json) {
     if(json == null) return [];
     var tagObjsJson = json as List;
     return tagObjsJson

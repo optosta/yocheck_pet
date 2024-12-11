@@ -11,7 +11,7 @@ import '../../../../../common/utils/nav.dart';
 import '../../../../../common/utils/snackbar_utils.dart';
 import '../../../../domain/usecase/auth_usecase.dart';
 import '../../../widgets/w_custom_dialog.dart';
-import '../../auth/login/v_login.dart';
+import '../../auth/login/login_view.dart';
 
 class ChangePasswordViewModel extends ChangeNotifier {
   /// 현재 비밀번호

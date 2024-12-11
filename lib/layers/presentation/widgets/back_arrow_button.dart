@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/common/constant/app_dimensions.dart';
 
 /// AppBar 가 없을 사용되는 back button
 class BackArrowButton extends StatelessWidget {

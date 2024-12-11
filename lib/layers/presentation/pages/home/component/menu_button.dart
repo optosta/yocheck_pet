@@ -8,12 +8,10 @@ import '../../../../model/enum/home_button_type.dart';
 import '../../../widgets/style_text.dart';
 import '../../../widgets/ui_helper.dart';
 import '../../../widgets/w_custom_dialog.dart';
-import '../../analysis/arrangement/v_inspection_arrangement.dart';
-import '../../history/v_urine_history.dart';
-import '../../ingredient/v_ingredient_result.dart';
-import '../../trend/v_analysis_trend.dart';
+import '../../analysis/check/inspection_check_view.dart';
+import '../../history/history_view.dart';
+import '../../trend/analysis_trend_view.dart';
 import '../ai_analysis_provider.dart';
-import '../home_viewmodel.dart';
 
 
 class MenuButton extends StatelessWidget {
@@ -39,7 +37,7 @@ class MenuButton extends StatelessWidget {
                 checkLocationService(context);
                 break;
               case HomeButtonType.history:
-                Nav.doPush(context, const UrineHistoryView());
+                Nav.doPush(context, const HistoryView());
                 break;
               case HomeButtonType.ingredient:
                 requestFetchAiAnalyze(context);
@@ -99,7 +97,7 @@ class MenuButton extends StatelessWidget {
     }
     else {
       if (context.mounted) {
-        Nav.doPush(context, const InspectionArrangementView());
+        Nav.doPush(context, const InspectionCheckView());
       }
     }
   }

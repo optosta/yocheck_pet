@@ -1,16 +1,9 @@
-
-import 'dart:ffi';
-
-
 import 'package:yocheck_pet/common/di/di.dart';
-import 'package:yocheck_pet/layers/data/%20repository/auth_repository_imp.dart';
 import 'package:yocheck_pet/layers/entity/login_dto.dart';
 
 import '../../entity/change_pass_dto.dart';
 import '../../entity/logout_dto.dart';
 import '../../entity/signup_dto.dart';
-import '../../model/vo_login.dart';
-import '../../model/vo_signup.dart';
 import '../repository/auth_repository.dart';
 import 'base_usecase.dart';
 

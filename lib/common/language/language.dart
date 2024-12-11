@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../common.dart';
-
 // enum Language {
 //   korean(Locale('ko'), '${Texts.imagePath}/flag/flag_kr.png'),
 //   english(Locale('en'), '${Texts.imagePath}/flag/flag_us.png');

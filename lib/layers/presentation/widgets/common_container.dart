@@ -8,12 +8,11 @@ class CommonContainer extends StatelessWidget {
   final EdgeInsets? padding;
   final Color? color;
   final BoxBorder? border;
-  BorderRadiusGeometry? borderRadius = BorderRadius.circular(12);
+  final BorderRadiusGeometry? borderRadius;
   final List<BoxShadow>? boxShadow;
   final Widget? child;
 
-  var circular = 20;
-   CommonContainer({
+   const CommonContainer({
     super.key,
     this.height,
     this.width,
@@ -22,9 +21,8 @@ class CommonContainer extends StatelessWidget {
     this.color,
     this.border,
     this.boxShadow,
-    this.borderRadius,
+    this.borderRadius  = const BorderRadius.all(Radius.circular(20)),
     this.child,
-
   });
 
   @override

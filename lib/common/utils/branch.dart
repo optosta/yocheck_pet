@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
 
 import '../../layers/model/enum/ai_analysis_results.dart';
-import '../../layers/model/enum/blood_data_type.dart';
 
 /// 분기 계산 클래스
 class Branch {

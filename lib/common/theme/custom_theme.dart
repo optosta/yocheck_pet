@@ -24,17 +24,14 @@ enum CustomTheme {
     switch (this) {
       case CustomTheme.dark:
         {
-          print('다크 모드');
           return darkTheme;
         }
       case CustomTheme.light:
         {
-          print('밝은 모드');
           return lightTheme;
         }
       default:
         {
-          print('defalut');
           return lightTheme;
         }
     }

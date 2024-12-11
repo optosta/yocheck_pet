@@ -1,9 +1,6 @@
 
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/common/constant/app_dimensions.dart';
 
 class StyleText extends StatelessWidget {
   final String text;

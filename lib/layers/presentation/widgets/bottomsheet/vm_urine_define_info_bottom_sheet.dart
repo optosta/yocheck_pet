@@ -1,5 +1,3 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,9 +7,7 @@ import '../../../../common/utils/branch.dart';
 import '../../../../common/utils/dio/dio_exceptions.dart';
 import '../../../../common/utils/my_logger.dart';
 import '../../../../common/utils/text_format.dart';
-import '../../../../main.dart';
 import '../../../domain/usecase/urine/urine_chart_usecase.dart';
-import '../../../entity/urine_chart_dto.dart';
 import '../../../model/authorization.dart';
 import '../../../model/vo_chart.dart';
 
@@ -30,7 +26,7 @@ class UrineDefineInfoBottomSheetViewModel extends ChangeNotifier {
   String _errorMessage = '';
 
   // ChartData(x축, y축) List
-  List<ChartData> _chartData = [];
+  final List<ChartData> _chartData = [];
 
   //urein description list
   List<Map<String, String>>? _urineDesc;
@@ -93,7 +89,6 @@ class UrineDefineInfoBottomSheetViewModel extends ChangeNotifier {
           if (_chartData.length == dateRange) break;
         }
       } else if (urineChartFuture?.status.code == 'ERR_MS_4003') {
-        print('해당 날짜에 검사한 이력이 없습니다.');
       }
       _isLoading = false;
       notifyListeners();

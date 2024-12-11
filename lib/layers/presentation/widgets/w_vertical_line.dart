@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/common/dart/extension/context_extension.dart';
 
 class Line extends StatelessWidget {
   const Line({

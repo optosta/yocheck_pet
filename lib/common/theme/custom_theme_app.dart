@@ -1,10 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../data/preference/prefs.dart';
-import 'custom_theme.dart';
-import 'custom_theme_holder.dart';
-import 'theme_util.dart';
-
 // class CustomThemeApp extends StatefulWidget {
 //   final Widget child;
 //

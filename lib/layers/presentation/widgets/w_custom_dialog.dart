@@ -248,20 +248,20 @@ class CustomDialog {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                       width: 190,
                       child: Text(text, textAlign: TextAlign.center,
                           textScaleFactor: 0.85)),
                 ],
               ),
             ),
-            contentPadding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
+            contentPadding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
             actionsAlignment: MainAxisAlignment.center,
             actions: <Widget>[
               Container(
                 height: 40,
                 width: 240,
-                margin: EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(bottom: 10),
                 child: TextButton(
                     style: TextButton.styleFrom(
                         elevation: 5.0,
@@ -462,7 +462,7 @@ class CustomDialog {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(round))),
             contentPadding: EdgeInsets.all(padding),
-            content: Container(
+            content: SizedBox(
                 width: width,
                 //height:  // 호출 하는 곳의 column에서 mainAxisSize: MainAxisSize.min 적용 필요
                 child: child

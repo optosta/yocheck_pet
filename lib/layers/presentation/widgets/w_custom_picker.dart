@@ -6,15 +6,15 @@ import 'package:yocheck_pet/layers/presentation/widgets/style_text.dart';
 
 /// CustomPicker class
 class CustomPicker{
-  var tempData;
+  late final DateTime tempData;
 
   /// BottomSheet Widget
   /// @param pickerModel : PickerModel
   showBottomSheet(PickerData pickerData){
-    tempData  = pickerData.itemList[0];
+    tempData = pickerData.itemList[0];
 
     showModalBottomSheet(context: pickerData.context, builder: (context) {
-      return Container(
+      return SizedBox(
         height: 250,
         width: double.infinity,
         child: Column(
@@ -53,7 +53,6 @@ class CustomPicker{
               fontWeight: FontWeight.bold),
           onPressed: () {
             Navigator.pop(context);
-            print('>>>> [bottomSheet 취소]');
           },
         ),
 
@@ -83,7 +82,7 @@ class CustomPicker{
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(
-                  child: Container(
+                  child: SizedBox(
                       height: 160,
                       child: CupertinoPicker(
                           itemExtent: 40,

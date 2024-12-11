@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yocheck_pet/layers/presentation/widgets/w_custom_dialog.dart';
 
-import '../../../common/utils/nav.dart';
-import '../pages/analysis/result/d_ai_analysis.dart';
+import '../pages/result/component/ai_analysis_dialog.dart';
 
 class UiHelper {
   static Future<void> showAiAnalysisDialog(BuildContext context) {
@@ -15,9 +15,19 @@ class UiHelper {
   }
 
   static void showErrorDialog(BuildContext context, String message) {
-    Nav.doPop(context); // 기존 다이얼로그 닫기
+    context.pop(); // 기존 다이얼로그 닫기
     CustomDialog.showMyDialog(
       title: 'result_analysis'.tr,
+      content: message,
+      mainContext: context,
+    );
+  }
+
+
+  /// 로그인 다이얼로그
+  static void loginDialog(BuildContext context, String message){
+    CustomDialog.showMyDialog(
+      title: 'login'.tr,
       content: message,
       mainContext: context,
     );

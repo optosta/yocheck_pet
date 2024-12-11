@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:logger/logger.dart';
 import 'package:after_layout/after_layout.dart';
 
 import 'common/common.dart';
@@ -17,8 +16,8 @@ Future<void> main() async {
 
   await EasyLocalization.ensureInitialized(); // EasyLocalization 패키지를 초기화하여 로컬라이제이션을 지원합니다.
   await AppPreferences.init(); // SharedPreferences 초기화
-  await Authorization().initAuthorization(); // 사용자 정보 초기화
   initLocator(); // Locator 초기화
+  await Authorization().initAuthorization(); // 사용자 정보 초기화
 
   runApp(
     EasyLocalization(
