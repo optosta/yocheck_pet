@@ -1,9 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/layers/model/authorization.dart';
 import 'package:yocheck_pet/layers/presentation/widgets/style_text.dart';
 
 
@@ -11,12 +9,11 @@ import 'package:yocheck_pet/layers/presentation/widgets/style_text.dart';
 class AiAnalysisAlertDialog extends StatelessWidget {
   const AiAnalysisAlertDialog({super.key});
 
-  String get contentText => '${Authorization().name} ${'analysis_dialog'.tr()}';
+  String get contentText => 'analysis_dialog'.tr();
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-
     return WillPopScope(
       onWillPop: () async {
         return false; // 뒤로가기 방지
@@ -31,7 +28,7 @@ class AiAnalysisAlertDialog extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Gap(AppDim.xXLarge),
+                AppDim.heightLarge,
                 StyleText(
                   text: 'result_analysis'.tr(),
                   size: AppDim.fontSizeLarge,
@@ -39,15 +36,13 @@ class AiAnalysisAlertDialog extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25),
-                  child: SpinKitFadingFour(
-                      color: AppColors.primaryColor,
-                      size: 70
-                  ),
+                  child: Image.asset('assets/images/urine/home/test.gif', width: 90,)
                 ),
                 StyleText(
                     text: contentText,
-                    color: AppColors.primaryColor,
-                    fontWeight: AppDim.weightBold,
+                    size: AppDim.fontSizeSmall,
+                    color: AppColors.secondColor,
+                    fontWeight: AppDim.weight400,
                 ),
                 const Gap(AppDim.xLarge),
 

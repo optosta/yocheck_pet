@@ -1,7 +1,5 @@
 
-
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 import '../../../../../../common/common.dart';
 import '../../../widgets/result_item_box.dart';
@@ -23,44 +21,63 @@ class VitaminInfoBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppDim.paddingLarge,
+      padding: const EdgeInsets.only(bottom: AppDim.large),
       color:  AppColors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          StyleText(
-            text: 'tract_check'.tr(),
-            size: AppDim.fontSizeXLarge,
-            color: AppColors.primaryColor,
-            fontWeight: AppDim.weightBold,
+          Padding(
+            padding: const EdgeInsets.only(top: AppDim.large, left: AppDim.medium),
+            child: StyleText(
+              text: 'tract_check'.tr(),
+              size: AppDim.fontSizeXLarge,
+              color: AppColors.primaryColor,
+              fontWeight: AppDim.weightBold,
+            ),
           ),
-          const Gap(AppDim.medium),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: ResultItemBox(
-                  index: 9,
-                  status: status1,
-                ),
-              ),
-              Expanded(
-                child: ResultItemBox(
-                  index: 5,
-                  status: status2,
-                ),
-              ),
+          AppDim.heightMedium,
 
-              Expanded( 
-                child: StyleText(
-                  text: status1 == '0' ? 'tract_grade_1'.tr() : 'tract_grade_2'.tr(),
-                  color: AppColors.blackTextColor,
-                  maxLinesCount: 5,
-                  softWrap: true,
+          Container(
+            height: 120,
+            padding: const EdgeInsets.all(AppDim.small),
+            color: AppColors.containerBg,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 160,
+                  child: ResultItemBox(
+                    index: 9,
+                    status: status1,
+                  ),
                 ),
-              ),
-            ],
+                AppDim.widthSmall,
+                SizedBox(
+                  width: 160,
+                  child: ResultItemBox(
+                    index: 5,
+                    status: status2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          AppDim.heightMedium,
+
+          Container(
+            padding: const EdgeInsets.all(AppDim.small),
+            margin: const EdgeInsets.only(left: AppDim.small),
+            decoration: BoxDecoration(
+              color: AppColors.greyBoxBg,
+              borderRadius: AppConstants.borderLightRadius,
+            ),
+            child: StyleText(
+              text: status1 == '0' ? 'tract_grade_1'.tr() : 'tract_grade_2'.tr(),
+              color: AppColors.blackTextColor,
+              maxLinesCount: 5,
+              softWrap: true,
+            ),
           ),
         ],
       ),

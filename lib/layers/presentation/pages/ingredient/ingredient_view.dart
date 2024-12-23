@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:yocheck_pet/common/common.dart';
 import 'package:yocheck_pet/common/utils/branch.dart';
-import 'package:yocheck_pet/layers/presentation/pages/ingredient/disease/component/disease_box.dart';
 import 'package:yocheck_pet/layers/presentation/pages/ingredient/component/ingredient_header.dart';
 import 'package:yocheck_pet/layers/presentation/pages/ingredient/component/result_content_box.dart';
 import 'package:yocheck_pet/layers/presentation/pages/ingredient/component/vitamin_info_box.dart';
@@ -52,12 +51,6 @@ class _IngredientViewState extends State<IngredientView> {
               disease: resultContent.name,
               statusList: widget.statusList,
             ),
-            //const Gap(AppDim.small),
-
-
-            /// 성분 관련 질환 더보기
-            const DiseaseBox(),
-           // const Gap(AppDim.small),
 
             /// 비타민 검출 영향 -> 요로감염 체크로 변경
             /// 백혈구, 아질산염항목으로 변경
@@ -67,7 +60,6 @@ class _IngredientViewState extends State<IngredientView> {
             ),
 
             /// 예상증상 결과 내용
-            //const Gap(AppDim.small),
             ResultContentBox(
               title: 'symptoms'.tr(),
               content: resultContent.symptomContent.tr(),

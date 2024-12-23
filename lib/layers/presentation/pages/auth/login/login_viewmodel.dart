@@ -13,15 +13,16 @@ class LoginViewModel extends ChangeNotifier {
 
   /// 로그인
   Future login(
-    String? id,
-    String? pass, {
+    String id,
+    String pass, {
     required Function(String message) loginDialog,
     required VoidCallback goToHome,
   }) async {
-    if (id == null || pass == null) {
+    if (id == '' || pass == '') {
       loginDialog('empty_field'.tr());
       return;
     }
+
     try {
       LoginDTO? resonse =
           await LoginUseCase().execute({'userID': id, 'password': pass});
@@ -42,12 +43,12 @@ class LoginViewModel extends ChangeNotifier {
       loginDialog(msg);
     } catch (e) {
       logger.e(e);
-      loginDialog(Texts.unexpectedError);
+      loginDialog('unexpected_error'.tr());
     }
   }
 
   /// 자동로그인을 위한 데이터 저장
-  saveAuthPrefs(String id, String pass, String token) {
+  void saveAuthPrefs(String id, String pass, String token) {
     Prefs.userID.set(id);
     Prefs.password.set(pass);
     Prefs.token.set(token);

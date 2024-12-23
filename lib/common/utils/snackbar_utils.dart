@@ -5,11 +5,8 @@ import '../../layers/presentation/widgets/style_text.dart';
 import '../common.dart';
 
 class SnackBarUtils {
-
   /// 일반 스낵바
-  static showDefaultSnackBar(
-      BuildContext context,
-      String message,
+  static showDefaultSnackBar(BuildContext context, String message,
       {int seconds = 2}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: Duration(seconds: seconds),
@@ -24,9 +21,7 @@ class SnackBarUtils {
   }
 
   /// 센터 스낵바
-  static showCenterSnackBar(
-      BuildContext context,
-      String message,
+  static showCenterSnackBar(BuildContext context, String message,
       {int seconds = 3}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: Duration(seconds: seconds),
@@ -44,9 +39,9 @@ class SnackBarUtils {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Icon(
-              Icons.arrow_circle_left_outlined,
-              color: AppColors.whiteTextColor,
-              size: AppDim.iconMedium,
+            Icons.arrow_circle_left_outlined,
+            color: AppColors.whiteTextColor,
+            size: AppDim.iconMedium,
           ),
           const Gap(AppDim.small),
           StyleText(
@@ -59,7 +54,8 @@ class SnackBarUtils {
           Icon(
             Icons.arrow_circle_right_outlined,
             color: AppColors.whiteTextColor,
-            size: AppDim.iconMedium,),
+            size: AppDim.iconMedium,
+          ),
         ],
       ),
     ));
@@ -67,56 +63,56 @@ class SnackBarUtils {
 
   /// BG White 스낵바
   static showPrimarySnackBar(
-      BuildContext context,
-      String message,
-      {int seconds = 2}) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: seconds.seconds,
-      backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      content: Container(
-        padding: const EdgeInsets.all(8.0),
-        height: 50,
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: AppConstants.borderLightRadius,
-          boxShadow: [
-            BoxShadow(
-              color:  Colors.grey.withOpacity(0.3),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: const Offset(1, 1), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            const Icon(Icons.check_circle, size: AppDim.iconSmall, color: AppColors.white),
-            const Gap(AppDim.mediumLarge),
-
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  StyleText(
-                    text: message,
-                    fontWeight: AppDim.weight500,
-                      color: AppColors.white
-                  ),
-                ],
+    BuildContext context,
+    String message, {
+    int seconds = 2,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: seconds.seconds,
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        content: Container(
+          padding: const EdgeInsets.all(8.0),
+          height: 50,
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor,
+            borderRadius: AppConstants.borderLightRadius,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: const Offset(1, 1), // changes position of shadow
               ),
-            ),
-          ],
+            ],
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.check_circle,
+                  size: AppDim.iconSmall, color: AppColors.white),
+              const Gap(AppDim.mediumLarge),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    StyleText(
+                        text: message,
+                        fontWeight: AppDim.weight500,
+                        color: AppColors.white),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   /// 검사 진행
-  static showProgrssSnackBar(
-      BuildContext context,
-      {int seconds = 2}) {
+  static showProgrssSnackBar(BuildContext context, {int seconds = 2}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: seconds.seconds,
       backgroundColor: Colors.transparent,
@@ -129,7 +125,7 @@ class SnackBarUtils {
           borderRadius: AppConstants.borderLightRadius,
           boxShadow: [
             BoxShadow(
-              color:  Colors.grey.withOpacity(0.3),
+              color: Colors.grey.withOpacity(0.3),
               spreadRadius: 1,
               blurRadius: 1,
               offset: const Offset(1, 1), // changes position of shadow
@@ -138,9 +134,9 @@ class SnackBarUtils {
         ),
         child: Row(
           children: [
-            const Icon(Icons.check_circle, size: AppDim.iconSmall, color: AppColors.white),
+            const Icon(Icons.check_circle,
+                size: AppDim.iconSmall, color: AppColors.white),
             const Gap(AppDim.mediumLarge),
-
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,8 +145,7 @@ class SnackBarUtils {
                   StyleText(
                       text: 'insp_guide_4'.tr(),
                       fontWeight: AppDim.weight500,
-                      color: AppColors.white
-                  ),
+                      color: AppColors.white),
                 ],
               ),
             ),

@@ -1,85 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:msh_checkbox/msh_checkbox.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:yocheck_pet/common/common.dart';
 
-import '../../../../../model/enum/arrangement_type.dart';
+import '../../../../../../common/utils/snackbar_utils.dart';
+import '../../../../enums/arrangement_type.dart';
+import '../../../../routes/route_path.dart';
 import '../../../../widgets/frame_container.dart';
 import '../../../../widgets/style_text.dart';
 import '../inspection_check_viewmodel.dart';
 
-
-class InspectionCheckBox extends StatelessWidget {
+class InspectionCheckBox extends StatefulWidget {
   final ArrangementType type;
-  final bool isCheckBox;
+  final bool isActive;
+  final double height;
 
   const InspectionCheckBox({
     super.key,
     required this.type,
-    required this.isCheckBox,
+    required this.isActive,
+    required this.height,
   });
 
   @override
+  State<InspectionCheckBox> createState() => _InspectionCheckBoxState();
+}
+
+class _InspectionCheckBoxState extends State<InspectionCheckBox> {
+  @override
   Widget build(BuildContext context) {
     return FrameContainer(
-      backgroundColor: AppColors.greyBoxBg,
+      height: widget.height,
+      borderColor: widget.isActive ? AppColors.secondColor : AppColors.isUnableColor,
+      backgroundColor: AppColors.boxBgColor,
       child: InkWell(
         onTap: () => {
-          if (type == ArrangementType.device){
-            context.read<InspectionCheckViewModel>().onChangedDevice(context)
-          }
+          if (widget.type == ArrangementType.device){
+              context.read<InspectionCheckViewModel>().onChangedDevice(
+                startInsepction: () {
+                  SnackBarUtils.showProgrssSnackBar(
+                    context,
+                    seconds: 3,
+                  );
+                  Future.delayed(3.seconds, () {
+                    if (!mounted) return; // 위젯이 비활성화되었으면 작업을 중단
+                    context.pop(); // 검사전 준비 화면 pop
+                    context.push(RoutePath.bluetooth); // 검사화면으로 이동
+                  });
+                },
+              )
+            }
         },
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            /// 체크 박스
-            Padding(
-              padding: const EdgeInsets.only(bottom: AppDim.large),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MSHCheckbox(
-                    size: 20,
-                    value: isCheckBox,
-                    colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-                      checkedColor: AppColors.primaryColor,
-                    ),
-                    style: MSHCheckboxStyle.stroke,
-                    onChanged: (selected) {
-                      if(type == ArrangementType.device) {
-                        context.read<InspectionCheckViewModel>()
-                            .onChangedDevice(context);
-                      }
-                    },
-                  ),
-                  const Gap(AppDim.xSmall),
-                  StyleText(
-                      text: type.stateOn.tr(),
-                      fontWeight: AppDim.weightBold,
-                      color: AppColors.primaryColor,
-                      size: AppDim.fontSizeXSmall,
-                  )
-                ],
+            Column(
+              children: [
+                StyleText(
+                  text: widget.isActive ? widget.type.onActiveText : widget.type.offActiveText,
+                  softWrap: true,
+                  fontWeight: AppDim.weightBold,
+                  color: widget.isActive
+                      ? AppColors.secondColor
+                      : AppColors.blackTextColor,
+                  size: AppDim.fontSizeXLarge,
+                  align: TextAlign.center,
+                ),
+                AppDim.heightMedium,
+                StyleText(
+                  text: widget.isActive ? widget.type.subTitle : widget.type.subTitle,
+                  softWrap: true,
+                  fontWeight: AppDim.weight400,
+                  size: AppDim.fontSizeSmall,
+                  color: AppColors.blackTextColor,
+                  align: TextAlign.center,
+                ),
+              ],
+            ),
+            Container(
+              width: 110,
+              height: 110,
+              padding: const EdgeInsets.all(AppDim.large),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: widget.isActive
+                        ? AppColors.secondColor
+                        : AppColors.isUnableColor,
+                    width: 3,
+                  )),
+              child: Image.asset(
+                widget.type.imagePath,
+                height: AppDim.imageSmallMedium,
+                width: AppDim.imageSmallMedium,
               ),
             ),
-
-
-            Image.asset(
-              type.image,
-              height: AppDim.imageSmallMedium,
-              width: AppDim.imageSmallMedium,
-            ),
-            const Gap(AppDim.large),
-
-            StyleText(
-              text: type.recommend.tr(),
-              softWrap: true,
-              fontWeight: AppDim.weightBold,
-              color: AppColors.greyTextColor,
-              size: AppDim.fontSizeSmall,
-              align: TextAlign.center,
-              maxLinesCount: 2,
-            )
           ],
         ),
       ),

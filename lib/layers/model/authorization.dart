@@ -37,6 +37,7 @@ class Authorization {
 
   /// SharedPreferences 초기화 데이터 삭제
   Future<void> clearSetStringData() async {
+    logger.d('clearSetStringData');
     var pref = await SharedPreferences.getInstance();
     pref.clear();
   }

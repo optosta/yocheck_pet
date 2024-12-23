@@ -20,7 +20,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             statusBarIconBrightness: Brightness.dark,
             statusBarColor: Colors.white),
         title: Image.asset(
-          '${Texts.imagePath}/urine/home/logo.png',
+          '${Texts.imagePath}/urine/home/logo_icon.png',
           color: AppColors.primaryColor,
           height: AppDim.large,
         ),
@@ -31,13 +31,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         actions: [
           /// 채팅화면 우측 상단 아이콘 버튼
           Padding(
-            padding: const EdgeInsets.only(right: AppDim.small),
-            child: IconButton(
-                onPressed: () => onPressed(),
-                icon: const Icon(
-                  Icons.settings,
-                  size: AppDim.iconSmall,
-                )),
+            padding: const EdgeInsets.only(right: AppDim.medium),
+            child:  GestureDetector(
+                onTap: () => onPressed(),
+                child: Image.asset('${Texts.imagePath}/urine/home/setting_icon.png', width: AppDim.iconSmall,),
+            )
           ),
         ],
       ),

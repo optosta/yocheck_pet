@@ -23,9 +23,6 @@ class InspectionCheckViewModel extends ChangeNotifier{
   /// 검사기 전원 블루투스 on/off 상태
   bool _isDeviceActive = false;
 
-  /// 검사진행버튼 visible
-  bool _visibleStartButton = false;
-
   /// Current state of the Bluetooth module Subscription
   late StreamSubscription<BluetoothAdapterState> adapterStateSubscription;
 
@@ -34,26 +31,17 @@ class InspectionCheckViewModel extends ChangeNotifier{
 
   bool get isBluetoothActive => _isBluetoothActive;
   bool get isDeviceActive => _isDeviceActive;
-  bool get visibleStartButton => _visibleStartButton;
 
 
   /// 디바이스 전원 체크박스 변경 이벤트
-  onChangedDevice(BuildContext context) {
+  onChangedDevice({required VoidCallback startInsepction}) {
     _isDeviceActive = !_isDeviceActive;
-
-
 
     // 24.07.27 - 검사기 전원 on/off 상태에 따라 검사진행버튼 화면 하단에 보여주기 자동으로 전환
     // 블루투스, 검사기 모두 ON일때 검사진행버튼 화면 하단에 보여주기
     //_visibleStartButton = _isBluetoothActive && _isDeviceActive;
     if(_isBluetoothActive && _isDeviceActive) {
-      SnackBarUtils.showProgrssSnackBar(context,
-          seconds: delayedSeconds,
-      );
-      Future.delayed(delayedSeconds.seconds, (){
-        Nav.doPop(context); // 검사전 준비 화면 pop
-        Nav.doPush(context, const BluetoothView());
-      });
+      startInsepction();
     }
     notifyListeners();
   }

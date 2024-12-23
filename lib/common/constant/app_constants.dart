@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 
 class AppConstants {
   static double elevation = 2.0;
-  static double textFieldHeight = 55;
+  static double textFieldWidth = 272;
+  static double textFieldHeight = 40;
 
   static const double boxItemHeight60 = 60;
   static const double signupTextFieldHeight = 50;
-  static const double buttonHeight = 55;
+  static const double buttonHeight = 40;
+  static const double buttonHeight50 = 50;
   static const double dropButtonHeight = 45;
 
   static double borderLightWidth = 1.5;
@@ -21,7 +23,7 @@ class AppConstants {
 
   static Radius radius = const Radius.circular(30);
   static Radius mediumRadius = const Radius.circular(20);
-  static Radius lightRadius = const Radius.circular(12);
+  static Radius lightRadius = const Radius.circular(8);
 
   static const double radiusValue30 = 30;
   static const double radiusValue20 = 20;
@@ -44,12 +46,13 @@ class AppConstants {
   ];
 
   static LinearGradient gradient = const LinearGradient(
-    begin: FractionalOffset.topLeft,
-    end: FractionalOffset.bottomRight,
+    begin: FractionalOffset.topCenter,
+    end: FractionalOffset.bottomCenter,
     colors: [
-      Color(0xff337735),
-      Color(0xff8fccc5),
+      Color(0xfff7fbf7),
+      Color(0xffa9dcab),
+      Color(0xff94d895),
     ],
-    stops: [0.01, 1.0],
+    stops: [0.01,2.0, 2.0],
   );
 }

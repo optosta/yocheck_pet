@@ -5,14 +5,16 @@ import 'package:yocheck_pet/common/common.dart';
 import 'package:yocheck_pet/layers/presentation/pages/result/result_viewmodel.dart';
 import 'package:yocheck_pet/layers/presentation/pages/result/component/result_item.dart';
 
+import '../../../../common/utils/text_format.dart';
 import '../../widgets/default_button.dart';
+import '../../widgets/result_item_box.dart';
 import '../../widgets/scaffold/frame_scaffold.dart';
 import '../../widgets/style_text.dart';
 
-
 /// 검사 결과 화면 (검사기와 검사후, 히스토리에서 터치 이벤트시)
+///TODO: 보라색 이미지 필요
+///TODO: 성분분석 기능 연결
 class UrineResultView extends StatefulWidget {
-
   /// 검사 결과 리스트
   final List<String> urineList;
 
@@ -30,91 +32,76 @@ class UrineResultView extends StatefulWidget {
 }
 
 class _UrineResultViewState extends State<UrineResultView> {
-
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => UrineResultViewModel(context),
-      child: FrameScaffold(
-        appBarTitle: 'result_title'.tr(),
-        body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.white,
+        elevation: 0.0,
+        title: StyleText(
+          text: 'result_title'.tr(),
+          size: AppDim.fontSizeLarge,
+          color: AppColors.primaryColor,
+          fontWeight: AppDim.weightBold,
+        ),
+        iconTheme: const IconThemeData(color: AppColors.darkGrey),
+        centerTitle: true,
+      ),
+      backgroundColor: AppColors.containerBg,
+      body: Padding(
+        padding: const EdgeInsets.all(AppDim.medium),
+        child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 24.07.27 검사 결과 요약 차트 비활성화
-              // Consumer<UrineResultViewModel>(
-              //   builder: (context, provider, child) {
-              //     return ResultSummaryChart(chartData: provider.chartData);
-              //   },
-              // ),
-              // const Gap(AppDim.large),
-
-              const Gap(AppDim.small),
               StyleText(
-                text: 'header_title'.tr(),
-                color: AppColors.primaryColor,
-                size: AppDim.fontSizeXxLarge,
-                fontWeight: AppDim.weightBold,
-                maxLinesCount: 2,
-                height: 1.2,
+                text: TextFormat.convertTimestamp(widget.testDate),
+                color: AppColors.blackTextColor,
+                size: AppDim.fontSizeLarge,
+                fontWeight: AppDim.weight600,
+                maxLinesCount: 1,
               ),
-              const Gap(AppDim.xSmall),
-
-              /// 검사 결과 리스트
-              SizedBox(
-                height: 550,
-                child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 11,
-                  itemBuilder: (BuildContext context, int index) {
-                    return UrineResultListItem(
-                      status: widget.urineList[index],
-                      index: index,
-                    );
-                  },
+              AppDim.heightMedium,
+              GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 11,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
+                  childAspectRatio: 1.5 / 0.95, //item 의 가로 1, 세로 1 의 비율
+                  mainAxisSpacing: 13, //수평 Padding
+                  crossAxisSpacing: 13, //수직 Padding
                 ),
-              ),
-              const Gap(AppDim.xXLarge),
-
-              StyleText(
-                text: 'result_grade_1'.tr(),
-                size: AppDim.fontSizeLarge,
-                color: AppColors.blackTextColor,
-                fontWeight: AppDim.weight500,
-                softWrap: true,
-                maxLinesCount: 2,
-              ),
-              const Gap(AppDim.medium),
-
-              StyleText(
-                text: 'result_grade_2'.tr(),
-                size: AppDim.fontSizeLarge,
-                color: AppColors.blackTextColor,
-                fontWeight: AppDim.weight500,
-                softWrap: true,
-                maxLinesCount: 2,
-              ),
-              const Gap(AppDim.xSmall),
-
-              /// 성분 분석 버튼
-              const Gap(AppDim.xLarge),
-              Consumer<UrineResultViewModel>(
-                builder: (context, provider, child) {
-                  return  DefaultButton(
-                    btnName: 'result_analysis'.tr(),
-                    onPressed: () {
-                      provider.fetchAiAnalyze(widget.urineList);
-                    }, // 성분분석 결과 화면 이동
+                itemBuilder: (BuildContext context, int index) {
+                  // return Text(index.toString());
+                  return ResultItemBox(
+                    index: index,
+                    status: widget.urineList[index],
                   );
                 },
               ),
-              const Gap(AppDim.xXLarge),
-
             ],
           ),
         ),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: AppDim.small),
+        child: FloatingActionButton.extended(
+          shape: RoundedRectangleBorder(
+            borderRadius: AppConstants.borderLightRadius,
+          ),
+          backgroundColor: AppColors.secondColor,
+          foregroundColor: Colors.black,
+          onPressed: () {
+            //provider.fetchAiAnalyze(widget.urineList);
+          },
+          icon: const Icon(Icons.add_chart_sharp, color: AppColors.white),
+          //TODO: 영문 변환 해야됨
+          label: const StyleText(text:'성분분석 의뢰', color: AppColors.whiteTextColor,),
+        ),
+      ),
     );
+
   }
 }

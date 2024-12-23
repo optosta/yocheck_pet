@@ -16,23 +16,17 @@ class AllListFragment extends StatelessWidget {
     required this.historyList,
   });
 
-  String get emptyText => '검사 이력이 없습니다.';
-
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: AppDim.paddingLarge,
         child: historyList.isEmpty
-            ? DataEmpty(message: emptyText)
-            : ListView.separated(
+            ? DataEmpty(message: 'history_empty'.tr())
+            : ListView.builder(
                 controller: allScrollController,
                 physics: const BouncingScrollPhysics(),
                 itemCount: historyList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return HistoryListItem(history: historyList[index]);
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const DottedLine(mWidth: double.infinity);
                 },
               ),
     );

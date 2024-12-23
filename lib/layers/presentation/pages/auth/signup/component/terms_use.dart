@@ -30,73 +30,76 @@ class TermsUse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        /// 이용약관 체크박스
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Gap(AppDim.small),
-            Row(
-              children: [
-                MSHCheckbox(
-                  size: 22,
-                  value: isCheckedInfo,
-                  colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-                    checkedColor: AppColors.primaryColor,
-                  ),
-                  style: MSHCheckboxStyle.stroke,
-                  onChanged: onChangedInfo
-                ),
-
-                const Gap(AppDim.small),
-                StyleText(
-                  text: 'personal_information'.tr(),
-                  fontWeight: AppDim.weight500,
-                  color: AppColors.greyTextColor,
-                  size: AppDim.fontSizeSmall,
-                )
-              ],
-            ),
-
-            const Gap(AppDim.medium),
-            Row(
-              children: [
-                MSHCheckbox(
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: AppDim.large),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          /// 이용약관 체크박스
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  MSHCheckbox(
                     size: 22,
-                    value: isCheckedService,
+                    value: isCheckedInfo,
                     colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
                       checkedColor: AppColors.primaryColor,
                     ),
-                    style: MSHCheckboxStyle.stroke,
-                    onChanged: onChangedService
-                ),
-                const Gap(AppDim.small),
+                    style: MSHCheckboxStyle.fillScaleCheck,
+                    onChanged: onChangedInfo
+                  ),
 
-                StyleText(
-                  text: 'service_terms'.tr(),
-                  fontWeight: AppDim.weight500,
-                  color: AppColors.greyTextColor,
-                  size: AppDim.fontSizeSmall,
-                )
-              ],
-            )
-          ],
-        ),
+                  const Gap(AppDim.small),
+                  StyleText(
+                    text: 'personal_information'.tr(),
+                    fontWeight: AppDim.weight500,
+                    color: AppColors.greyTextColor,
+                    size: AppDim.fontSizeSmall,
+                  )
+                ],
+              ),
 
-        /// 약관 보기 버튼
-        TextButton(
-          onPressed: showTerms,
-          child: StyleText(
-            text: 'terms_view'.tr(),
-            color: AppColors.primaryColor,
-            decoration: TextDecoration.underline,
-            decorationColor: AppColors.primaryColor,
+              const Gap(AppDim.medium),
+              Row(
+                children: [
+                  MSHCheckbox(
+                      size: 22,
+                      value: isCheckedService,
+                      colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
+                        checkedColor: AppColors.primaryColor,
+                      ),
+                      style: MSHCheckboxStyle.fillScaleCheck,
+                      onChanged: onChangedService
+                  ),
+                  const Gap(AppDim.small),
+
+                  StyleText(
+                    text: 'service_terms'.tr(),
+                    fontWeight: AppDim.weight500,
+                    color: AppColors.greyTextColor,
+                    size: AppDim.fontSizeSmall,
+                  )
+                ],
+              )
+            ],
           ),
-        )
-      ],
+
+          /// 약관 보기 버튼
+          TextButton(
+            onPressed: showTerms,
+            child: StyleText(
+              text: 'terms_view'.tr(),
+              size: AppDim.fontSizeSmall,
+              color: AppColors.primaryColor,
+              decoration: TextDecoration.underline,
+              decorationColor: AppColors.primaryColor,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

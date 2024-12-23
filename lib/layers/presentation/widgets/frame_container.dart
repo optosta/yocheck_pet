@@ -22,20 +22,15 @@ class FrameContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
+      width: double.infinity,
       padding: AppDim.paddingLarge,
       margin: margin,
       decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.all(AppConstants.mediumRadius),
+          borderRadius: BorderRadius.all(AppConstants.lightRadius),
           border: Border.all(
               width: AppConstants.borderLightWidth, color: borderColor,
           ),
-        boxShadow: const [
-          BoxShadow(
-              color: AppColors.middleGrey, //New
-              blurRadius: 1.0,
-              offset: Offset(0, 1))
-        ],
       ),
       child: child,
     );

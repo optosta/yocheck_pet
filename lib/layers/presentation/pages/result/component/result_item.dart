@@ -78,9 +78,9 @@ class UrineResultListItem extends StatelessWidget {
                     maxWidth: 60,
                     minHeight: 20,
                   ),
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: Branch.resultStatusToBgColor(status, index),
                   ),
                   child: Padding(
@@ -97,7 +97,8 @@ class UrineResultListItem extends StatelessWidget {
                   ),
                 ),
               ]
-          )),
+          ),
+      ),
     );
   }
 

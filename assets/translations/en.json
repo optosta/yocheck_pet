@@ -1,19 +1,27 @@
 {
+  "textfield_title_id": "ID",
+  "textfield_title_password": "Password",
+  "textfield_title_check_password": "Check Password",
+  "textfield_title_name": "Name",
+
+  "id_hint": "Please enter your ID",
+  "password_hint": "Please enter your Password",
+  "check_password_hint": "Please enter your Check Password",
+  "name_hint": "Please enter your dog's (cat's) name.",
+
   "login": "Login",
-  "id_hint": "Please enter your ID.",
-  "password_hint": "7 to 15 characters including special characters, lowercase letters, and numbers",
   "signup": "Signup",
   "no_account": "Not a member yet?",
   "empty_field": "Please enter your ID or password.",
   "login_error": "Please check your ID or password.",
+  "signup_success": "Membership completed",
   "check": "Check",
 
   "id": "ID",
   "password": "Password",
   "password_confirm": "Re Password",
   "re_enter_password": "Please re-enter your password.",
-  "pat_name": "Dog(cat) name",
-  "pat_hint": "Please enter your dog's (cat's) name.",
+  "title_terms": "Terms of service",
   "personal_information" : "Privacy Policy (Required)",
   "service_terms" : "Terms of Service (Required)",
   "terms_view": "View Terms",
@@ -161,8 +169,8 @@
   "view_disease_info": "View disease information",
   "disease_grade": "✓ You can check disease information by ingredient.",
   "tract_check": "✓ Urinary tract infection check",
-  "tract_grade_1": "✓ Urinary tract infection level is low.'",
-  "tract_grade_2": "✓ Urinary tract infection level is present, please also check alkaline urine.'",
+  "tract_grade_1": "=> Urinary tract infection level is low.'",
+  "tract_grade_2": "=> Urinary tract infection level is present, please also check alkaline urine.'",
   "symptoms": "✓ Expected symptoms",
   "health_care_guide": "✓ Health Care Guide",
 
@@ -239,6 +247,11 @@
 
   "yes": "yes",
   "cancel": "cancel",
+  "data_erorr": "There is data corruption. Please try again.",
 
-  "data_erorr": "There is data corruption. Please try again."
+  "unexpected_error": "I'm sorry.\nAn unexpected problem has occurred",
+  "connection_error": "Network connection status\nPlease check it out",
+  "bad_certificate": "The server status is unstable.\nPlease try again",
+  "unknown_error": "Checking the server.\nPlease try it in a moment"
+
 }

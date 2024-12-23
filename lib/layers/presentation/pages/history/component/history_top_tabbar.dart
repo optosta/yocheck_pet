@@ -20,26 +20,29 @@ class HistoryTopTabBar extends StatelessWidget {
       height: tabBarHeight,
       decoration: BoxDecoration(
         color: AppColors.brightGrey,
-        borderRadius: BorderRadius.all(AppConstants.radius),
+        borderRadius: BorderRadius.all(AppConstants.lightRadius),
       ),
-      child: TabBar(
-        controller: tabController,
-        // give the indicator a decoration (color and border radius)
-        indicator: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: BorderRadius.all(AppConstants.radius),
-        ),
-        labelColor: AppColors.whiteTextColor,
-        unselectedLabelColor: AppColors.blackTextColor,
-        tabs: [
-          Tab(
-            text: 'his_recent'.tr(),
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: TabBar(
+          controller: tabController,
+          indicator: BoxDecoration(
+            color: AppColors.whiteTextColor,
+            borderRadius: BorderRadius.all(AppConstants.lightRadius),
           ),
+          labelColor: AppColors.blackTextColor,
+          unselectedLabelStyle: const TextStyle(fontWeight: AppDim.weight400),
+          unselectedLabelColor: AppColors.grey,
+          tabs: [
+            Tab(
+              text: 'his_recent'.tr(),
+            ),
 
-          Tab(
-            text: 'his_all'.tr(),
-          ),
-        ],
+            Tab(
+              text: 'his_all'.tr(),
+            ),
+          ],
+        ),
       ),
     );
   }

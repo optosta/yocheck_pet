@@ -861,6 +861,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.4.1"
+  ripple_wave:
+    dependency: "direct main"
+    description:
+      name: ripple_wave
+      sha256: "3aeae006adf309e66ae26e4b8562bdbffb63657d64a6546da52dabd63f005c8b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   rxdart:
     dependency: transitive
     description:

@@ -5,18 +5,17 @@ import 'package:provider/provider.dart';
 import 'package:yocheck_pet/common/common.dart';
 import 'package:yocheck_pet/common/utils/snackbar_utils.dart';
 import 'package:yocheck_pet/layers/model/authorization.dart';
+import 'package:yocheck_pet/layers/presentation/enums/auth_input_field_type.dart';
 import 'package:yocheck_pet/layers/presentation/pages/auth/login/login_viewmodel.dart';
-import 'package:yocheck_pet/layers/presentation/pages/auth/login/component/login_button.dart';
+import 'package:yocheck_pet/layers/presentation/pages/auth/login/component/default_button.dart';
 import 'package:yocheck_pet/layers/presentation/widgets/ui_helper.dart';
 
 import '../../../../../common/utils/app_keyboard_util.dart';
 import '../../../routes/route_path.dart';
 import '../../../widgets/style_text.dart';
-import 'component/login_textfield.dart';
-import 'component/signup_guide_button.dart';
+import 'component/auth_textfield.dart';
 
-enum LoginInputType { id, password }
-
+//TODO: 비밀번호 정규화 개선 필요(길이가 너무 길며 보안성이 높다.)
 /// 로그인 화면
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -26,7 +25,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  String get licenseText => '©2024 OPTOSTA, Inc. All rights reserved.';
+  String get licenseText => '©2024 CHUNGDO, Inc. All rights reserved.';
 
   final idController = TextEditingController(); // 아이디 TextEditing
   final passController = TextEditingController(); // 비밀번호 TextEditing
@@ -42,81 +41,84 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => LoginViewModel(),
-        child: Scaffold(
-          body: Consumer<LoginViewModel>(
-            builder: (context, provider, child) {
-              return GestureDetector(
-                  onTap: () => AppKeyboardUtil.hide(context),
-                  child: SafeArea(
-                    child: Stack(
+      create: (context) => LoginViewModel(),
+      builder: (context, child) {
+        return Scaffold(
+          body: GestureDetector(
+            onTap: () => AppKeyboardUtil.hide(context),
+            child: SafeArea(
+              child: Stack(
+                children: [
+                  GestureDetector(
+                    onTap: () => AppKeyboardUtil.hide(context),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          onTap: () => AppKeyboardUtil.hide(context),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              /// 메인 BI 이미지
-                              buildBiImage(),
-                              const Gap(AppDim.xLarge),
+                        /// 메인 BI 이미지
+                        _buildBiImage(),
+                        const Gap(AppDim.xLarge),
 
-                              /// 아이디 입력란
-                              LoginTextField(
-                                type: LoginInputType.id,
-                                controller: idController,
-                              ),
-                              const Gap(AppDim.medium),
-
-                              /// 비밀번호 입력란
-                              LoginTextField(
-                                type: LoginInputType.password,
-                                controller: passController,
-                              ),
-                              const Gap(AppDim.medium),
-
-                              /// 로그인 버튼
-                              LoginButton(
-                                onPressed: () => {
-                                  AppKeyboardUtil.hide(context),
-                                  context.read<LoginViewModel>().login(
-                                        idController.text,
-                                        passController.text,
-                                        loginDialog: (message) =>
-                                            UiHelper.loginDialog(
-                                                context, message),
-                                        goToHome: () =>
-                                            context.go(RoutePath.home),
-                                      )
-                                },
-                              ),
-                              const Gap(AppDim.xLarge),
-
-                              /// 회원가입 안내 버튼
-                              const SignUpGuideButton()
-                            ],
-                          ),
+                        /// 아이디 입력란
+                        AuthTextField(
+                          type: AuthInputFieldType.id,
+                          controller: idController,
                         ),
 
-                        /// 라이센스 마크
-                        licenseMark()
+                        /// 비밀번호 입력란
+                        AuthTextField(
+                          type: AuthInputFieldType.password,
+                          controller: passController,
+                        ),
+
+                        /// 로그인 버튼
+                        DefaultButton(
+                          onPressed: () => {
+                            AppKeyboardUtil.hide(context),
+                            context.read<LoginViewModel>().login(
+                                  idController.text.trim(),
+                                  passController.text.trim(),
+                                  loginDialog: (message) => UiHelper.defaultDialog(context, 'login'.tr(), message,),
+                                  goToHome: () => context.go(RoutePath.home),
+                                )
+                          },
+                          lable: 'login'.tr(),
+                          backgroundColor: AppColors.primaryColor,
+                          textColor: AppColors.whiteTextColor,
+                        ),
+                        AppDim.heightXSmall,
+
+                        /// 회원가입 버튼
+                        DefaultButton(
+                          onPressed: () => context.push(RoutePath.signup),
+                          lable: 'signup'.tr(),
+                          backgroundColor: AppColors.signupButtonBg,
+                          textColor: AppColors.primaryColor,
+                        ),
                       ],
                     ),
-                  ));
-            },
+                  ),
+
+                  /// 라이센스 마크
+                  _buildLicenseMark()
+                ],
+              ),
+            ),
           ),
-        ));
+        );
+      },
+    );
   }
 
   /// 메인 BI 이미지
-  buildBiImage() => Image.asset(
-        '${Texts.imagePath}/login/logo.png',
-        height: 50,
-        width: 210,
+  _buildBiImage() => Image.asset(
+        '${Texts.imagePath}/login/login_logo.png',
+        height: 28,
+        width: 185,
       );
 
   /// 라이센스 마크
-  Widget licenseMark() => Align(
+  _buildLicenseMark() => Align(
         alignment: Alignment.bottomCenter,
         child: Container(
           margin: const EdgeInsets.only(bottom: AppDim.medium),
@@ -129,11 +131,12 @@ class _LoginViewState extends State<LoginView> {
         ),
       );
 
+  //TODO: en,ko text 변환이 필요함
   _authLoginErrorMsg(context) {
     if (Authorization().userID == '-') {
       SnackBarUtils.showPrimarySnackBar(
         context,
-        '자동로그인이 수행되지 못했습니다.',
+        Texts.autoLoginFailure,
       );
     }
   }

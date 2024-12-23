@@ -3,33 +3,37 @@ import 'package:yocheck_pet/common/common.dart';
 
 import '../../../../widgets/style_text.dart';
 
-class LoginButton extends StatelessWidget {
-
+class DefaultButton extends StatelessWidget {
+  final String lable;
+  final Color backgroundColor;
+  final Color textColor;
   final VoidCallback onPressed;
 
-  const LoginButton({
+  const DefaultButton({
     super.key,
     required this.onPressed,
+    required this.lable,
+    required this.backgroundColor,
+    required this.textColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDim.large),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: AppDim.xLarge),
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: backgroundColor,
           minimumSize: const Size(double.infinity, AppConstants.buttonHeight),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(AppConstants.mediumRadius)
-          ),
+              borderRadius: BorderRadius.all(AppConstants.lightRadius)),
         ),
         child: StyleText(
-          text: 'login'.tr(),
-          color: AppColors.whiteTextColor,
+          text: lable,
+          color: textColor,
           size: AppDim.fontSizeMedium,
-          fontWeight: AppDim.weightBold,
+          fontWeight: AppDim.weight400,
         ),
       ),
     );

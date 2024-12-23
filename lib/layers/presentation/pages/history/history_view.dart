@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:yocheck_pet/common/constant/app_dimensions.dart';
 import 'package:yocheck_pet/layers/presentation/pages/history/history_viewmodel.dart';
 import 'package:yocheck_pet/layers/presentation/pages/history/component/history_top_tabbar.dart';
+import '../../../../common/common.dart';
 import '../../widgets/scaffold/frame_scaffold.dart';
 import '../../widgets/w_future_handler.dart';
 import 'component/recent_list_fragment.dart';
@@ -45,6 +46,7 @@ class _UrineHistoryViewViewState extends State<HistoryView> with TickerProviderS
       create: (BuildContext context) => HistoryViewModel(),
       child: FrameScaffold(
         appBarTitle: 'history'.tr(),
+        backgroundColor: AppColors.containerBg,
         body: Consumer<HistoryViewModel>(
           builder: (context, provider, child) {
             return FutureHandler(

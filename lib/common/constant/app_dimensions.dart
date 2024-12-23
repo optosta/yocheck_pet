@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 
+import '../../layers/presentation/widgets/w_height_and_width.dart';
+
 
 class AppDim {
 
   // 일반 사이즈
   static const  double xSmall = 5;
   static const  double small  = 10;
-  static const  double medium = 15;
+  static const  double medium = 16;
   static const  double mediumLarge = 20;
   static const  double large  = 25;
   static const  double xLarge = 30;
   static const  double xXLarge = 50;
 
   // 높이
-  // static const  heightXSmall = Height(5);
-  // static const  heightSmall  = Height(10);
-  // static const  heightMedium = Height(15);
-  // static const  heightLarge  = Height(25);
-  // static const  heightXLarge = Height(30);
-  // static const  heightXXLarge = Height(50);
-  //
-  // // 너비
-  // static const  widthXSmall = Width(5);
-  // static const  widthSmall  = Width(10);
-  // static const  widthMedium = Width(15);
-  // static const  widthLarge  = Width(25);
-  // static const  widthXLarge = Width(30);
+  static const  heightXSmall = Height(5);
+  static const  heightSmall  = Height(12);
+  static const  heightMedium = Height(15);
+  static const  heightLarge  = Height(25);
+  static const  heightXLarge = Height(30);
+  static const  heightXXLarge = Height(50);
+
+  // 너비
+  static const  widthXSmall = Width(5);
+  static const  widthSmall  = Width(10);
+  static const  widthMedium = Width(15);
+  static const  widthLarge  = Width(25);
+  static const  widthXLarge = Width(30);
 
   // padding
   static const  paddingXSmall = EdgeInsets.all(5);
@@ -44,7 +46,7 @@ class AppDim {
   // 폰트 크기
   static const double scaleFontSize = 1.0;
   static const double fontSizeXSmall = 12.0;
-  static const double fontSizeSmall = 14.0;
+  static const double fontSizeSmall = 13.0;
   static const double fontSizeMedium = 16.0;
   static const double fontSizeLarge = 18.0;
   static const double fontSizeXLarge = 20.0;
@@ -54,7 +56,9 @@ class AppDim {
   // 폰트 굵기
   static const FontWeight weightLight = FontWeight.w400;
   static const FontWeight weightNormal = FontWeight.normal;
+  static const FontWeight weight400 = FontWeight.w400;
   static const FontWeight weight500 = FontWeight.w500;
+  static const FontWeight weight600 = FontWeight.w600;
   static const FontWeight weightBold = FontWeight.bold;
 
   // 아이콘 크기

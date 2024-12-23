@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
 
-import '../../../../model/enum/home_button_type.dart';
+import '../../../enums/home_button_type.dart';
 import 'menu_button.dart';
-
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -14,33 +13,17 @@ class HomeBody extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: AppDim.large),
       child: Column(
-        children: [
-          Row(
-            children:
-            [
-              MenuButton(
-                  type: HomeButtonType.inspection,
-                  label: 'home_inspection'.tr(),
-              ), // 검사 시작
-              MenuButton(
-                type: HomeButtonType.history,
-                label: 'home_history'.tr(),), // 검사 내역
-            ],
+        children: List.generate(
+          HomeButtonType.values.length,
+          (index) => Padding(
+            padding: const EdgeInsets.only(top: AppDim.small),
+            child: MenuButton(
+              type: HomeButtonType.values[index],
+              label: HomeButtonType.values[index].name,
+            ),
           ),
-          Row(
-            children:
-            [
-              MenuButton(
-                type: HomeButtonType.ingredient,
-                label: 'home_analysis'.tr(),), // 성분 분석
-              MenuButton(
-                type: HomeButtonType.transition,
-                label: 'home_trends'.tr(),), // 나의 추이
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }
-
 }

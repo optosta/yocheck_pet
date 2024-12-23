@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../common/utils/nav.dart';
 import '../../../../common/utils/snackbar_utils.dart';
 import '../../../model/authorization.dart';
-import '../auth/login/login_view.dart';
+import '../../routes/route_path.dart';
 
 class SettingViewModel extends ChangeNotifier {
 
@@ -40,7 +40,7 @@ class SettingViewModel extends ChangeNotifier {
       context,
       'logout_success'.tr(),
     );
-    Nav.doAndRemoveUntil(context, const LoginView());
+    context.go(RoutePath.login);
   }
 
 }

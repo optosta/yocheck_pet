@@ -27,7 +27,7 @@ class DateRangeBox extends StatelessWidget {
         padding: AppDim.paddingSmall,
         decoration: BoxDecoration(
             color: AppColors.white,
-            borderRadius: BorderRadius.all(AppConstants.radius),
+            borderRadius: BorderRadius.all(AppConstants.lightRadius),
             border: Border.all(color: AppColors.brightGrey),
         ),
         child:  Row(
@@ -43,7 +43,7 @@ class DateRangeBox extends StatelessWidget {
                 size: AppDim.fontSizeSmall,
               ),
             ),
-            const Icon(Icons.keyboard_arrow_down, size: AppDim.iconSmall)
+            const Icon(Icons.keyboard_arrow_down, size: AppDim.iconSmall, color: AppColors.grey,)
           ],
         ),
       ),

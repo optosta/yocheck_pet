@@ -43,6 +43,7 @@ class AnalysisTrendViewModel extends ChangeNotifier {
 
   set selectedUrineName(String? selected) {
     _selectedUrineName = selected ?? '잠혈';
+    print('selectedUrineName:  $selectedUrineName');
     notifyListeners();
   }
 
@@ -151,7 +152,6 @@ class AnalysisTrendViewModel extends ChangeNotifier {
     _uiStartDate = rangeStart.formattedDateTime;
     _uiEndDate = rangeEnd.formattedDateTime;
 
-    // Notify listeners
     notifyListeners();
   }
 }

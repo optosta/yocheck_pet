@@ -148,18 +148,18 @@ class Branch {
 
   }
 
-  static resultStatusToIconData(String status, int index){
+  static String resultStatusToImagePath(String status, int index){
     if(index == 10 || index == 8 || index == 7){
-      return Icons.sentiment_satisfied;
+      return 'assets/images/urine/result/rating_icon_9.png';
     } else {
       switch(status){
-        case '0' : return  Icons.sentiment_satisfied_alt;
-        case '1' : return  Icons.sentiment_satisfied_alt;
-        case '2' : return  Icons.sentiment_neutral;
-        case '3' : return  Icons.sentiment_dissatisfied;
-        case '4' : return  Icons.sentiment_dissatisfied_rounded;
-        case '5' : return  Icons.sentiment_dissatisfied_rounded;
-        default  : return  Icons.sentiment_neutral;
+        case '0' : return  'assets/images/urine/result/rating_icon_0.png';
+        case '1' : return  'assets/images/urine/result/rating_icon_1.png';
+        case '2' : return  'assets/images/urine/result/rating_icon_2.png';
+        case '3' : return  'assets/images/urine/result/rating_icon_3.png';
+        case '4' : return  'assets/images/urine/result/rating_icon_3.png';
+        case '5' : return  'assets/images/urine/result/rating_icon_3.png';
+        default  : return  'assets/images/urine/result/rating_icon_0.png';
       }
     }
   }

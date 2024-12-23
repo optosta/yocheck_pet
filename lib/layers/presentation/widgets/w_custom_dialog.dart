@@ -36,24 +36,25 @@ class CustomDialog {
                     color: AppColors.primaryColor,
                     size: AppDim.xLarge,
                   ),
-                  const Gap(AppDim.small),
+                  AppDim.heightSmall,
+
                   StyleText(
                     text: title,
                     fontWeight: AppDim.weightBold,
                   ),
-                  const Gap(AppDim.small),
+                  AppDim.heightSmall,
+
                 ],
               ),
             ),
             content: SizedBox(
-              height: 115,
+              height: 95,
               child: Column(
                 children: [
-                  const Gap(AppDim.xSmall),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: AppDim.large),
                     child: SizedBox(
-                      height: 35,
+                      height: 40,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -69,7 +70,7 @@ class CustomDialog {
                       ),
                     ),
                   ),
-                  const Gap(AppDim.large),
+                  AppDim.heightSmall,
 
                   Expanded(
                     child: SizedBox(
@@ -88,8 +89,8 @@ class CustomDialog {
                           },
                           child: StyleText(
                             text: 'check'.tr(),
-                            color: AppColors.white,
-                            fontWeight: AppDim.weightBold,
+                            color: AppColors.whiteTextColor,
+                            fontWeight: AppDim.weight400,
                           )
                       ),
                     ),

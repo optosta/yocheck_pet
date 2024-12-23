@@ -1,49 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:yocheck_pet/common/common.dart';
+import 'package:yocheck_pet/layers/presentation/enums/date_range_type.dart';
 
 class DateRangeToggleSwitch extends StatelessWidget {
-  final int toggleIndex;
-  final Function(int?) onToggle;
+  // final int toggleIndex;
+  // final Function(int?) onToggle;
+  final TabController dateToggleController;
 
   const DateRangeToggleSwitch({
     super.key,
-    required this.toggleIndex,
-    required this.onToggle,
+    required this.dateToggleController,
+    // required this.toggleIndex,
+    // required this.onToggle,
   });
-
-  List<String> get toggleLabel => [
-    'period_direct'.tr(),
-    'period_week'.tr(),
-    'period_month'.tr(),
-    'period_six_month'.tr(),
-  ];
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: SizedBox(
-        height: AppConstants.dropButtonHeight,
-        child: Row(
-          children: [
-            ToggleSwitch(
-              cornerRadius: AppConstants.radiusValue10,
-              initialLabelIndex: toggleIndex,
-              totalSwitches: 4,
-              minWidth: width / 4 -11 ,
-              inactiveBgColor: Colors.grey.shade200,
-              activeBgColor: [AppColors.primaryColor],
-              labels: toggleLabel,
-              fontSize: AppDim.fontSizeXSmall,
-              onToggle: onToggle,
+    return Container(
+      height: 45,
+      decoration: BoxDecoration(
+        color: AppColors.brightGrey,
+        borderRadius: BorderRadius.all(AppConstants.lightRadius),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: TabBar(
+          controller: dateToggleController,
+          indicator: BoxDecoration(
+            color: AppColors.whiteTextColor,
+            borderRadius: BorderRadius.all(AppConstants.lightRadius),
+          ),
+          labelColor: AppColors.blackTextColor,
+          unselectedLabelStyle: const TextStyle(fontWeight: AppDim.weight400),
+          unselectedLabelColor: AppColors.grey,
+          tabs: List.generate(
+            DateRangeType.values.length,
+            (index) => Tab(
+              text: DateRangeType.values[index].name,
             ),
-          ],
+          ),
         ),
       ),
     );
   }
-
 }

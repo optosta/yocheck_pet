@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yocheck_pet/common/common.dart';
 import 'package:yocheck_pet/layers/model/authorization.dart';
 
-import '../../../widgets/bottomsheet/v_result_box_all_bottom_sheet.dart';
+import '../../../routes/route_path.dart';
 import '../../../widgets/result_item_box.dart';
 import '../../../widgets/style_text.dart';
 
@@ -18,135 +18,143 @@ class IngredientHeader extends StatelessWidget {
   });
 
   String get nameText => '${Authorization().name} ${'analysis_header'.tr()}';
+
   String get adjText1 => 'adjText1'.tr();
+
   String get resultText => '"${disease.tr()} "';
+
   String get adjText2 => 'adjText2'.tr();
 
-
   String get emptyText => 'adjEmptyText1'.tr();
+
   String get emptyText2 => 'adjResultText'.tr();
+
   String get emptyText3 => 'adjEmptyText2'.tr();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppDim.paddingLarge,
       color: AppColors.white,
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// 헤더 텍스트
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                StyleText(
-                  text: nameText,
-                  size: AppDim.fontSizeXLarge,
+          _buildHeadText(),
+          AppDim.heightSmall,
+          _buildResultHorizontalList(),
+          AppDim.heightSmall,
+          _buildRichTextForDisease(),
+
+          GestureDetector(
+            onTap: () => context.push(RoutePath.diseaseinfo),
+            child: Container(
+              height: AppConstants.buttonHeight50,
+              margin: const EdgeInsets.symmetric(horizontal: AppDim.large),
+              decoration: BoxDecoration(
+                borderRadius: AppConstants.borderLightRadius,
+                border: Border.all(
                   color: AppColors.primaryColor,
-                  fontWeight: AppDim.weightBold,
-                  maxLinesCount: 2,
-                  softWrap: true,
-                  height: 1.2,
+                  width: 2,
                 ),
-                const Gap(AppDim.small),
-                InkWell(
-                  onTap: () {
-                    showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        enableDrag: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (BuildContext context) {
-                          return ResultBoxAllBottomSheet(
-                            statusList: statusList,
-                          );
-                        });
-                  },
-                  child:  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      StyleText(
-                        text: 'see_more'.tr(),
-                        size: AppDim.fontSizeMedium,
-                        fontWeight: AppDim.weightBold,
-                      ),
-                      const Icon(Icons.add, size: AppDim.iconSmall),
-                    ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.add,
+                    color: AppColors.primaryColor,
+                    size: AppDim.iconSmall,
                   ),
-                ),
-                const Gap(AppDim.small),
+                  AppDim.widthSmall,
 
-                _buildMainPointResultBox(),
-                const Gap(AppDim.large),
-
-                disease == 'health'
-                    ? RichText(
-                    text: TextSpan(
-                      text: emptyText,
-                      style: _defaultTextStyle(),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: emptyText2,
-                          style: _stateTextStyle(),
-                        ),
-                        TextSpan(text: emptyText3),
-
-                        // TextSpan(text: adjText2),
-                      ],
-                    ))
-                    : RichText(
-                        text: TextSpan(
-                        text: adjText1,
-                        style: _defaultTextStyle(),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: resultText,
-                            style: _stateTextStyle(),
-                          ),
-                          TextSpan(text: adjText2),
-
-                          // TextSpan(text: adjText2),
-                        ],
-                      )),
-              ],
+                  StyleText(
+                    text: 'view_disease_info'.tr(),
+                    color: AppColors.primaryColor,
+                    size: AppDim.fontSizeLarge,
+                    fontWeight: AppDim.weight500,
+                  )
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
-    // }
   }
 
-  Widget _buildMainPointResultBox() {
-    return SizedBox(
-      height: 110,
-      child: Row(
-        children: [
-          Expanded(
-            child: ResultItemBox(
-              index: 0,
-              status: statusList[0],
-            ),
-          ),
-          Expanded(
-            child: ResultItemBox(
-              index: 4,
-              status: statusList[4],
-            ),
-          ),
-          Expanded(
-            child: ResultItemBox(
-              index: 6,
-              status: statusList[6],
-            ),
-          ),
-        ],
+  _buildHeadText() {
+    return Padding(
+      padding: const EdgeInsets.all(AppDim.medium),
+      child: StyleText(
+        text: nameText,
+        size: AppDim.fontSizeXLarge,
+        color: AppColors.primaryColor,
+        fontWeight: AppDim.weightBold,
+        maxLinesCount: 2,
+        softWrap: true,
+        height: 1.2,
       ),
     );
+  }
+
+  _buildResultHorizontalList() {
+    return Container(
+      height: 130,
+      color: AppColors.containerBg,
+      child: ListView.builder(
+        padding: const EdgeInsets.all(AppDim.small),
+        scrollDirection: Axis.horizontal,
+        itemCount: statusList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+              width: 170,
+              margin: const EdgeInsets.only(right: AppDim.small),
+              child: ResultItemBox(
+                index: index,
+                status: statusList[index],
+              ));
+        },
+      ),
+    );
+  }
+
+  _buildRichTextForDisease() {
+    return disease == 'health'
+        ? Padding(
+            padding: const EdgeInsets.all(AppDim.medium),
+            child: RichText(
+              text: TextSpan(
+                text: emptyText,
+                style: _defaultTextStyle(),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: emptyText2,
+                    style: _stateTextStyle(),
+                  ),
+                  TextSpan(text: emptyText3),
+                ],
+              ),
+            ),
+          )
+        : Padding(
+            padding: const EdgeInsets.all(AppDim.medium),
+            child: RichText(
+              text: TextSpan(
+                text: adjText1,
+                style: _defaultTextStyle(),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: resultText,
+                    style: _stateTextStyle(),
+                  ),
+                  TextSpan(text: adjText2),
+                ],
+              ),
+            ),
+          );
   }
 
   TextStyle _defaultTextStyle() {
-    return TextStyle(
+    return const TextStyle(
       fontSize: AppDim.fontSizeMedium,
       fontWeight: AppDim.weightNormal,
       color: AppColors.blackTextColor,
@@ -163,102 +171,3 @@ class IngredientHeader extends StatelessWidget {
     );
   }
 }
-
-// import 'package:flutter/cupertino.dart';
-// import 'package:gap/gap.dart';
-//
-// import '../../../common/constant/app_colors.dart';
-// import '../../../common/constant/app_dimensions.dart';
-// import '../../model/authorization.dart';
-// import '../widget/style_text.dart';
-//
-// class IngredientHeader extends StatelessWidget {
-//   final String disease;
-//
-//   const IngredientHeader({
-//     super.key,
-//     required this.disease,
-//   });
-//
-//   String get nameText => '${Authorization().name}님 측정결과 분석';
-//   String get adjText1 => '측정된 성분의 농도는 ';
-//   String get stateText => '\"주의\"';
-//   String get adjText2 => ' 수준이고 ';
-//   String get resultText => '\"$disease\"';
-//   String get adjText3 => ' 질환과 관련된 성분이오니 참고하시기바랍니다.';
-//   String get emptyText => '=> 지난 소변검사에서 검출된 인자가 없습니다.';
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         StyleText(
-//           text: nameText,
-//           size: AppDim.fontSizeXLarge,
-//           color: AppColors.primaryColor,
-//           fontWeight: AppDim.weightBold,
-//         ),
-//         const Gap(AppDim.xSmall),
-//         disease.isEmpty
-//             ? StyleText(
-//           text: emptyText,
-//           fontWeight: AppDim.weight500,
-//           maxLinesCount: 2,
-//           softWrap: true,
-//         )
-//             : RichText(
-//           text: _buildTextSpan(),
-//         ),
-//       ],
-//     );
-//   }
-//
-//   TextSpan _buildTextSpan() {
-//     return TextSpan(
-//       text: adjText1,
-//       style: _defaultTextStyle(),
-//       children: <TextSpan>[
-//         TextSpan(
-//           text: stateText,
-//           style: _stateTextStyle(),
-//         ),
-//         TextSpan(text: adjText2),
-//         TextSpan(
-//           text: resultText,
-//           style: _boldTextStyle(),
-//         ),
-//         TextSpan(text: adjText3),
-//       ],
-//     );
-//   }
-//
-//   TextStyle _defaultTextStyle() {
-//     return TextStyle(
-//       fontSize: AppDim.fontSizeMedium,
-//       fontWeight: AppDim.weightNormal,
-//       color: AppColors.blackTextColor,
-//       fontFamily: 'pretendard',
-//     );
-//   }
-//
-//   TextStyle _stateTextStyle() {
-//     return TextStyle(
-//       fontSize: AppDim.fontSizeMedium,
-//       fontWeight: AppDim.weight500,
-//       color: AppColors.red,
-//       fontFamily: 'pretendard',
-//     );
-//   }
-//
-//   TextStyle _boldTextStyle() {
-//     return TextStyle(
-//       fontSize: AppDim.fontSizeMedium,
-//       fontWeight: AppDim.weightBold,
-//       color: AppColors.blackTextColor,
-//       fontFamily: 'pretendard',
-//     );
-//   }
-//
-//
-// }

@@ -1,11 +1,15 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:yocheck_pet/layers/model/authorization.dart';
+import 'package:yocheck_pet/layers/presentation/pages/setting/footer_box.dart';
 import 'package:yocheck_pet/layers/presentation/pages/setting/version/v_version.dart';
 import 'package:yocheck_pet/layers/presentation/pages/setting/setting_viewmodel.dart';
 
 import '../../../../common/common.dart';
+import '../../../../common/utils/snackbar_utils.dart';
+import '../../routes/route_path.dart';
 import '../../widgets/scaffold/frame_scaffold.dart';
 import '../../widgets/style_text.dart';
 import '../../widgets/w_custom_dialog.dart';
@@ -26,37 +30,41 @@ class _SettingViewState extends State<SettingView>{
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => SettingViewModel(),
-      child: FrameScaffold(
-        appBarTitle: 'setting'.tr(),
-        body: SingleChildScrollView(
-          child: Container(
-            margin: const EdgeInsets.only(top: AppDim.small),
-            child: Column(
-              children:
-              [
+    return  FrameScaffold(
+          appBarTitle: 'setting'.tr(),
+          bodyPadding: EdgeInsets.zero,
+          body: Stack(
+            children: [
+              Container(
+                alignment: Alignment.topCenter,
+                margin: const EdgeInsets.all(AppDim.medium),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Visibility(
+                      visible: Authorization().userID == 'sim3383' ? true : false,
+                      child: _buildMenu('관리자', context),
+                    ),
+                    _buildMenu('version_info'.tr(), context),
+                    _buildMenu('trm_policy'.tr(), context),
+                    _buildMenu('opensource_license'.tr(), context),
+                    _buildMenu('logout'.tr(), context),
+                    AppDim.heightXXLarge,
+                  ],
+                ),
+              ),
 
-                 Visibility(
-                   visible: Authorization().userID == 'sim3383' ? true : false,
-                   child: _buildMenu('관리자'),
-                 ),
-                _buildMenu('version_info'.tr()),
-                _buildMenu('trm_policy'.tr()),
-                _buildMenu('opensource_license'.tr()),
-                _buildMenu('logout'.tr()),
-              ],
-            ),
+              const Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FooterBox(),
+              ),
+            ],
           ),
-        ),
-      ),
-    );
+        );
   }
 
   /// Menu item widget
-  _buildMenu(String text) {
-    return Consumer<SettingViewModel>(
-      builder: (context, provider, child) {
+  _buildMenu(String text, BuildContext context) {
         return InkWell(
           onTap: () {
             if (text == '관리자') {
@@ -72,7 +80,7 @@ class _SettingViewState extends State<SettingView>{
                 title: 'logout'.tr(),
                 text: 'logout_content'.tr(),
                 mainContext: context,
-                onPressed: () => provider.logout(context),
+                onPressed: () => _performLogoutSuccess(context)
               );
             }
           },
@@ -106,7 +114,14 @@ class _SettingViewState extends State<SettingView>{
             ],
           ),
         );
-      },
+  }
+  /// 로그아웃 성공 처리
+  _performLogoutSuccess(BuildContext context) {
+    Authorization().clean();
+    SnackBarUtils.showPrimarySnackBar(
+      context,
+      'logout_success'.tr(),
     );
+    context.go(RoutePath.login);
   }
 }

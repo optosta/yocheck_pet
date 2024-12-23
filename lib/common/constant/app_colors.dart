@@ -1,17 +1,38 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  //e0a32e
-  static Color primaryColor = const Color(0xff257630);
-  static Color secondColor = const Color(0xff3e753f);
 
-  static Color whiteTextColor = const Color.fromARGB(255, 255, 255, 255);
+  static Color primaryColor = const Color(0xff123734);
+  static Color secondColor = const Color(0xff428C4E);
+
+  static Color signupButtonBg = const Color(0xffE7EDEB);
+
+  static const Color whiteTextColor = Color(0xffF5F5F5);
+  static const Color blackTextColor = Color(0xff1E1E1E);
   static Color greyTextColor = const Color.fromARGB(255, 139, 139, 139);
-  static Color blackTextColor = const Color.fromARGB(255, 15, 15, 15);
+  static Color greyColor = const Color(0xFF767676);
 
   static Color signupTextFieldBg = const Color(0xffF2F2F2);
+  static Color containerBg = const Color(0xfff4f4f4);
+  static Color boxBgColor = const Color(0xffF5F5F5);
+
+  static const Color isActiveColor = Color(0xffb7bfff);
+  static const Color isUnableColor = Color(0xffdddddd);
+
+  static const Color posBgColor = Color(0xFFFFDFDF);
+  static const Color negBgColor = Color(0xFFD1EFFF);
+  static const Color posTextColor = Color(0xFFFF4E4E);
+  static const Color negTextColor = Color(0xFF13ACFF);
+
+  static const Color tabGgColor = Color(0xFFE7EDEB);
+
+
+
+
+
+
+
   static Color shadowColor = Colors.grey.withOpacity(0.5);
-  static Color aiHealthBg = const Color(0xffADC2FF);
 
   static Color selectedCalenderColor = const Color(0xFF000000);
   static Color lightBackgroundColor = const Color(0xFFF1F0F5);
@@ -23,19 +44,19 @@ class AppColors {
   static const Color heightGrey = Color.fromARGB(255, 80, 80, 80);
   static const Color grey = Color.fromARGB(255, 139, 139, 139);
   static const Color middleGrey = Color.fromARGB(255, 180, 180, 180);
-  static const Color white = Color.fromARGB(255, 255, 255, 255);
+  static const Color white = Color(0xFFFFFFFF);
   static const Color brightGrey = Color.fromARGB(255, 228, 228, 228);
   static const Color blueGreen = Color.fromARGB(255, 0, 185, 206);
   static const Color green = Color.fromARGB(255, 132, 206, 191);
-  static const Color lightGreen = Color.fromARGB(255, 85, 200, 77);
+  static const Color lightGreen = Color.fromARGB(128, 85, 200, 77);
   static const Color darkGreen = Color.fromARGB(255, 101, 160, 149);
-  static const Color blue = Color.fromARGB(255, 0, 125, 203);
+  static const Color blue = Color.fromARGB(179, 152, 170, 255);
   static const Color brightBlue = Color(0xffEEF2FF);
   static const Color lightBlue = Color.fromARGB(255, 245, 247, 255);
   static const Color darkBlue = Color.fromARGB(255, 0, 70, 111);
   static const Color mediumBlue = Color.fromARGB(255, 60, 140, 180);
   static const Color darkOrange = Color.fromARGB(255, 222, 112, 48);
-  static const Color yellow = Color.fromARGB(255, 234, 214, 109);
+  static const Color yellow = Color.fromARGB(179, 252, 255, 0);
   static const Color faleBlue = Color.fromARGB(255, 160, 206, 222);
   static const Color salmon = Color(0xffff6666);
   static const Color red = Color(0xffff0000);
@@ -60,7 +81,7 @@ class AppColors {
 
 
   /// 소변 분석 단계별 컬러 값
-  static final resultColor1 = Colors.green.shade600; // 안심
+  static const resultColor1 = Color(0xFF2CCC3F); // 안심
   static final resultColor2 = Colors.blue.shade600;  // 관심
   static const resultColor3 = Color(0xffe5a45b); // 주의
   static final resultColor4 = Colors.purple.shade500; // 위험
@@ -69,7 +90,7 @@ class AppColors {
   static final resultVitaminColor = Colors.grey.shade600; // 이외(PH, 비중, 비타민)
 
   /// 소변 분석 단계별 Text BG 컬러 값
-  static final resultBGColor1 = Colors.green.shade100; // 안심
+  static const resultBGColor1 = Color(0xFFD6F9DA); // 안심
   static final resultBGColor2 = Colors.blue.shade100; // 관심
   static const resultBGColor3 = Color(0xffffdfb8); // 주의
   static final resultBGColor4 = Colors.purple.shade100; // 위험
@@ -79,7 +100,7 @@ class AppColors {
 
 
   /// 소변 분석 단계별 Text BG 컬러 값
-  static final resultChartColor1 = Colors.green.shade400; // 관심F
+  static const resultChartColor1 =  Color(0xFF2CCC3F); // 관심F
   static final resultChartColor2 = Colors.blue.shade400; // 안심
   static const resultChartColor3 = Color(0xffffb352); // 주의
   static const resultChartColor4 = Color(0xffff4a51); // 위험

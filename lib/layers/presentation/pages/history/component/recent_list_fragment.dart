@@ -21,10 +21,9 @@ class RecentListFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppDim.paddingLarge,
       child: historyList.isEmpty
           ? DataEmpty(message: 'history_empty'.tr())
-          : ListView.separated(
+          : ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemCount: historyList.length > recentListMaxCount
                   ? recentListMaxCount
@@ -32,9 +31,7 @@ class RecentListFragment extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) =>
                   HistoryListItem(history: historyList[index],
               ),
-              separatorBuilder: (BuildContext context, int index) {
-                return const DottedLine(mWidth: double.infinity);
-              },
+
             ),
     );
   }

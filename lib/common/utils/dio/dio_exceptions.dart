@@ -14,14 +14,14 @@ class DioExceptions implements Exception {
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.cancel:
       case DioExceptionType.connectionError:
-        message = Texts.connectionError;
+        message = 'connection_error'.tr();
         break;
       case DioExceptionType.badResponse:    // 200이외의 코드 발생 잘못된 요청 화면
       case DioExceptionType.unknown:        // 서버 상태가 불안정합니다. 다시 시도바랍니다.
       case DioExceptionType.badCertificate: // 서버 상태가 불안정합니다. 다시 시도바랍니다.
-        message = Texts.badCertificate;
+        message = 'bad_certificate'.tr();
       default:
-        message = Texts.unknownError;
+        message = 'unknown_error'.tr();
         break;
     }
   }

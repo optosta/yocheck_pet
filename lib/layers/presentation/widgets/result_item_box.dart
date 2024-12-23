@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:yocheck_pet/common/utils/branch.dart';
 import 'package:yocheck_pet/layers/presentation/widgets/style_text.dart';
-import 'package:yocheck_pet/layers/presentation/widgets/w_dotted_line.dart';
 
 import '../../../common/constant/app_colors.dart';
 import '../../../common/constant/app_constants.dart';
@@ -38,80 +36,69 @@ class ResultItemBox extends StatelessWidget {
               );
             })
       },
-      child: Card(
-        elevation: 3,
-        child: Container(
-          decoration: BoxDecoration(
+      child: Container(
+        decoration: BoxDecoration(
             color: AppColors.white,
-            border: Border.all(
-              color: Branch.resultStatusToColor(status, index),
-              width: 1.5,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            borderRadius: BorderRadius.all(AppConstants.lightRadius)),
+        child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Gap(5),
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: StyleText(
-                          text: AppConstants.urineLabelList[index],
-                          color: AppColors.blackTextColor,
-                          fontWeight: AppDim.weight500,
-                          maxLinesCount: 1,
-                          softWrap: true,
-                          align: TextAlign.start),
+                    StyleText(
+                      text: AppConstants.urineLabelList[index],
+                      color: AppColors.blackTextColor,
+                      size: AppDim.fontSizeLarge,
+                      fontWeight: AppDim.weightBold,
+                      maxLinesCount: 2,
+                      softWrap: true,
+                      align: TextAlign.start,
                     ),
-                    const Gap(3),
-                    const Icon(Icons.info_outline, color: Colors.grey, size: 20),
-                  ],
-                ),
-                const DottedLine(mWidth: double.infinity,),
-                const Gap(5),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Icon(
-                          Branch.resultStatusToIconData(status, index),
+                    AppDim.heightSmall,
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      constraints: const BoxConstraints(
+                        minWidth: 40,
+                        minHeight: 20,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: Branch.resultStatusToBgColor(status, index),
+                      ),
+                      child: Center(
+                        child: StyleText(
+                          text: Branch.resultStatusToText(status, index),
                           color: Branch.resultStatusToColor(status, index),
-                        size: 35,
+                          fontWeight: AppDim.weight500,
+                          maxLinesCount: 2,
+                          softWrap: true,
+                          align: TextAlign.center,
+                        ),
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(5)),
-                          color: Branch.resultStatusToBgColor(status, index),
-                        ),
-                        child: SizedBox(
-                          width: 40,
-                          child: Center(
-                            child: StyleText(
-                                text: Branch.resultStatusToText(status, index),
-                                color: Branch.resultStatusToColor(status, index),
-                                fontWeight: AppDim.weightBold,
-                                size: AppDim.fontSizeSmall,
-                                maxLinesCount: 2,
-                                softWrap: true,
-                                align: TextAlign.center,
-                            ),
-                            ),
-                          ),
-                        ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Icon(
+                      Icons.arrow_forward_ios_sharp,
+                      color: Colors.grey,
+                      size: AppDim.iconXSmall,
+                    ),
+                    Image.asset(
+                      Branch.resultStatusToImagePath(status, index),
+                      width: 45,
                     ),
                   ],
                 ),
               ],
-            ),
-          ),
-        ),
+            )),
       ),
     );
   }

@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yocheck_pet/common/common.dart';
+import 'package:yocheck_pet/layers/presentation/pages/auth/login/component/default_button.dart';
 
 import '../../../../../../common/constant/terms_content.dart';
 import '../../../../widgets/style_text.dart';
@@ -9,12 +10,11 @@ import '../../../../widgets/style_text.dart';
 class TermsAlertDialog extends StatelessWidget {
   TermsAlertDialog({super.key});
 
-  final termsText = TermsContent();
+  final _termsText = TermsContent();
 
-  String get title => '이용약관';
-  String get checkText => '확인';
-  double get contentHeight => 270;
-  int get contentMaxLinesCount => 100;
+  double get _contentHeight => 270;
+
+  int get _contentMaxLinesCount => 100;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,9 @@ class TermsAlertDialog extends StatelessWidget {
 
     return AlertDialog(
       backgroundColor: AppColors.white,
-      shape: RoundedRectangleBorder(
-          borderRadius: AppConstants.borderRadius),
+      shape: RoundedRectangleBorder(borderRadius: AppConstants.borderRadius),
       content: SizedBox(
-        height: 450,
+        height: 440,
         width: size.width * 0.9,
         child: SingleChildScrollView(
           child: Column(
@@ -37,7 +36,7 @@ class TermsAlertDialog extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     StyleText(
-                      text: title,
+                      text: 'title_terms'.tr(),
                       size: AppDim.fontSizeLarge,
                       fontWeight: AppDim.weightBold,
                       color: AppColors.primaryColor,
@@ -45,7 +44,7 @@ class TermsAlertDialog extends StatelessWidget {
 
                     // 오른쪽 상단 취소 버튼
                     InkWell(
-                      onTap: () => Navigator.pop(context),
+                      onTap: () => context.pop(),
                       child: const Icon(Icons.close,
                           color: Colors.black, size: AppDim.large),
                     ),
@@ -54,12 +53,14 @@ class TermsAlertDialog extends StatelessWidget {
               ),
 
               Container(
-                height: contentHeight,
+                height: _contentHeight,
                 margin: const EdgeInsets.symmetric(horizontal: AppDim.large),
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(AppDim.xSmall)),
-                  border: Border.all(color: AppColors.greyBoxBorder, width: AppConstants.borderLightWidth)
-                ),
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(AppDim.xSmall)),
+                    border: Border.all(
+                        color: AppColors.greyBoxBorder,
+                        width: AppConstants.borderLightWidth)),
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Padding(
@@ -67,29 +68,28 @@ class TermsAlertDialog extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children:
-                      [
+                      children: [
                         /// 개인정보 수집 및 이용 동의
                         Padding(
                           padding: const EdgeInsets.only(bottom: AppDim.medium),
                           child: StyleText(
-                            text: termsText.privacyTitle,
+                            text: _termsText.privacyTitle,
                             size: AppDim.fontSizeLarge,
                             fontWeight: AppDim.weightBold,
                           ),
                         ),
                         StyleText(
-                            text: termsText.privacyMainText,
-                            size: AppDim.fontSizeSmall,
-                            softWrap: true,
-                            maxLinesCount: contentMaxLinesCount,
+                          text: _termsText.privacyMainText,
+                          size: AppDim.fontSizeSmall,
+                          softWrap: true,
+                          maxLinesCount: _contentMaxLinesCount,
                         ),
 
                         /// 민감정보 처리에 대한 동의
                         Padding(
                           padding: const EdgeInsets.only(bottom: AppDim.medium),
                           child: StyleText(
-                            text: termsText.sensitiveTitle,
+                            text: _termsText.sensitiveTitle,
                             size: AppDim.fontSizeLarge,
                             fontWeight: AppDim.weightBold,
                             softWrap: true,
@@ -97,17 +97,17 @@ class TermsAlertDialog extends StatelessWidget {
                           ),
                         ),
                         StyleText(
-                          text: termsText.sensitiveMainText,
+                          text: _termsText.sensitiveMainText,
                           size: AppDim.fontSizeSmall,
                           softWrap: true,
-                          maxLinesCount: contentMaxLinesCount,
+                          maxLinesCount: _contentMaxLinesCount,
                         ),
 
                         /// 연구과제 설명 및 참여 동의
                         Padding(
                           padding: const EdgeInsets.only(bottom: AppDim.medium),
                           child: StyleText(
-                            text: termsText.researchTitle,
+                            text: _termsText.researchTitle,
                             size: AppDim.fontSizeLarge,
                             fontWeight: AppDim.weightBold,
                             softWrap: true,
@@ -115,35 +115,25 @@ class TermsAlertDialog extends StatelessWidget {
                           ),
                         ),
                         StyleText(
-                          text: termsText.researchMainText,
+                          text: _termsText.researchMainText,
                           size: AppDim.fontSizeSmall,
                           softWrap: true,
-                          maxLinesCount: contentMaxLinesCount,
+                          maxLinesCount: _contentMaxLinesCount,
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
+              AppDim.heightLarge,
 
-              Padding(
-                padding: const EdgeInsets.all(AppDim.large),
-                child: TextButton(
-                  onPressed: () => Nav.doPop(context),
-                  style: TextButton.styleFrom(
-                    minimumSize: const Size(double.infinity, AppConstants.buttonHeight),
-                    backgroundColor: AppColors.primaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: AppConstants.borderLightRadius
-                    ),
-                  ),
-                  child: StyleText(
-                    text: checkText,
-                    color: AppColors.whiteTextColor,
-                    fontWeight: AppDim.weightBold,
-                  ),
-                ),
+              DefaultButton(
+                onPressed: () => context.pop(),
+                lable: 'check'.tr(),
+                backgroundColor: AppColors.primaryColor,
+                textColor: AppColors.whiteTextColor,
               )
+
             ],
           ),
         ),
@@ -153,5 +143,4 @@ class TermsAlertDialog extends StatelessWidget {
       actionsPadding: const EdgeInsets.all(0),
     );
   }
-
 }
