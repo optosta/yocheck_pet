@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
 
+import '../../../widgets/style_text.dart';
+
 /// 히스토리 탭바 (최근, 전체)
 class HistoryTopTabBar extends StatelessWidget {
   final TabController tabController;
@@ -10,14 +12,12 @@ class HistoryTopTabBar extends StatelessWidget {
     required this.tabController,
   });
 
-  String get recentText => '최근';
-  String get allText => '전체';
-  double get tabBarHeight => 45;
-  
+  double get _tabBarHeight => 45;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: tabBarHeight,
+      height: _tabBarHeight,
       decoration: BoxDecoration(
         color: AppColors.brightGrey,
         borderRadius: BorderRadius.all(AppConstants.lightRadius),
@@ -34,13 +34,14 @@ class HistoryTopTabBar extends StatelessWidget {
           unselectedLabelStyle: const TextStyle(fontWeight: AppDim.weight400),
           unselectedLabelColor: AppColors.grey,
           tabs: [
-            Tab(
+            StyleText(
               text: 'his_recent'.tr(),
+              fontWeight: AppDim.weight500,
             ),
-
-            Tab(
+            StyleText(
               text: 'his_all'.tr(),
-            ),
+              fontWeight: AppDim.weight500,
+            )
           ],
         ),
       ),

@@ -6,8 +6,6 @@ import '../../../../entity/history_dto.dart';
 import '../../../widgets/w_data_empty.dart';
 import '../../../widgets/w_dotted_line.dart';
 
-
-
 class RecentListFragment extends StatelessWidget {
   final List<HistoryDataDTO> historyList;
 

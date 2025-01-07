@@ -82,8 +82,6 @@ class _AnalysisTrendViewState extends State<AnalysisTrendView> with TickerProvid
                         /// 날짜 간편 조회
                         DateRangeToggleSwitch(
                           dateToggleController: dateToggleController,
-                          // toggleIndex: provider.toggleIndex,
-                          // onToggle: provider.onToggle,
                         ),
 
 

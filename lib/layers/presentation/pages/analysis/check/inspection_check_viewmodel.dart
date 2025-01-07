@@ -3,12 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
-import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:yocheck_pet/common/utils/snackbar_utils.dart'
-;
-import '../../../../../common/utils/nav.dart';
-import '../bluetooth/bluetooth_view.dart';
 
 class InspectionCheckViewModel extends ChangeNotifier{
 

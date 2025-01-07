@@ -1,5 +1,4 @@
 
-import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
 
 import '../../layers/model/enum/ai_analysis_results.dart';
@@ -49,6 +48,8 @@ class Branch {
     }
   }
 
+  /// 결과 텍스트
+  /// 현재 사용중
   static resultStatusToText(String status, int index){
     if(index == 8){ // 비중
       switch(status){
@@ -77,7 +78,7 @@ class Branch {
     else if(index == 7){ // PH
       switch(status){
         case '0' : return 'acidic'.tr();
-        case '1' : return 'acidic'.tr();
+        case '1' : return 'mild_acidic'.tr();
         case '2' : return 'neutrality'.tr();
         case '3' : return 'alkaline'.tr();
         case '4' : return 'strong_alkaline'.tr();
@@ -87,7 +88,7 @@ class Branch {
 
     else if(index == 0 || index == 1 || index == 9){ // 잠혈, 빌리루빈, 백혈구
       switch(status){
-        case '0' : return 'safety'.tr();
+        case '0' : return 'negative'.tr();
         case '1' : return 'attention'.tr();
         case '2' : return 'caution'.tr();
         case '3' : return 'danger'.tr();
@@ -97,7 +98,7 @@ class Branch {
 
     else if(index == 2){ // 우로빌리노겐
       switch(status){
-        case '0' : return 'safety'.tr();
+        case '0' : return 'negative'.tr();
         case '1' : return 'attention'.tr();
         case '2' : return 'caution'.tr();
         case '3' : return 'danger'.tr();
@@ -108,7 +109,7 @@ class Branch {
 
     else if(index == 3) { // 케톤체
       switch(status){
-        case '0' : return 'safety'.tr();
+        case '0' : return 'negative'.tr();
         case '1' : return 'attention'.tr();
         case '2' : return 'caution'.tr();
         case '3' : return 'danger'.tr();
@@ -118,7 +119,7 @@ class Branch {
 
     else if(index == 4 ) { // 단백질, 포도당
       switch(status){
-        case '0' : return 'safety'.tr();
+        case '0' : return 'negative'.tr();
         case '1' : return 'attention'.tr();
         case '2' : return 'caution'.tr();
         case '3' : return 'danger'.tr();
@@ -140,14 +141,15 @@ class Branch {
 
     else if(index == 5) { // 아질산염
       switch(status){
-        case '0' : return 'safety'.tr();
-        case '1' : return 'attention'.tr();
+        case '0' : return 'negative'.tr();
+        case '1' : return 'positive'.tr();
         default  : return 'safety'.tr();
       }
     }
 
   }
 
+  /// 박스형 결과 이미지
   static String resultStatusToImagePath(String status, int index){
     if(index == 10 || index == 8 || index == 7){
       return 'assets/images/urine/result/rating_icon_9.png';
@@ -157,101 +159,11 @@ class Branch {
         case '1' : return  'assets/images/urine/result/rating_icon_1.png';
         case '2' : return  'assets/images/urine/result/rating_icon_2.png';
         case '3' : return  'assets/images/urine/result/rating_icon_3.png';
-        case '4' : return  'assets/images/urine/result/rating_icon_3.png';
-        case '5' : return  'assets/images/urine/result/rating_icon_3.png';
+        case '4' : return  'assets/images/urine/result/rating_icon_4.png';
+        case '5' : return  'assets/images/urine/result/rating_icon_4.png';
         default  : return  'assets/images/urine/result/rating_icon_0.png';
       }
     }
-  }
-
-
-  static resultStatusToImageStr(String status, int index){
-    if(index == 10){ // 비타민
-      switch(status){
-        case '0' : return '${Texts.imagePath}/urine/result/plus_1.png';
-        case '1' : return '${Texts.imagePath}/urine/result/plus_1.png';
-        case '2' : return '${Texts.imagePath}/urine/result/plus_2.png';
-        case '3' : return '${Texts.imagePath}/urine/result/plus_3.png';
-        default  : return '${Texts.imagePath}/urine/result/plus_1.png';
-      }
-    }
-
-    else if(index == 7) { // PH
-      switch(status){
-        case '0' : return '${Texts.imagePath}/urine/result/plus_1.png';
-        case '1' : return '${Texts.imagePath}/urine/result/plus_1.png';
-        case '2' : return '${Texts.imagePath}/urine/result/plus_1.png';
-        case '3' : return '${Texts.imagePath}/urine/result/plus_2.png';
-        case '4' : return '${Texts.imagePath}/urine/result/plus_3.png';
-        default  : return '${Texts.imagePath}/urine/result/plus_1.png';
-      }
-    }
-
-    else if(index == 8) { // 비중
-      switch(status){
-        case '0' : return '${Texts.imagePath}/urine/result/plus_1.png';
-        case '1' : return '${Texts.imagePath}/urine/result/plus_1.png';
-        case '2' : return '${Texts.imagePath}/urine/result/plus_2.png';
-        case '3' : return '${Texts.imagePath}/urine/result/plus_3.png';
-        case '4' : return '${Texts.imagePath}/urine/result/plus_4.png';
-        case '5' : return '${Texts.imagePath}/urine/result/plus_4.png';
-        case '6' : return '${Texts.imagePath}/urine/result/plus_4.png';
-        case '7' : return '${Texts.imagePath}/urine/result/plus_4.png';
-        default  : return '${Texts.imagePath}/urine/result/plus_1.png';
-      }
-    }
-
-    else if(index == 0 || index == 1 || index == 9){ // 잠혈 ,빌리루빈, 백혈구
-      switch(status){
-        case '0' : return '${Texts.imagePath}/urine/result/step_0.png';
-        case '1' : return '${Texts.imagePath}/urine/result/step_1.png';
-        case '2' : return '${Texts.imagePath}/urine/result/step_2.png';
-        case '3' : return '${Texts.imagePath}/urine/result/step_3.png';
-        default  : return '${Texts.imagePath}/urine/result/step_0.png';
-      }
-    }
-
-    else if(index == 3){ // 케톤체
-      switch(status){
-        case '0' : return '${Texts.imagePath}/urine/result/step_0.png';
-        case '1' : return '${Texts.imagePath}/urine/result/step_1.png';
-        case '2' : return '${Texts.imagePath}/urine/result/step_2.png';
-        case '3' : return '${Texts.imagePath}/urine/result/step_3.png';
-        default  : return '${Texts.imagePath}/urine/result/step_0.png';
-      }
-    }
-
-    else if(index == 4 || index == 6){ // 단백질, 포도당
-      switch(status){
-        case '0' : return '${Texts.imagePath}/urine/result/step_0.png';
-        case '1' : return '${Texts.imagePath}/urine/result/step_1.png';
-        case '2' : return '${Texts.imagePath}/urine/result/step_2.png';
-        case '3' : return '${Texts.imagePath}/urine/result/step_3.png';
-        case '4' : return '${Texts.imagePath}/urine/result/step_4.png';
-        default  : return '${Texts.imagePath}/urine/result/step_0.png';
-      }
-    }
-
-    else if(index == 2){ // 우로 빌리노겐
-      switch(status){
-        case '0' : return '${Texts.imagePath}/urine/result/step_0.png';
-        case '1' : return '${Texts.imagePath}/urine/result/step_1.png';
-        case '2' : return '${Texts.imagePath}/urine/result/step_2.png';
-        case '3' : return '${Texts.imagePath}/urine/result/step_3.png';
-        case '4' : return '${Texts.imagePath}/urine/result/step_4.png';
-        default  : return '${Texts.imagePath}/urine/result/step_0.png';
-      }
-    }
-
-    else { // 아질산염
-      switch(status){
-        case '0' : return '${Texts.imagePath}/urine/result/step_0.png';
-        case '1' : return '${Texts.imagePath}/urine/result/step_1.png';
-        default  : return '${Texts.imagePath}/urine/result/step_0.png';
-      }
-    }
-
-
   }
 
   static resultStatusToChartLabelColor(String status, int index) {
@@ -278,13 +190,9 @@ class Branch {
     }
   }
 
-
   static resultStatusToColor(String status, int index) {
-    if ( index == 8 || index == 7) { // ph, 비중, 비타민 예외
+    if ( index == 8 || index == 7 ||index == 10) { // ph, 비중, 비타민 예외
       return AppColors.resultExceptColor;
-    }
-    else if(index == 10){ // 비타민
-      return AppColors.resultVitaminColor;
     }
 
     else if(index == 0 || index == 1 || index == 9){ // 잠혈, 빌리루빈, 백혈구
@@ -345,11 +253,8 @@ class Branch {
   }
 
   static resultStatusToBgColor(String status, int index) {
-    if ( index == 8 || index == 7) { // ph, 비중, 비타민 예외
+    if ( index == 8 || index == 7 || index == 10) { // ph, 비중, 비타민 예외
       return AppColors.resultBGExceptColor;
-    }
-    else if(index == 10){ // 비타민
-      return AppColors.resultBGVitaminColor;
     }
 
     else if(index == 0 || index == 1 || index == 9){ // 잠혈, 빌리루빈, 백혈구
@@ -403,24 +308,6 @@ class Branch {
     }
   }
 
-  static resultStatusToPercent(List<String> statusResult, int index) {
-      switch (statusResult[index]) {
-        case '0':
-          return 0.1;
-        case '1':
-          return 0.3;
-        case '2':
-          return 0.4;
-        case '3':
-          return 0.6;
-        case '4':
-          return 1.0;
-        case '5':
-          return 1.0;
-        default:
-          return 0.1;
-      }
-  }
   static urineLabelToUrineDataType(String urineName) {
     if (urineName == 'blood'.tr()) {
       return 'DT01';
@@ -451,85 +338,97 @@ class Branch {
 
 
   /// 소변 검사 결과 등급 함수
+  /// 25.01.07 최신화
   static String urineGradeResult(String type, double x) {
     switch (type) {
       case 'DT01': // 잠혈
-        if (x < 70 ) return "0"; //54
-        if (x >= 70 && x <= 95) return "1"; //79
-        if (x >= 95 && x <= 120) return "2"; //110
-        if (x >= 120) return "3"; //140
+        if (x < 70 ) return "0";
+        if (x >= 70 && x <= 94.9) return "1";
+        if (x >= 94.9 && x <= 116.2) return "2";
+        if (x >= 116.2) return "3";
         break;
 
       case 'DT02': // 빌리루빈
-        if (x > 44) return "0"; //42
-        if (x > 42 && x <= 44) return "1"; //40
-        if (x > 38  && x <= 42) return "2"; //33
-        if (x <= 38) return "3"; //25
+        if (x > 91.8) return "0"; //42
+        if (x > 86.9 && x <= 91.8) return "1"; //40
+        if (x > 74.2 && x <= 86.9) return "2"; //33
+        if (x > 10 && x <= 74.2) return "3"; //25
+        if (10 < x) return "0";
         break;
-
-      case 'DT03': // 우로빌리노겐
-        if (x >= 37) return "0";
-        if (x > 26 && x <= 37) return "1";
-        if (x > 20 && x <= 26) return "2";
-        if (x > 16 && x <= 20) return "3";
-        if (x <= 16) return "4";
+      // 우로빌리노겐
+      // 86, 72 음성으로 포함시킴
+      case 'DT03':
+        if (x >= 72) return "0";
+        if (x > 55.8 && x <= 72) return "1";
+        if (x > 40.7 && x <= 55.8) return "2";
+        if (x > 31.5 && x <= 40.7) return "3";
+        if (x > 10 && x <= 31.5) return "4";
+        if (10 < x) return "0";
         break;
 
       case 'DT04': //케톤체
-        if (x > 38) return "0";//43
-        if (x > 28 && x <= 38) return "1"; //35
-        if (x > 20.7 && x <= 28) return "2"; //35
-        if (x <= 20.7) return "3"; //23
+        if (x > 35.6) return "0";//43
+        if (x > 28.3 && x <= 35.6) return "1"; //35
+        if (x > 21.4 && x <= 28.3) return "2"; //35
+        if (x > 10 && x <= 21.4) return "3"; //23
+        if (10 < x) return "0";
+
         break;
 
       case 'DT05': //단백질
-        if (x < 63) return "0"; //53
-        if (x >= 63 && x < 80) return "1"; // 62
-        if (x >= 80  && x < 100) return "2"; //75
-        if (x >= 100 && x < 120) return "3"; //125
-        if (x >= 120) return "4"; //149
+        if (x < 68.8) return "0";
+        if (x >= 68.7 && x < 83.6) return "1";
+        if (x >= 83.6  && x < 102.8) return "2";
+        if (x >= 102.8 && x < 117.9) return "3";
+        if (x >= 117.9) return "4";
         break;
 
       case 'DT06': //아질산염
-        return x >= 43 ? "0" : "1"; //44,31
+        return x >= 43.5 ? "0" : "1";
 
       case 'DT07': //포도당
         if (x > 100) return "0"; //205
-        if (x > 75 && x <= 100) return "1"; //130
-        if (x > 60 && x <= 75) return "2"; //105
-        if (x > 30 && x <= 60) return "3"; //52
-        if (x <= 30) return "4"; //10
+        if (x > 76.6 && x <= 100) return "1";
+        if (x > 49.6 && x <= 76.6) return "2";
+        if (x > 27.8 && x <= 49.6) return "3";
+        if (x > 10 && x <= 27.8) return "4";
+        if (10 < x) return "0";
         break;
 
       case 'DT08': //산성도
-        if (x < 65) return "1"; // 산성, 25
-        if (x >= 65 && x < 140) return "2"; // 중성, 56
-        if (x >= 140 && x < 165) return "3"; // 알칼리성, 118
-        if (x >= 165) return "4"; // 강알칼리성, 204
+        if (x < 47.7) return "0"; // 산성
+        if (x >= 47.7 && x < 82.8) return "1"; // 약산성
+        if (x >= 82.8 && x < 128.7) return "2"; // 중성
+        if (x >= 128.7 && x < 167.3) return "3"; // 알칼리성
+        if (x >= 167.3) return "4"; // 강알칼리성
         break;
 
       case 'DT09': //비중
-        if (x > 180) return "0"; //207
-        if (x > 100 && x <= 180) return "1"; //164
-        if (x > 70 && x <= 100) return "2"; //93
-        if (x > 50 && x <= 70) return "3"; //77
-        if (x > 38 && x <= 50) return "4"; //39
-        if (x > 30 && x <= 38) return "5"; //39
-        if (x > 28 && x <= 30) return "6"; //39
-        if (x <= 28) return "7"; //37
+        if (x > 157.5) return "0";
+        if (x > 99.2 && x <= 157.5) return "1";
+        if (x > 68.6 && x <= 99.2) return "2";
+        if (x > 50 && x <= 68.6) return "3";
+        if (x > 38.4 && x <= 50) return "4";
+        if (x > 31.9 && x <= 38.4) return "5";
+        if (x > 28.6 && x <= 31.9) return "6";
+        if (x > 10 && x <= 28.6) return "7";
+        if (x < 10 ) return "0";
         break;
 
       case 'DT10': //백혈구
-        if (x > 42) return "0"; // 44
-        if (x > 38 && x <= 42) return "1"; // 41
-        if (x <= 38) return "3"; // 32
+        if (x > 80.6) return "0";
+        if (x > 62.7 && x <= 80.6) return "1";
+        if (x > 43.7 && x <= 62.7) return "2";
+        if (x > 10 && x <= 43.7) return "3";
+        if (10 < x) return "0";
         break;
 
       case 'DT11': //비타민
-        if (x > 110) return "0"; //146
-        if (x > 70 && x <= 110) return "1"; //101
-        if (x > 59 && x <= 70) return "2"; //18
-        if (x <= 59) return "3"; //4
+        if (x > 123.4) return "0";
+        if (x > 80 && x <= 123.4) return "1";
+        if (x > 61.5 && x <= 80) return "2";
+        if (x > 10 && x <= 61.5) return "3";
+        if (10 < x) return "0";
         break;
 
       default:

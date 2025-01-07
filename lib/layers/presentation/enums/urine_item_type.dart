@@ -14,7 +14,7 @@ enum UrineItemType {
   vitamins,
 }
 
-extension UrineItemTypeX on UrineItemType {
+extension UrineItemTypeEx on UrineItemType {
   String get name =>
       switch(this){
         UrineItemType.blood => 'blood'.tr(),
@@ -29,4 +29,20 @@ extension UrineItemTypeX on UrineItemType {
         UrineItemType.leukocytes => 'leukocytes'.tr(),
         UrineItemType.vitamins => 'vitamins'.tr(),
       };
+
+  // int get levelCount =>
+  //     switch(this){
+  //       UrineItemType.blood => 4,
+  //       UrineItemType.bilirubin => 4,
+  //       UrineItemType.urobilnogen => 5,
+  //       UrineItemType.ketones => 4,
+  //       UrineItemType.protein => 5,
+  //       UrineItemType.nitrate => 2,
+  //       UrineItemType.glucosuria => 4,
+  //       UrineItemType.ph => 5,
+  //       UrineItemType.gravity => 4,
+  //       UrineItemType.leukocytes => 4,
+  //       UrineItemType.vitamins => 4,
+  //     };
 }
+

@@ -25,9 +25,8 @@ class _DateRangeDialogState extends State<DateRangeDialog> {
   DateTime _focusedDay = DateTime.now();
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOn;
 
-  String get cancelText => '취소';
-
-  String get submitText => '확인';
+  String get cancelText => 'cancel'.tr();
+  String get submitText => 'check'.tr();
 
   @override
   Widget build(BuildContext context) {

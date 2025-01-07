@@ -1,19 +1,15 @@
-
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:ripple_wave/ripple_wave.dart';
 import 'package:yocheck_pet/common/common.dart';
-import 'package:yocheck_pet/layers/presentation/pages/analysis/bluetooth/bluetooth_viewmodel.dart';
 import 'package:yocheck_pet/layers/presentation/pages/analysis/bluetooth/component/loaded_fragment.dart';
 
+import '../../../../../common/utils/my_logger.dart';
 import '../../../../model/enum/bluetooth_status.dart';
-import '../../../widgets/default_button.dart';
+import '../../../routes/route_path.dart';
 import '../../../widgets/scaffold/frame_scaffold.dart';
-import '../../../widgets/style_text.dart';
 import 'bluetooth_viewmodel2.dart';
 import 'component/error_fragment.dart';
-
 
 /// 블루투스 연결 화면
 /// TODO: 1.디자인 2.측정데이터 서버에 저장
@@ -25,24 +21,48 @@ class BluetoothView extends StatefulWidget {
 }
 
 class _BluetoothViewState extends State<BluetoothView> {
+  late BluetoothViewModel2 _viewModel;
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => BluetoothViewModel2(),
-      child: FrameScaffold(
-        appBarTitle: 'insp_title'.tr(),
-        body: Consumer<BluetoothViewModel2>(
-          builder: (context, provider, child) {
-            return  _stateBranchFrame(provider.status);
-          },
-        ),
-      ),
+  void initState() {
+    super.initState();
+    _viewModel = BluetoothViewModel2((urineList, testDate) => {
+        logger.i('결과 화면 호출'),
+        if (mounted){
+            context.replace(RoutePath.result, extra: {
+              'urineStatus': urineList,
+              'testDate': testDate,
+            }),
+          }
+      },
     );
   }
 
-  _stateBranchFrame(BluetoothStatus status){
-    switch(status){
+  @override
+  void dispose() {
+    super.dispose();
+    _viewModel.allClean();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<BluetoothViewModel2>.value(
+      value: _viewModel,
+      builder: (context, child){
+        return FrameScaffold(
+          appBarTitle: 'insp_title'.tr(),
+          body: Consumer<BluetoothViewModel2>(
+            builder: (context, provider, child) {
+              return _stateBranchFrame(provider.status);
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  _stateBranchFrame(BluetoothStatus status) {
+    switch (status) {
       case BluetoothStatus.scan:
       case BluetoothStatus.connect:
       case BluetoothStatus.inspection:
@@ -53,7 +73,7 @@ class _BluetoothViewState extends State<BluetoothView> {
       case BluetoothStatus.unableError:
       case BluetoothStatus.stripError:
       case BluetoothStatus.cutoff:
-        ErrorFragment(status: status);
+        return ErrorFragment(status: status);
     }
   }
 }

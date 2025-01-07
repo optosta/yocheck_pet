@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:yocheck_pet/layers/model/authorization.dart';
 import 'package:yocheck_pet/layers/presentation/pages/home/ai_analysis_provider.dart';
 import 'package:yocheck_pet/layers/presentation/pages/home/component/home_body.dart';
 import 'package:yocheck_pet/layers/presentation/pages/home/home_viewmodel.dart';
 
 import '../../../../common/common.dart';
-import '../../../../common/utils/my_logger.dart';
 import '../../routes/route_path.dart';
 import 'component/home_appbar.dart';
 import 'component/home_header.dart';

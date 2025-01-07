@@ -21,7 +21,7 @@ class IngredientHeader extends StatelessWidget {
 
   String get adjText1 => 'adjText1'.tr();
 
-  String get resultText => '"${disease.tr()} "';
+  String get resultText => ' "${disease.tr()} "';
 
   String get adjText2 => 'adjText2'.tr();
 
@@ -39,43 +39,9 @@ class IngredientHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeadText(),
-          AppDim.heightSmall,
-          _buildResultHorizontalList(),
+          _buildMainPointResulttBoxs(),
           AppDim.heightSmall,
           _buildRichTextForDisease(),
-
-          GestureDetector(
-            onTap: () => context.push(RoutePath.diseaseinfo),
-            child: Container(
-              height: AppConstants.buttonHeight50,
-              margin: const EdgeInsets.symmetric(horizontal: AppDim.large),
-              decoration: BoxDecoration(
-                borderRadius: AppConstants.borderLightRadius,
-                border: Border.all(
-                  color: AppColors.primaryColor,
-                  width: 2,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.add,
-                    color: AppColors.primaryColor,
-                    size: AppDim.iconSmall,
-                  ),
-                  AppDim.widthSmall,
-
-                  StyleText(
-                    text: 'view_disease_info'.tr(),
-                    color: AppColors.primaryColor,
-                    size: AppDim.fontSizeLarge,
-                    fontWeight: AppDim.weight500,
-                  )
-                ],
-              ),
-            ),
-          ),
         ],
       ),
     );
@@ -96,26 +62,6 @@ class IngredientHeader extends StatelessWidget {
     );
   }
 
-  _buildResultHorizontalList() {
-    return Container(
-      height: 130,
-      color: AppColors.containerBg,
-      child: ListView.builder(
-        padding: const EdgeInsets.all(AppDim.small),
-        scrollDirection: Axis.horizontal,
-        itemCount: statusList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-              width: 170,
-              margin: const EdgeInsets.only(right: AppDim.small),
-              child: ResultItemBox(
-                index: index,
-                status: statusList[index],
-              ));
-        },
-      ),
-    );
-  }
 
   _buildRichTextForDisease() {
     return disease == 'health'
@@ -163,11 +109,67 @@ class IngredientHeader extends StatelessWidget {
   }
 
   TextStyle _stateTextStyle() {
-    return const TextStyle(
+    return TextStyle(
       fontSize: AppDim.fontSizeMedium,
       fontWeight: AppDim.weight500,
-      color: AppColors.lightGreen,
+      color: AppColors.secondColor,
       fontFamily: 'pretendard',
+    );
+  }
+
+  Widget _buildMainPointResulttBoxs() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      child: SizedBox(
+        height: 240,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 110,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ResultItemBox(
+                      index: 0,
+                      status: statusList[0],
+                    ),
+                  ),
+                  AppDim.widthSmall,
+
+                  Expanded(
+                    child: ResultItemBox(
+                      index: 4,
+                      status: statusList[4],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            AppDim.heightSmall,
+
+            SizedBox(
+              height: 110,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ResultItemBox(
+                      index: 1,
+                      status: statusList[1],
+                    ),
+                  ),
+                  AppDim.widthSmall,
+                  Expanded(
+                    child: ResultItemBox(
+                      index: 6,
+                      status: statusList[6],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

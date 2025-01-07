@@ -19,17 +19,12 @@ class AppColors {
   static const Color isActiveColor = Color(0xffb7bfff);
   static const Color isUnableColor = Color(0xffdddddd);
 
-  static const Color posBgColor = Color(0xFFFFDFDF);
-  static const Color negBgColor = Color(0xFFD1EFFF);
-  static const Color posTextColor = Color(0xFFFF4E4E);
-  static const Color negTextColor = Color(0xFF13ACFF);
+  static const Color posBgColor = Color(0xFFFFECDF);
+  static const Color negBgColor = Color(0xFFD6FFD1);
+  static const Color posTextColor = Color(0xFFFFAC4E);
+  static const Color negTextColor = Color(0xFF3EA83B);
 
   static const Color tabGgColor = Color(0xFFE7EDEB);
-
-
-
-
-
 
 
   static Color shadowColor = Colors.grey.withOpacity(0.5);
@@ -59,7 +54,7 @@ class AppColors {
   static const Color yellow = Color.fromARGB(179, 252, 255, 0);
   static const Color faleBlue = Color.fromARGB(255, 160, 206, 222);
   static const Color salmon = Color(0xffff6666);
-  static const Color red = Color(0xffff0000);
+  static const Color red = Color(0xffffa3a3);
 
   // grey box colors
   static Color greyBoxBg = Colors.grey.shade100;
@@ -81,9 +76,9 @@ class AppColors {
 
 
   /// 소변 분석 단계별 컬러 값
-  static const resultColor1 = Color(0xFF2CCC3F); // 안심
+  static const resultColor1 = Color(0xFF619F61); // 안심
   static final resultColor2 = Colors.blue.shade600;  // 관심
-  static const resultColor3 = Color(0xffe5a45b); // 주의
+  static const resultColor3 = Color(0xFFFFA200); // 주의
   static final resultColor4 = Colors.purple.shade500; // 위험
   static final resultColor5 = Colors.red.shade500; // 심각
   static final resultExceptColor = Colors.grey.shade600; // 이외(PH, 비중, 비타민)
@@ -92,17 +87,17 @@ class AppColors {
   /// 소변 분석 단계별 Text BG 컬러 값
   static const resultBGColor1 = Color(0xFFD6F9DA); // 안심
   static final resultBGColor2 = Colors.blue.shade100; // 관심
-  static const resultBGColor3 = Color(0xffffdfb8); // 주의
+  static const resultBGColor3 = Color(0xffffe4c6); // 주의
   static final resultBGColor4 = Colors.purple.shade100; // 위험
   static final resultBGColor5 = Colors.red.shade100; // 위험
-  static final resultBGExceptColor = Colors.grey.shade200; // 이외(PH, 비중, 비타민)
+  static final resultBGExceptColor = Colors.grey.shade300; // 이외(PH, 비중, 비타민)
   static final resultBGVitaminColor = Colors.yellow.shade100; // 이외(PH, 비중, 비타민)
 
 
   /// 소변 분석 단계별 Text BG 컬러 값
   static const resultChartColor1 =  Color(0xFF2CCC3F); // 관심F
   static final resultChartColor2 = Colors.blue.shade400; // 안심
-  static const resultChartColor3 = Color(0xffffb352); // 주의
+  static const resultChartColor3 = Color(0xffffd18e); // 주의
   static const resultChartColor4 = Color(0xffff4a51); // 위험
   static final resultChartExceptColor = Colors.grey.shade200; // 이외(PH, 비중, 비타민)
 
@@ -131,5 +126,24 @@ class AppColors {
   static const urinePieColor5 = Color(0xFFFF5B65); // 심각
   static const urinePiExceptColor = Color(0xFFFF95A0); // 이외(PH, 비중, 비타민)
 
+  static const List<List<Color>> level2Colors = [
+    [Color(0xFFBCEDC3), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFF79BBEA),],
+  ];
 
+  static const List<List<Color>> level5Colors = [
+    [Color(0xFFBCEDC3), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFF79BBEA), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFF8C096), Color(0xFFEDEDED), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFA063FF), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFFF7F7F),],
+  ];
+
+  static const List<List<Color>> levelGrayColors = [
+    [Color(0xFF8C8C8C), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFF8C8C8C), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFF8C8C8C), Color(0xFFEDEDED), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFF8C8C8C), Color(0xFFEDEDED),],
+    [Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFFEDEDED), Color(0xFF8C8C8C),],
+  ];
 }

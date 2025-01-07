@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:vibration/vibration.dart';
 import 'package:yocheck_pet/common/common.dart';
 
 import '../../../../../../common/utils/snackbar_utils.dart';
@@ -35,6 +36,7 @@ class _InspectionCheckBoxState extends State<InspectionCheckBox> {
       backgroundColor: AppColors.boxBgColor,
       child: InkWell(
         onTap: () => {
+        Vibration.vibrate(duration: 60),// 짧고 가벼운 진동 (60ms)
           if (widget.type == ArrangementType.device){
               context.read<InspectionCheckViewModel>().onChangedDevice(
                 startInsepction: () {
@@ -70,6 +72,7 @@ class _InspectionCheckBoxState extends State<InspectionCheckBox> {
                 StyleText(
                   text: widget.isActive ? widget.type.subTitle : widget.type.subTitle,
                   softWrap: true,
+                  maxLinesCount: 2,
                   fontWeight: AppDim.weight400,
                   size: AppDim.fontSizeSmall,
                   color: AppColors.blackTextColor,
@@ -78,8 +81,8 @@ class _InspectionCheckBoxState extends State<InspectionCheckBox> {
               ],
             ),
             Container(
-              width: 110,
-              height: 110,
+              width: 100,
+              height: 100,
               padding: const EdgeInsets.all(AppDim.large),
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -102,3 +105,4 @@ class _InspectionCheckBoxState extends State<InspectionCheckBox> {
     );
   }
 }
+

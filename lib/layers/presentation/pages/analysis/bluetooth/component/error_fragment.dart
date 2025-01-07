@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yocheck_pet/layers/presentation/pages/analysis/bluetooth/bluetooth_viewmodel2.dart';
 
 import '../../../../../../common/common.dart';
 import '../../../../../model/enum/bluetooth_status.dart';
@@ -15,41 +17,42 @@ class ErrorFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Center(
       child: Column(
         children: [
-          /// title
+          const SizedBox(height: 100),
+
+          /// Title
           StyleText(
             text: status.title,
-            size: AppDim.fontSizeXxxLarge,
+            size: AppDim.fontSizeXLarge,
             fontWeight: AppDim.weight600,
           ),
-          AppDim.heightXLarge,
+          const SizedBox(height: 80),
 
           /// error image
           Image.asset(
-           '${Texts.imagePath}/urine/bluetooth/device.png',
-            width: 120,
-            height: 120,
+            status.errorImage!,
+            width: size.width * 0.75,
           ),
-          AppDim.heightXLarge,
-          AppDim.heightXLarge,
-          AppDim.heightXLarge,
+          const SizedBox(height: 100),
 
           /// subTitle
           StyleText(
             text: status.subTitle,
             color: AppColors.secondColor,
             fontWeight: AppDim.weight400,
-            size: AppDim.fontSizeSmall,
             softWrap: true,
             maxLinesCount: 2,
             align: TextAlign.center,
           ),
-
+          AppDim.heightMedium,
           DefaultButton(
+            buttonHeight: 50,
             btnName: status.retryBtnLabel!,
-            onPressed: ()=>{},//provider.onPressedError,
+            onPressed: () => context.read<BluetoothViewModel2>().onPressedError(status)
           )
         ],
       ),

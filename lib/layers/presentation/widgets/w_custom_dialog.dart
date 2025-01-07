@@ -48,7 +48,7 @@ class CustomDialog {
               ),
             ),
             content: SizedBox(
-              height: 95,
+              height: 100,
               child: Column(
                 children: [
                   Padding(
@@ -63,7 +63,7 @@ class CustomDialog {
                               align: TextAlign.center,
                               size: AppDim.fontSizeSmall,
                               softWrap: true,
-                              maxLinesCount: 2,
+                              maxLinesCount: 3,
                               fontWeight: AppDim.weight500
                           )
                         ],
@@ -305,6 +305,7 @@ class CustomDialog {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  AppDim.heightXLarge,
                   StyleText(
                     text: title,
                     fontWeight: AppDim.weightBold,
@@ -328,16 +329,16 @@ class CustomDialog {
                               text: text,
                               align: TextAlign.center,
                               size: AppDim.fontSizeSmall,
-                              maxLinesCount: 2,
-                            )),
+                              maxLinesCount: 3,
+                            ),
+                        ),
                       ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 34),
                     child: Row(
-                      children:
-                      [
+                      children: [
                         Expanded(
                           child: SizedBox(
                             width: 60,

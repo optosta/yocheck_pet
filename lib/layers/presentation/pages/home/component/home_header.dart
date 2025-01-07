@@ -11,7 +11,7 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 90,
+      height: 110,
       margin: const EdgeInsets.only(left: AppDim.large),
       width: double.infinity,
       child: Row(
@@ -42,8 +42,8 @@ class HomeHeader extends StatelessWidget {
                             fontWeight: AppDim.weight600,
                             align: TextAlign.start,
                           ),
-                          const StyleText(
-                            text: ' 소변검사로',
+                          StyleText(
+                            text: 'home_subtitle'.tr(),
                             softWrap: true,
                             maxLinesCount: 2,
                             color: AppColors.blackTextColor,
@@ -57,8 +57,8 @@ class HomeHeader extends StatelessWidget {
                   ),
                   AppDim.heightXSmall,
 
-                  const StyleText(
-                    text: '우리아이 건강을 지킬 수 있어요!',
+                  StyleText(
+                    text: 'home_subtitle2'.tr(),
                     softWrap: true,
                     maxLinesCount: 2,
                     color: AppColors.blackTextColor,

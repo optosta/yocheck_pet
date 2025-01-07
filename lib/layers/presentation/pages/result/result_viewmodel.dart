@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
 import 'package:yocheck_pet/layers/domain/usecase/urine/urine_ai_analysis_usecase.dart';
@@ -7,6 +6,11 @@ import '../../../../../common/utils/my_logger.dart';
 import '../../widgets/w_custom_dialog.dart';
 import '../ingredient/ingredient_view.dart';
 import 'component/ai_analysis_dialog.dart';
+
+
+
+
+
 
 class UrineResultViewModel extends ChangeNotifier {
 
@@ -72,5 +76,5 @@ class UrineResultViewModel extends ChangeNotifier {
       mainContext: context,
     );
   }
-
 }
+

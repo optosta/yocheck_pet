@@ -16,40 +16,6 @@ import '../../../widgets/w_custom_dialog.dart';
 import 'component/terms_dialog.dart';
 
 class SignupViewModel extends ChangeNotifier {
-
-  /// 아이디 TextEditing
-  final _idController = TextEditingController();
-
-  /// 비밀번호 TextEditing
-  final _passController = TextEditingController();
-
-  /// 비밀번호 재입력 TextEditing
-  final _pass2Controller = TextEditingController();
-
-  /// 닉네임 TextEditing
-  final _nickNameController = TextEditingController();
-
-  /// 생년월일 picker string
-  String? _birthdate;
-
-  /// 성별 dropdown string
-  String? _gender;
-
-
-
-  TextEditingController get idController => _idController;
-  TextEditingController get passController => _passController;
-  TextEditingController get pass2Controller => _pass2Controller;
-  TextEditingController get nickNameController => _nickNameController;
-  String? get gender => _gender;
-  String? get birthdate => _birthdate;
-
-
-  set gender(String? value) {
-    _gender = value;
-    notifyListeners();
-  }
-
   /// 회원가입
   Future<void> signup({
     required Map<String, dynamic> toMap,
@@ -73,6 +39,4 @@ class SignupViewModel extends ChangeNotifier {
       showErrorDialog('unexpected_error'.tr());
     }
   }
-
-
 }

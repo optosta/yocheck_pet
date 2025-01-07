@@ -15,8 +15,8 @@ class DatePickerBottomSheet extends StatelessWidget {
   });
 
   int get minimumYear => 1900;
-  String get cancelText => '취소';
-  String get summitText => '확인';
+  String get cancelText => 'cancel'.tr();
+  String get summitText => 'check'.tr();
 
   @override
   Widget build(BuildContext context) {

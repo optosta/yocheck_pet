@@ -47,7 +47,7 @@ class CustomPicker{
       children: [
         TextButton(
           child: StyleText(
-              text: '취소',
+              text: 'cancel'.tr(),
               size: AppDim.fontSizeLarge,
               color: AppColors.primaryColor,
               fontWeight: FontWeight.bold),
@@ -58,7 +58,7 @@ class CustomPicker{
 
         TextButton(
           child: StyleText(
-              text: '확인',
+              text: 'check'.tr(),
               size: AppDim.fontSizeLarge,
               color: AppColors.primaryColor,
               fontWeight: FontWeight.bold),

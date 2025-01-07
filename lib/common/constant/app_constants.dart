@@ -49,10 +49,10 @@ class AppConstants {
     begin: FractionalOffset.topCenter,
     end: FractionalOffset.bottomCenter,
     colors: [
-      Color(0xfff7fbf7),
-      Color(0xffa9dcab),
-      Color(0xff94d895),
+      Color(0xfff9fbf9),
+      Color(0xff207120),
+      Color(0xff376137),
     ],
-    stops: [0.01,2.0, 2.0],
+    stops: [0.2,1.0, 2.0],
   );
 }

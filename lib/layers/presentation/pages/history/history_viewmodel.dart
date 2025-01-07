@@ -1,5 +1,6 @@
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../common/utils/dio/dio_exceptions.dart';
@@ -63,7 +64,7 @@ class HistoryViewModel extends ChangeNotifier {
       notifyError(msg);
     } catch (e) {
       logger.e(e.toString());
-      const msg = '죄송합니다.\n예기치 않은 문제가 발생했습니다.';
+      final msg = 'unexpected_error'.tr();
       notifyError(msg);
     }
   }
@@ -84,10 +85,10 @@ class HistoryViewModel extends ChangeNotifier {
         return [];
       }
     } on DioException catch (e) {
-      print(DioExceptions.fromDioError(e).toString());
+      logger.d(DioExceptions.fromDioError(e).toString());
       return [];
     } catch (e) {
-      print(e.toString());
+      logger.d(e.toString());
       return [];
     }
   }

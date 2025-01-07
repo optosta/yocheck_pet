@@ -15,11 +15,10 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   /// 유저 이름
-  String userName = '-';
+  String userName = '';
 
   /// 유저 이름 가져오기
   Future<void> getUserName() async {
-    logger.d('getUserName 실행');
     try {
       UserNameDTO? response = await UserNameUesCase().execute();
       if(response?.status.code == Texts.successCode && response?.name != null){

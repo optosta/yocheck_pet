@@ -9,6 +9,7 @@ import '../../../enums/arrangement_type.dart';
 import '../../../widgets/scaffold/frame_scaffold.dart';
 import '../../../widgets/style_text.dart';
 import 'component/inspection_checkbox.dart';
+import 'component/warning_message.dart';
 import 'inspection_check_viewmodel.dart';
 
 /// 소변 검사 준비 화면
@@ -38,7 +39,7 @@ class InspectionCheckView extends StatelessWidget {
                         children: [
                           /// 블루투스 ON/OFF 상태 확인
                           InspectionCheckBox(
-                            height: size.height * 0.35,
+                            height: size.height * 0.30,
                             type: ArrangementType.bluetooth,
                             isActive: provider.isBluetoothActive,
                           ),
@@ -46,7 +47,7 @@ class InspectionCheckView extends StatelessWidget {
 
                           /// 검사기 ON/OFF 상태 확인
                           InspectionCheckBox(
-                            height: size.height * 0.35,
+                            height: size.height * 0.30,
                             type: ArrangementType.device,
                             isActive: provider.isDeviceActive,
                           ),
@@ -54,15 +55,11 @@ class InspectionCheckView extends StatelessWidget {
                       );
                     },
                   ),
-
-                  /// 체크리스트
-                  const Gap(AppDim.large),
-                  StyleText(
-                    text: 'insp_guide_1'.tr(),
-                    color: AppColors.greyTextColor,
-                    size: AppDim.fontSizeSmall,
-                    softWrap: true,
-                    maxLinesCount: 2,
+                  AppDim.heightLarge,
+                  /// 소변 검체 시간 경고 문구
+                  WarningMessage(
+                    message: 'warning_message'.tr(),
+                    backgroundColor: Colors.yellow.shade100,
                   )
                 ],
               ),

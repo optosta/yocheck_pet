@@ -36,69 +36,83 @@ class ResultItemBox extends StatelessWidget {
               );
             })
       },
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.all(AppConstants.lightRadius)),
-        child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    StyleText(
-                      text: AppConstants.urineLabelList[index],
-                      color: AppColors.blackTextColor,
-                      size: AppDim.fontSizeLarge,
-                      fontWeight: AppDim.weightBold,
-                      maxLinesCount: 2,
-                      softWrap: true,
-                      align: TextAlign.start,
-                    ),
-                    AppDim.heightSmall,
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      constraints: const BoxConstraints(
-                        minWidth: 40,
-                        minHeight: 20,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5)),
-                        color: Branch.resultStatusToBgColor(status, index),
-                      ),
-                      child: Center(
-                        child: StyleText(
-                          text: Branch.resultStatusToText(status, index),
-                          color: Branch.resultStatusToColor(status, index),
-                          fontWeight: AppDim.weight500,
+      child: Card(
+        elevation: 3,
+        shape: BeveledRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.all(AppConstants.lightRadius),
+            border: Border.all(
+              color: Branch.resultStatusToColor(status, index),
+              width: 1.5,
+            ),),
+          child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    flex: 6,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        StyleText(
+                          text: AppConstants.urineLabelList[index],
+                          color: AppColors.blackTextColor,
+                          size: AppDim.fontSizeLarge,
+                          fontWeight: AppDim.weightBold,
                           maxLinesCount: 2,
                           softWrap: true,
-                          align: TextAlign.center,
+                          align: TextAlign.start,
                         ),
-                      ),
+                        AppDim.heightSmall,
+                        Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
+                            color: Branch.resultStatusToBgColor(status, index),
+                          ),
+                          child: IntrinsicWidth(
+                            child: Center(
+                              child: StyleText(
+                                text: Branch.resultStatusToText(status, index),
+                                color: Branch.resultStatusToColor(status, index),
+                                fontWeight: AppDim.weight500,
+                                maxLinesCount: 2,
+                                softWrap: true,
+                                align: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const Icon(
-                      Icons.arrow_forward_ios_sharp,
-                      color: Colors.grey,
-                      size: AppDim.iconXSmall,
+                  ),
+                  Flexible(
+                    flex: 4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          color: Colors.grey,
+                          size: AppDim.iconXSmall,
+                        ),
+                        Image.asset(
+                          Branch.resultStatusToImagePath(status, index),
+                          width: 35,
+                        ),
+                      ],
                     ),
-                    Image.asset(
-                      Branch.resultStatusToImagePath(status, index),
-                      width: 45,
-                    ),
-                  ],
-                ),
-              ],
-            )),
+                  ),
+                ],
+              )),
+        ),
       ),
     );
   }

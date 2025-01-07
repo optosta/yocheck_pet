@@ -17,15 +17,17 @@ class LoadedFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const SizedBox(height: 100),
+
           /// Title
           StyleText(
             text: status.title,
-            size: AppDim.fontSizeXLarge,
+            size: AppDim.fontSizeXxLarge,
             fontWeight: AppDim.weight600,
           ),
-          const SizedBox(height: 100),
+          const SizedBox(height: 180),
 
           /// 웨이브 에니메이션
           RippleWave(
@@ -37,7 +39,7 @@ class LoadedFragment extends StatelessWidget {
               height: 120,
             ),
           ),
-          const SizedBox(height: 100),
+          const SizedBox(height: 110),
 
           /// subTitle
           StyleText(

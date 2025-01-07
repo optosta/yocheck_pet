@@ -14,7 +14,6 @@ import '../../../widgets/frame_container.dart';
 import '../../../widgets/style_text.dart';
 import '../../result/result_view.dart';
 
-
 class HistoryListItem extends StatelessWidget {
   final HistoryDataDTO history;
 
@@ -32,15 +31,15 @@ class HistoryListItem extends StatelessWidget {
       onTap: () =>
           viewModel.getUrineResultDio(history.datetime).then((urineStatus) => {
                 if (urineStatus.isNotEmpty && urineStatus.length == 11){
-                  context.push(RoutePath.result, extra: {
+                    context.push(RoutePath.result, extra: {
                       'urineStatus': urineStatus,
                       'testDate': history.datetime,
                     })
                   }
                 else {
-                  //TODO: 영문으로 변경해야됨
+                    //TODO: 영문으로 변경해야됨
                     SnackBarUtils.showPrimarySnackBar(
-                        context, '데이터 손상이 있습니다. 다시 시도해주세요.')
+                        context, 'data_erorr'.tr())
                   }
               }),
       child: FrameContainer(
@@ -65,9 +64,11 @@ class HistoryListItem extends StatelessWidget {
                   AppDim.heightSmall,
                   Row(
                     children: [
-                      _buildStatusLabel(PosNegType.negative, history.negativeCnt),
+                      _buildStatusLabel(
+                          PosNegType.negative, history.negativeCnt),
                       AppDim.widthSmall,
-                      _buildStatusLabel(PosNegType.positive, history.positiveCnt),
+                      _buildStatusLabel(
+                          PosNegType.positive, history.positiveCnt),
                     ],
                   )
                 ],
@@ -84,16 +85,15 @@ class HistoryListItem extends StatelessWidget {
     );
   }
 
-  _buildStatusLabel(PosNegType type, String count){
+  _buildStatusLabel(PosNegType type, String count) {
     return Row(
       children: [
         Container(
           constraints: const BoxConstraints(
-            minWidth: 50,
-            maxWidth: 60,
+            maxWidth: 95,
             minHeight: 20,
           ),
-          padding: const EdgeInsets.all(2),
+          padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(5)),
             color: type.backgroundColor,
@@ -111,7 +111,6 @@ class HistoryListItem extends StatelessWidget {
           ),
         ),
         AppDim.widthSmall,
-
         StyleText(
           text: count,
           size: AppDim.fontSizeXLarge,
@@ -121,6 +120,4 @@ class HistoryListItem extends StatelessWidget {
       ],
     );
   }
-
-
 }

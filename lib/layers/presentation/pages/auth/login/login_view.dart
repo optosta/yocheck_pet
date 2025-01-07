@@ -15,7 +15,6 @@ import '../../../routes/route_path.dart';
 import '../../../widgets/style_text.dart';
 import 'component/auth_textfield.dart';
 
-//TODO: 비밀번호 정규화 개선 필요(길이가 너무 길며 보안성이 높다.)
 /// 로그인 화면
 class LoginView extends StatefulWidget {
   const LoginView({super.key});

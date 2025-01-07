@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yocheck_pet/common/common.dart';
 import 'package:yocheck_pet/common/utils/branch.dart';
 import 'package:yocheck_pet/layers/presentation/pages/ingredient/component/ingredient_header.dart';
@@ -7,7 +8,9 @@ import 'package:yocheck_pet/layers/presentation/pages/ingredient/component/resul
 import 'package:yocheck_pet/layers/presentation/pages/ingredient/component/vitamin_info_box.dart';
 
 import '../../../model/enum/ai_analysis_results.dart';
+import '../../routes/route_path.dart';
 import '../../widgets/scaffold/frame_scaffold.dart';
+import '../../widgets/style_text.dart';
 
 
 /// 성분 분석 결과 화면
@@ -71,8 +74,36 @@ class _IngredientViewState extends State<IngredientView> {
               title: 'health_care_guide'.tr(),
               content: resultContent.diseaseContent.tr(),
             ),
+            AppDim.heightMedium,
+
+            GestureDetector(
+              onTap: () => context.push(RoutePath.diseaseinfo),
+              child: Container(
+                height: AppConstants.buttonHeight50,
+                margin: const EdgeInsets.symmetric(horizontal: AppDim.large),
+                decoration: BoxDecoration(
+                  borderRadius: AppConstants.borderLightRadius,
+                  border: Border.all(
+                    color: AppColors.primaryColor,
+                    width: 2,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    StyleText(
+                      text: 'view_disease_info'.tr(),
+                      color: AppColors.primaryColor,
+                      size: AppDim.fontSizeLarge,
+                      fontWeight: AppDim.weight500,
+                    )
+                  ],
+                ),
+              ),
+            ),
 
             const Gap(AppDim.xXLarge),
+
           ],
         ),
       ),

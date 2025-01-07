@@ -1,11 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
-import 'package:get/get.dart';
 
 import '../../../../../common/common.dart';
-import '../../../../../common/utils/ble_communication_manager.dart';
 import '../../../../../common/utils/branch.dart';
 import '../../../../../common/utils/etc.dart';
 import '../../../../../common/utils/my_logger.dart';
@@ -17,7 +13,9 @@ import '../../../../model/vo_urine.dart';
 import '../../../../model/vo_urine_row.dart';
 
 class BluetoothViewModel2 extends ChangeNotifier {
-  BluetoothViewModel2() {
+  late Function(List<String> urineStatus, String testDate) goResult;
+
+  BluetoothViewModel2(this.goResult) {
     startScan();
   }
 
@@ -46,6 +44,11 @@ class BluetoothViewModel2 extends ChangeNotifier {
   /// Bluetooth 응답 Stream
   StreamSubscription? receivedSubscription;
 
+  /// Notification Characteristic
+  BluetoothCharacteristic? notificationChar;
+
+  /// Write Characteristic
+  BluetoothCharacteristic? writeChar;
 
   /// 블루투스 스캔 시작
   startScan() async {
@@ -89,9 +92,11 @@ class BluetoothViewModel2 extends ChangeNotifier {
           break;
         }
         case BluetoothConnectionState.disconnected:{
-          logger.i('블루투스 연결끊어짐!');
+          logger.i('블루투스 연결끊어짐! $_isConnection');
+          if(_isConnection){
+            _changeState(BluetoothStatus.cutoff);
+          }
           _isConnection = false;
-          //checkConnectionHistory();
           break;
         }
         default:
@@ -120,34 +125,19 @@ class BluetoothViewModel2 extends ChangeNotifier {
       );
 
       // Notification 특성 설정
-      BluetoothCharacteristic? notificationChar =
-          targetService.characteristics.firstWhere(
+      notificationChar = targetService.characteristics.firstWhere(
         (characteristic) => characteristic.uuid.toString() == notificationUuid,
         orElse: () => throw Exception("Notification characteristic not found"),
       );
 
-      writeResponseListener(notificationChar);
+      writeResponseListener(notificationChar!);
 
       // Write 특성 설정
-      BluetoothCharacteristic? writeChar =
-          targetService.characteristics.firstWhere(
+      writeChar = targetService.characteristics.firstWhere(
         (characteristic) => characteristic.uuid.toString() == writeUuid,
         orElse: () => throw Exception("Write characteristic not found"),
       );
-
-      final notifyResponse = await notificationChar.setNotifyValue(true);
-      logger.i('isNotify: $notifyResponse');
-
-      if (notifyResponse) {
-        writeChar.write(
-          Etc.hexStringToByteArray(BLECommunicationManager.commandTs),
-          withoutResponse: BLECommunicationManager.withoutResponse,
-        );
-        _startWriteTimer(); // 검사 Time out 시작
-      } else {
-        //TODO: setNotifyValue false 응답 왔을때 화면 처리 어떻게 해야될까?
-        _changeState(BluetoothStatus.unableError);
-      }
+      handleNotificationAndWrite();
 
     } catch (e) {
       _changeState(BluetoothStatus.unableError);
@@ -155,19 +145,37 @@ class BluetoothViewModel2 extends ChangeNotifier {
   }
 
 
+  Future<void> handleNotificationAndWrite() async {
+    final notifyResponse = await notificationChar!.setNotifyValue(true);
+    logger.i('isNotify: $notifyResponse');
+
+    if (notifyResponse) {
+      _changeState(BluetoothStatus.inspection);
+      writeChar!.write(
+        Etc.hexStringToByteArray(BLECommunicationManager.commandTs),
+        withoutResponse: BLECommunicationManager.withoutResponse,
+      );
+      _startWriteTimer(); // 검사 Time out 시작
+    } else {
+      //TODO: setNotifyValue false 응답 왔을때 화면 처리 어떻게 해야될까?
+      _changeState(BluetoothStatus.unableError);
+    }
+  }
+
+
+
 
   /// 검사기으로부터 받는 데이터 리스너
   writeResponseListener(BluetoothCharacteristic notificationChar) {
-    receivedSubscription = notificationChar.onValueReceived.listen((value) {
+    receivedSubscription = notificationChar.onValueReceived.listen((value) async {
       // 버퍼에 수신된 데이터를 쌓는다.
       responsebuffer.write((String.fromCharCodes(value)).replaceAll('\n', ''));
-      logger.i(responsebuffer);
-
+      logger.i(String.fromCharCodes(value));
       if(responsebuffer.toString().contains('ERR')) {
         _changeState(BluetoothStatus.stripError);
       }
 
-      if(responsebuffer.toString().contains('#G11')){
+      if(responsebuffer.toString().contains('#R11')){
         logger.i('검사기로부터 수신된 데이터: ${responsebuffer.toString().replaceAll('#T', '\n#T')}');
         List<String> urineRowDataList = Etc.createUrineValuesList(Urine.fromValue(responsebuffer.toString()));
 
@@ -178,19 +186,16 @@ class BluetoothViewModel2 extends ChangeNotifier {
             urineList.add(Branch.urineGradeResult(inspectionItemTypeList[i], double.parse(urineRowDataList[i])));
           }
           // 결과 데이터 서버에 저장
-          saveResultData(urineList);
-
+          final saveResponse = await saveResultData(urineList);
+          if(saveResponse){
+            goResult(urineList, DateFormat('yyyyMMddHHmmss').format(DateTime.now()).toString());
+          } else {
+            FlutterBluePlus.connectedDevices.first.disconnect();
+          }
           allClean();
-          //Nav.doPop(context); // 현재 검사 진행 화면 pop
-          //Nav.doPush(context, UrineResultView(urineList: urineList, testDate: DateFormat('yyyy-MM-dd HH:mm').format(DateTime.now()).toString()));
         } else {
           logger.e('정상적으로 검사가 완료되지 않았습니다.');
-          // Nav.doPop(context); // 현재 검사 진행 화면 pop
-          // CustomDialog.showMyDialog(
-          //   title: '검사 오류',
-          //   content: '정상적으로 검사가 완료되지 않았습니다.\n다시 시도해 주세요.',
-          //   mainContext: context,
-          // );
+          _changeState(BluetoothStatus.inspectionError);
         }
       }
     });
@@ -211,8 +216,9 @@ class BluetoothViewModel2 extends ChangeNotifier {
     'DT10',
     'DT11',
   ];
+
   /// 검사 결과 데이터 저장
-  saveResultData(List<String> urineList) async {
+  Future<bool> saveResultData(List<String> urineList) async {
     for(int i = 0 ; i < 11 ; i++){
       dataMap.add(
           UrineRow(
@@ -228,8 +234,10 @@ class BluetoothViewModel2 extends ChangeNotifier {
     UrineSaveDTO? response = await UrineSavaUesCase().execute(dataMap);
     if(response?.status.code == '200'){
       logger.i('유린기 검사 데이터 저장 완료!');
+      return true;
     } else {
       logger.i('유린기 검사 데이터 저장 실패:${response?.status.code}');
+      return false;
     }
   }
 
@@ -237,6 +245,22 @@ class BluetoothViewModel2 extends ChangeNotifier {
   void _changeState(BluetoothStatus status){
     this.status = status;
     notifyListeners();
+  }
+
+
+  void onPressedError(BluetoothStatus status){
+    if(status == BluetoothStatus.scanError || status == BluetoothStatus.cutoff){
+      // 재 검색 로직
+      allClean();
+      startScan();
+    } else if(status == BluetoothStatus.connectError){
+      // 재연결 로직
+      _changeState(BluetoothStatus.connect);
+      _startConnectTimer();
+      scanResult!.device.connect(autoConnect: false);
+    } else {
+      handleNotificationAndWrite();
+    }
   }
 
 
@@ -254,21 +278,9 @@ class BluetoothViewModel2 extends ChangeNotifier {
     connectTimer = null;
     writeTimer = null;
 
-    //notificationChar = null;
-    //writeChar = null;
-
     connectSubscription?.cancel();
     receivedSubscription?.cancel();
   }
-
-
-
-
-
-
-
-
-
 
   /// 검사기를 찾지 못했을 경우 타임아웃
   _startScanTimer() async {

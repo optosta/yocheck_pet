@@ -2,7 +2,7 @@
 
 class Texts {
   static const  appName = 'Yocheck Pet';
-  static const appVersion = '1.1.1';
+  static const appVersion = '1.0.0';
   static const androidBuildVersion = '1';
   static const iosBuildVersion = '1';
   static const currentYear = '2024';

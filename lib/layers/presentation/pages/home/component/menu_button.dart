@@ -44,7 +44,7 @@ class MenuButton extends StatelessWidget {
         }
       },
       child: SizedBox(
-        height: 120,
+        height: 110,
         width: double.infinity,
         child: Container(
           padding: const EdgeInsets.symmetric(
@@ -61,20 +61,19 @@ class MenuButton extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 100,
+                    width: 90,
                       padding: const EdgeInsets.all(AppDim.medium),
                       child: Image.asset(type.imagePath),
                   ),
-                  AppDim.widthSmall,
 
                   StyleText(
                     text: label,
                     color: type == HomeButtonType.inspection
                         ? AppColors.whiteTextColor
                         : AppColors.blackTextColor,
+                    maxLinesCount: 2,
                     size: AppDim.fontSizeXLarge,
                     fontWeight: AppDim.weightBold,
-                    align: TextAlign.center,
                   ),
                 ],
               ),

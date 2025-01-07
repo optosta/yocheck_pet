@@ -21,7 +21,15 @@ Future<void> main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ko')],
+      supportedLocales: const [
+        Locale('en'), // 영어
+        Locale('ko'), // 한국어
+        Locale('vi'), // 베트남어
+        Locale('nl'), // 네덜란드어
+        Locale('ur'), // 파키스탄어 (우르두어)
+        Locale('zh', 'HK'), // 중국어(홍콩 번체)
+        Locale('zh', 'TW'), // 중국어(대만어)
+      ],
       fallbackLocale: const Locale('en'),
       path: 'assets/translations',
       useOnlyLangCode: true,
