@@ -58,7 +58,6 @@ class InspectionCheckView extends StatelessWidget {
                   AppDim.heightLarge,
                   /// 소변 검체 시간 경고 문구
                   WarningMessage(
-                    message: 'warning_message'.tr(),
                     backgroundColor: Colors.yellow.shade100,
                   )
                 ],

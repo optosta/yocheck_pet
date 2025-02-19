@@ -29,7 +29,7 @@ class _UrineHomeViewState extends State<HomeView> {
       body: MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (BuildContext context) => HomeViewModel(),
+            create: (BuildContext context) => HomeViewModel(context),
           ),
           ChangeNotifierProvider(
             create: (BuildContext context) => AiAnalysisProvider(),

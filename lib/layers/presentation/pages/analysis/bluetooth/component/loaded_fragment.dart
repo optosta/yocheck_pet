@@ -15,22 +15,25 @@ class LoadedFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const SizedBox(height: 100),
-
-          /// Title
-          StyleText(
-            text: status.title,
-            size: AppDim.fontSizeXxLarge,
-            fontWeight: AppDim.weight600,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        /// Title
+        Expanded(
+          flex: 2,
+          child: Center(
+            child: StyleText(
+              text: status.title,
+              size: AppDim.fontSizeXxLarge,
+              fontWeight: AppDim.weight600,
+            ),
           ),
-          const SizedBox(height: 180),
+        ),
 
-          /// 웨이브 에니메이션
-          RippleWave(
+        /// 웨이브 에니메이션
+        Expanded(
+          flex: 5,
+          child: RippleWave(
             color: status.waveColor!,
             repeat: true,
             child: Image.asset(
@@ -39,10 +42,12 @@ class LoadedFragment extends StatelessWidget {
               height: 120,
             ),
           ),
-          const SizedBox(height: 110),
+        ),
 
-          /// subTitle
-          StyleText(
+        /// subTitle
+        Expanded(
+          flex: 3,
+          child: StyleText(
             text: status.subTitle,
             color: AppColors.secondColor,
             fontWeight: AppDim.weight500,
@@ -50,8 +55,8 @@ class LoadedFragment extends StatelessWidget {
             maxLinesCount: 2,
             align: TextAlign.center,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

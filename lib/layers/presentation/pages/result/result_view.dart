@@ -34,7 +34,7 @@ class UrineResultView extends StatefulWidget {
 class _UrineResultViewState extends State<UrineResultView> {
   @override
   Widget build(BuildContext context) {
-    logger.d('testDate: ${widget.testDate}');
+    Size size = MediaQuery.of(context).size;
 
     return ChangeNotifierProvider(
       create: (BuildContext context) => AiAnalysisProvider(),
@@ -54,7 +54,7 @@ class _UrineResultViewState extends State<UrineResultView> {
           ),
           backgroundColor: AppColors.containerBg,
           body: Padding(
-            padding: const EdgeInsets.all(AppDim.medium),
+            padding: const EdgeInsets.symmetric(vertical: AppDim.medium, horizontal: AppDim.small),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
@@ -70,7 +70,7 @@ class _UrineResultViewState extends State<UrineResultView> {
                   AppDim.heightMedium,
 
                   SizedBox(
-                    height: 400,
+                    height: size.height * 0.55,
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 11,
@@ -90,7 +90,7 @@ class _UrineResultViewState extends State<UrineResultView> {
                   AppDim.heightXLarge,
 
                   SizedBox(
-                    height: 200,
+                    height: size.height * 0.3,
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 11,

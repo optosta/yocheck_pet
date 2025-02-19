@@ -282,5 +282,9 @@
 
   "button_ingredient": "成分分析要求",
 
-  "warning_message": "请在使用尿液后等待 1 分钟再进行测试。"
+  "warning_message": "请在使用尿液后等待 1 分钟再进行测试。",
+
+  "warning_message_head": "在沾上尿液後，",
+  "warning_message_seconds": " 請等待60秒 ",
+  "warning_message_end": "再進行檢測。"
 }

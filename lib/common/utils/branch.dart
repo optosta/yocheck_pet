@@ -339,6 +339,7 @@ class Branch {
 
   /// 소변 검사 결과 등급 함수
   /// 25.01.07 최신화
+  /// 25.01.24 h값으로 롤백(빌리루빈, 우로빌리노겐, 백혈구)
   static String urineGradeResult(String type, double x) {
     switch (type) {
       case 'DT01': // 잠혈
@@ -349,21 +350,21 @@ class Branch {
         break;
 
       case 'DT02': // 빌리루빈
-        if (x > 91.8) return "0"; //42
-        if (x > 86.9 && x <= 91.8) return "1"; //40
-        if (x > 74.2 && x <= 86.9) return "2"; //33
-        if (x > 10 && x <= 74.2) return "3"; //25
-        if (10 < x) return "0";
+        if (x > 42.7) return "0";
+        if (x > 42.22 && x <= 42.7) return "1";
+        if (x > 39.86 && x <= 42.22) return "2";
+        if (x>10 && x <= 39.86) return "3";
+        if(x <= 10) return '0';
         break;
       // 우로빌리노겐
       // 86, 72 음성으로 포함시킴
       case 'DT03':
-        if (x >= 72) return "0";
-        if (x > 55.8 && x <= 72) return "1";
-        if (x > 40.7 && x <= 55.8) return "2";
-        if (x > 31.5 && x <= 40.7) return "3";
-        if (x > 10 && x <= 31.5) return "4";
-        if (10 < x) return "0";
+        if (x >= 37) return "0";
+        if (x > 32.88 && x <= 37) return "1";
+        if (x > 26.35 && x <= 32.88) return "2";
+        if (x > 19.93 && x <= 26.35) return "3";
+        if (x > 15.13 && x <= 19.93) return "4";
+        if (15.13 < x) return "0";
         break;
 
       case 'DT04': //케톤체
@@ -412,15 +413,14 @@ class Branch {
         if (x > 31.9 && x <= 38.4) return "5";
         if (x > 28.6 && x <= 31.9) return "6";
         if (x > 10 && x <= 28.6) return "7";
-        if (x < 10 ) return "0";
+        if (x < 10) return "0";
         break;
 
       case 'DT10': //백혈구
-        if (x > 80.6) return "0";
-        if (x > 62.7 && x <= 80.6) return "1";
-        if (x > 43.7 && x <= 62.7) return "2";
-        if (x > 10 && x <= 43.7) return "3";
-        if (10 < x) return "0";
+        if (x > 43.7) return "0"; // 44
+        if (x > 41.76 && x <= 43.7) return "1"; // 41
+        if (x > 38.19 && x <= 41.76) return "2"; // 41
+        if (x <= 38.19) return "3"; // 32
         break;
 
       case 'DT11': //비타민

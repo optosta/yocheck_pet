@@ -30,6 +30,8 @@ class InspectionCheckBox extends StatefulWidget {
 class _InspectionCheckBoxState extends State<InspectionCheckBox> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return FrameContainer(
       height: widget.height,
       borderColor: widget.isActive ? AppColors.secondColor : AppColors.isUnableColor,
@@ -81,8 +83,8 @@ class _InspectionCheckBoxState extends State<InspectionCheckBox> {
               ],
             ),
             Container(
-              width: 100,
-              height: 100,
+              width: size.height * 0.13,
+              height: size.height * 0.13,
               padding: const EdgeInsets.all(AppDim.large),
               decoration: BoxDecoration(
                   color: Colors.white,

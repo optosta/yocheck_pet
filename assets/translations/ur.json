@@ -259,5 +259,9 @@
 
   "button_ingredient": "اجزاء کے تجزیہ کی درخواست",
 
-  "warning_message": "براہ کرم ٹیسٹ کرنے سے پہلے پیشاب کرنے کے بعد 1 منٹ انتظار کریں۔"
+  "warning_message": "براہ کرم ٹیسٹ کرنے سے پہلے پیشاب کرنے کے بعد 1 منٹ انتظار کریں۔",
+
+  "warning_message_head": "پیشاب لگانے کے بعد،",
+  "warning_message_seconds": " 60 سیکنڈ انتظار کریں ",
+  "warning_message_end": "پھر ٹیسٹ کریں۔"
 }

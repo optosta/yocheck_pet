@@ -26,6 +26,8 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    print('size:  ${size.width} / ${size.height}');
     return InkWell(
       onTap: () {
         switch (type) {
@@ -43,50 +45,52 @@ class MenuButton extends StatelessWidget {
             break;
         }
       },
-      child: SizedBox(
-        height: 110,
-        width: double.infinity,
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-              horizontal: AppDim.medium, vertical: AppDim.medium),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(AppConstants.lightRadius),
-            color: type == HomeButtonType.inspection
-                ? AppColors.secondColor
-                : AppColors.white,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+      child: Container(
+        height: size.height * 0.14,
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppDim.medium, vertical: AppDim.medium),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(AppConstants.lightRadius),
+          color: type == HomeButtonType.inspection
+              ? AppColors.secondColor
+              : AppColors.white,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 90,
-                      padding: const EdgeInsets.all(AppDim.medium),
-                      child: Image.asset(type.imagePath),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppDim.medium),
+                    child: Image.asset(type.imagePath, height: 45, width: 45,),
                   ),
-
-                  StyleText(
-                    text: label,
-                    color: type == HomeButtonType.inspection
-                        ? AppColors.whiteTextColor
-                        : AppColors.blackTextColor,
-                    maxLinesCount: 2,
-                    size: AppDim.fontSizeXLarge,
-                    fontWeight: AppDim.weightBold,
+                  Expanded(
+                    child: StyleText(
+                      text: label,
+                      color: type == HomeButtonType.inspection
+                          ? AppColors.whiteTextColor
+                          : AppColors.blackTextColor,
+                      maxLinesCount: 2,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                      size: AppDim.fontSizeXLarge,
+                      fontWeight: AppDim.weightBold,
+                    ),
                   ),
                 ],
               ),
+            ),
+            AppDim.widthSmall,
 
-              Icon(
-                Icons.arrow_forward_ios_sharp,
-                size: AppDim.iconXSmall,
-                color: type == HomeButtonType.inspection
-                    ? AppColors.whiteTextColor
-                    : AppColors.greyColor,
-              )
-            ],
-          ),
+            Icon(
+              Icons.arrow_forward_ios_sharp,
+              size: AppDim.iconXSmall,
+              color: type == HomeButtonType.inspection
+                  ? AppColors.whiteTextColor
+                  : AppColors.greyColor,
+            )
+          ],
         ),
       ),
     );

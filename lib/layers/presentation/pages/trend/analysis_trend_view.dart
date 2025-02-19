@@ -92,7 +92,7 @@ class _AnalysisTrendViewState extends State<AnalysisTrendView> with TickerProvid
                           children: [
                             /// 검색 버튼
                             Flexible(
-                              flex: 7,
+                              flex: 8,
                                 child: DateRangeBox(
                                   onTap: () => provider.showDateRangeDialog(context),
                                   dateText: '${provider.uiStartDate} ~ ${provider.uiEndDate}',
@@ -101,7 +101,7 @@ class _AnalysisTrendViewState extends State<AnalysisTrendView> with TickerProvid
                             AppDim.widthMedium,
 
                             Flexible(
-                              flex: 3,
+                              flex: 2,
                               child: DefaultButton(
                                   btnName: 'search'.tr(),
                                   buttonHeight: 45,

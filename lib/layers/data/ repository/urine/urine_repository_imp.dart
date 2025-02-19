@@ -129,4 +129,44 @@ class UrineRepositoryImp implements UrineRepository {
     }
   }
 
+  @override
+  Future<String?> getAppVersion() async {
+    try {
+      final response = await DioManager()
+          .privateDio
+          .get(
+          getAppVersionUrl,
+          queryParameters: {
+            'code': 'P'
+          }
+      );
+      logger.d(response.data);
+      if (response.statusCode == 200) {
+        return response.data['data'] ?? '';
+      } else {
+        return null;
+      }
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+
+  @override
+  Future<String> deleteHistory(String dateTime) async {
+    try {
+      final response = await DioManager().privateDio.delete(deleteHistoryUrl,
+          data: {
+            "userType": 'P',
+            "userID": Authorization().userID,
+            "datetime": dateTime
+          });
+      logger.d(response.data);
+      return response.data['status']['message'] ?? '';
+
+    } catch (error) {
+      rethrow;
+    }
+  }
+
 }

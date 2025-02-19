@@ -171,11 +171,12 @@ class BluetoothViewModel2 extends ChangeNotifier {
       // 버퍼에 수신된 데이터를 쌓는다.
       responsebuffer.write((String.fromCharCodes(value)).replaceAll('\n', ''));
       logger.i(String.fromCharCodes(value));
+
       if(responsebuffer.toString().contains('ERR')) {
         _changeState(BluetoothStatus.stripError);
       }
 
-      if(responsebuffer.toString().contains('#R11')){
+      if(responsebuffer.toString().contains('#A11')){
         logger.i('검사기로부터 수신된 데이터: ${responsebuffer.toString().replaceAll('#T', '\n#T')}');
         List<String> urineRowDataList = Etc.createUrineValuesList(Urine.fromValue(responsebuffer.toString()));
 

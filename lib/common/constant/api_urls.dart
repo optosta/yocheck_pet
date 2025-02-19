@@ -29,6 +29,8 @@ const String chartApiUrl = '$baseUrl/urine/result/data/list';
 const String recentResultApiUrl = '$baseUrl/urine/result/recent';
 
 /// 한밭대학교 Ai 성분 분석 API URL
+/// DOTO: 신규 URL
+/// const String aiAnalysisApiUrl = 'https://ai.optosta.com/predict'; // 신규
 // const String aiAnalysisApiUrl = 'https://optosta-new.wisoft.io/new-predict'; // 기존
  const String aiAnalysisApiUrl = 'https://optosta.wisoft.io/predict'; // 신규
 
@@ -40,3 +42,9 @@ const String getUserNameApiUrl = '$baseUrl/private/user/get';
 
 /// 비밀번호 변경
 const String changePassApiUrl ='$baseUrl/private/user/password/update';
+
+/// 앱 버전 가져오기
+const String getAppVersionUrl = '$baseUrl/app/version';
+
+/// 검사 내역 삭제
+const String deleteHistoryUrl = '$baseUrl/urine/result/delete';

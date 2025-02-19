@@ -76,18 +76,19 @@ class Urine {
         ' ketones: $ketones, protein: $protein, nitrite: $nitrite, glucose: $glucose, pH: $pH, sG: $sG, leucoytes: $leucoytes, vitamin: $vitamin}';
   }
 
+  ///25.1.24 빌리루빈, 우로빌리노겐, 백혈구 h값 추출할수있게 변경(롤백)
   factory Urine.fromValue(String sb){
     return Urine(
       blood: parsingResultBuffer('#R01:','#T01', sb),
-      billrubin: parsingResultBuffer('#T02:','#A02', sb),
-      urobillnogen: parsingResultBuffer('#T03:','#A03', sb),
+      billrubin: parsingResultBuffer('#R02:','#T02', sb),
+      urobillnogen: parsingResultBuffer('#R03:','#T03', sb),
       ketones: parsingResultBuffer('#R04:','#T04', sb),
       protein: parsingResultBuffer('#R05:','#T05', sb),
       nitrite: parsingResultBuffer('#R06:','#T06', sb),
       glucose: parsingResultBuffer('#R07:','#T07', sb),
       pH: parsingResultBuffer('#R08:','#T08', sb),
       sG: parsingResultBuffer('#R09:','#T09', sb),
-      leucoytes: parsingResultBuffer('#T10:','#A10', sb),
+      leucoytes: parsingResultBuffer('#R10:','#T10', sb),
       vitamin: parsingResultBuffer('#R11:','#T11', sb),
       date: DateFormat('yyyyMMddHHmmss').format(DateTime.now()).toString(),
       urineList: [],

@@ -105,7 +105,7 @@ class ResultItemBox extends StatelessWidget {
                         ),
                         Image.asset(
                           Branch.resultStatusToImagePath(status, index),
-                          width: 35,
+                          width: 30,
                         ),
                       ],
                     ),

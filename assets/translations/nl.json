@@ -276,5 +276,9 @@
 
   "empty_recent_history": "Er zijn geen recente testgeschiedenis.",
 
-  "button_ingredient": "Aanvraag ingrediëntenanalyse"
+  "button_ingredient": "Aanvraag ingrediëntenanalyse",
+
+  "warning_message_head": "Na het aanbrengen van urine,",
+  "warning_message_seconds": " wacht 60 seconden ",
+  "warning_message_end": "voordat u doorgaat met de test."
 }

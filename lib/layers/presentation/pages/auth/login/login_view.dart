@@ -44,12 +44,12 @@ class _LoginViewState extends State<LoginView> {
       builder: (context, child) {
         return Scaffold(
           body: GestureDetector(
-            onTap: () => AppKeyboardUtil.hide(context),
+            onTap: () => FocusScope.of(context).unfocus(),
             child: SafeArea(
               child: Stack(
                 children: [
                   GestureDetector(
-                    onTap: () => AppKeyboardUtil.hide(context),
+                    onTap: () => FocusScope.of(context).unfocus(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
                         /// 로그인 버튼
                         DefaultButton(
                           onPressed: () => {
-                            AppKeyboardUtil.hide(context),
+                          FocusScope.of(context).unfocus(),
                             context.read<LoginViewModel>().login(
                                   idController.text.trim(),
                                   passController.text.trim(),

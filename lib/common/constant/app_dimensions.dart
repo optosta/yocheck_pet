@@ -45,13 +45,13 @@ class AppDim {
 
   // 폰트 크기
   static const double scaleFontSize = 1.0;
-  static const double fontSizeXSmall = 12.0;
-  static const double fontSizeSmall = 13.0;
-  static const double fontSizeMedium = 16.0;
-  static const double fontSizeLarge = 18.0;
-  static const double fontSizeXLarge = 20.0;
-  static const double fontSizeXxLarge = 24.0;
-  static const double fontSizeXxxLarge = 30.0;
+  static const double fontSizeXSmall = 11.0;
+  static const double fontSizeSmall = 12.0;
+  static const double fontSizeMedium = 15.0;
+  static const double fontSizeLarge = 17.0;
+  static const double fontSizeXLarge = 19.0;
+  static const double fontSizeXxLarge = 23.0;
+  static const double fontSizeXxxLarge = 29.0;
 
   // 폰트 굵기
   static const FontWeight weightLight = FontWeight.w400;

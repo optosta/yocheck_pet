@@ -85,8 +85,7 @@ dependencies:
   sizer: ^2.0.15
   iconly: ^1.0.1
 
-  #ui - util
-  keyboard_utils_fork: ^0.0.4
+
 
   #network
   dio: ^5.4.1

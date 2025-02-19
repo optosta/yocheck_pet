@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:yocheck_pet/common/common.dart';
 import 'package:yocheck_pet/common/utils/branch.dart';
 import 'package:yocheck_pet/layers/presentation/enums/urine_item_type.dart';
 
 import '../../../widgets/bottomsheet/v_urine_define_info_bottom_sheet.dart';
 import '../../../widgets/style_text.dart';
-import 'level_gauge_item.dart';
 
 class UrineResultListItem extends StatelessWidget {
   final int index;
@@ -20,6 +18,7 @@ class UrineResultListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
 
     return InkWell(
       onTap: () => {
@@ -36,28 +35,32 @@ class UrineResultListItem extends StatelessWidget {
             })
       },
       child: Container(
-        height: 50,
-        padding: const EdgeInsets.all(AppDim.xSmall),
+        height: size.height * 0.068,
+        padding: const EdgeInsets.symmetric(vertical: AppDim.xSmall),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+
               /// 항목
-              SizedBox(
-                width: 100,
+              Expanded(
+                flex: 2,
                 child: StyleText(
                   maxLinesCount: 2,
                   softWrap: true,
                   text: AppConstants.urineLabelList[index],
                   fontWeight: AppDim.weight400,
                   color: AppColors.blackTextColor,
-                  align: TextAlign.start,
+                  align: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               AppDim.widthSmall,
+
               Expanded(
+                flex: 6,
                 child: Container(
-                  height: 35,
+                  height: size.height * 0.05,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
@@ -76,33 +79,36 @@ class UrineResultListItem extends StatelessWidget {
                   ),
                 ),
               ),
-
-              AppDim.widthSmall,
+              AppDim.widthMedium,
 
               /// 결과 Text
-              Container(
-                constraints: const BoxConstraints(
-                  minWidth: 50,
-                  maxWidth: 50,
-                  minHeight: 20,
-                ),
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  color: Branch.resultStatusToBgColor(status, index),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 2),
-                  child: StyleText(
-                    text: Branch.resultStatusToText(status, index),
-                    color: Branch.resultStatusToColor(status, index),
-                    fontWeight: AppDim.weightBold,
-                    maxLinesCount: 2,
-                    softWrap: true,
-                    align: TextAlign.center,
+              Expanded(
+                flex: 1,
+                child: Container(
+                  constraints: const BoxConstraints(
+                    minWidth: 50,
+                    maxWidth: 50,
+                    minHeight: 20,
+                  ),
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    color: Branch.resultStatusToBgColor(status, index),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 2),
+                    child: StyleText(
+                      text: Branch.resultStatusToText(status, index),
+                      color: Branch.resultStatusToColor(status, index),
+                      fontWeight: AppDim.weightBold,
+                      maxLinesCount: 2,
+                      softWrap: true,
+                      align: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
+
             ]),
       ),
     );

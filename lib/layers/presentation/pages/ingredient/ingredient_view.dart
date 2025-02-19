@@ -69,7 +69,6 @@ class _IngredientViewState extends State<IngredientView> {
             ),
 
             /// 건강관리 가이드 결과 내용
-           // const Gap(AppDim.small),
             ResultContentBox(
               title: 'health_care_guide'.tr(),
               content: resultContent.diseaseContent.tr(),

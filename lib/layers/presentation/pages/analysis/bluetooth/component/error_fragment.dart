@@ -19,43 +19,62 @@ class ErrorFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Center(
-      child: Column(
-        children: [
-          const SizedBox(height: 100),
-
-          /// Title
-          StyleText(
-            text: status.title,
-            size: AppDim.fontSizeXLarge,
-            fontWeight: AppDim.weight600,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        /// Title
+        Expanded(
+          flex: 2,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              StyleText(
+                text: status.title,
+                softWrap: true,
+                maxLinesCount: 2,
+                size: AppDim.fontSizeXLarge,
+                fontWeight: AppDim.weight600,
+              ),
+            ],
           ),
-          const SizedBox(height: 80),
+        ),
 
-          /// error image
-          Image.asset(
+        /// error image
+        Expanded(
+          flex: 4,
+          child: Image.asset(
             status.errorImage!,
             width: size.width * 0.75,
           ),
-          const SizedBox(height: 100),
+        ),
 
-          /// subTitle
-          StyleText(
-            text: status.subTitle,
-            color: AppColors.secondColor,
-            fontWeight: AppDim.weight400,
-            softWrap: true,
-            maxLinesCount: 2,
-            align: TextAlign.center,
+        /// subTitle
+        Expanded(
+          flex: 3,
+          child: Column(
+            children: [
+              StyleText(
+                text: status.subTitle,
+                color: AppColors.secondColor,
+                fontWeight: AppDim.weight400,
+                softWrap: true,
+                maxLinesCount: 2,
+                align: TextAlign.center,
+              ),
+              AppDim.heightMedium,
+
+              DefaultButton(
+                  buttonHeight: 50,
+                  btnName: status.retryBtnLabel!,
+                  onPressed: () => context.read<BluetoothViewModel2>().onPressedError(status)
+              )
+            ],
           ),
-          AppDim.heightMedium,
-          DefaultButton(
-            buttonHeight: 50,
-            btnName: status.retryBtnLabel!,
-            onPressed: () => context.read<BluetoothViewModel2>().onPressedError(status)
-          )
-        ],
-      ),
+        ),
+
+
+
+      ],
     );
   }
 }

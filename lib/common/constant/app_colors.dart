@@ -54,7 +54,7 @@ class AppColors {
   static const Color yellow = Color.fromARGB(179, 252, 255, 0);
   static const Color faleBlue = Color.fromARGB(255, 160, 206, 222);
   static const Color salmon = Color(0xffff6666);
-  static const Color red = Color(0xffffa3a3);
+  static const Color red = Color(0xffff0000);
 
   // grey box colors
   static Color greyBoxBg = Colors.grey.shade100;

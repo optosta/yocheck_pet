@@ -282,5 +282,9 @@
 
   "button_ingredient": "Yêu cầu phân tích thành phần",
 
-  "warning_message": "Wacht 1 minuut na het aanbrengen van urine voordat u de test uitvoert."
+  "warning_message": "Wacht 1 minuut na het aanbrengen van urine voordat u de test uitvoert.",
+
+  "warning_message_head": "Sau khi thoa nước tiểu,",
+  "warning_message_seconds": " hãy chờ 60 giây ",
+  "warning_message_end": "trước khi tiến hành kiểm tra."
 }
