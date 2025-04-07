@@ -32,6 +32,8 @@ class ErrorFragment extends StatelessWidget {
                 text: status.title,
                 softWrap: true,
                 maxLinesCount: 2,
+                height: 1.2,
+                align: TextAlign.center,
                 size: AppDim.fontSizeXLarge,
                 fontWeight: AppDim.weight600,
               ),

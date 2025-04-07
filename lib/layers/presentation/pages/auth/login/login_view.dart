@@ -10,7 +10,6 @@ import 'package:yocheck_pet/layers/presentation/pages/auth/login/login_viewmodel
 import 'package:yocheck_pet/layers/presentation/pages/auth/login/component/default_button.dart';
 import 'package:yocheck_pet/layers/presentation/widgets/ui_helper.dart';
 
-import '../../../../../common/utils/app_keyboard_util.dart';
 import '../../../routes/route_path.dart';
 import '../../../widgets/style_text.dart';
 import 'component/auth_textfield.dart';

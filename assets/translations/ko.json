@@ -3,33 +3,28 @@
   "textfield_title_password": "비밀번호",
   "textfield_title_check_password": "비밀번호 확인",
   "textfield_title_name": "이름",
-
   "id_hint": "아이디를 입력해주세요",
   "password_hint": "비밀번호를 입력해주세요",
   "check_password_hint": "비밀번호를 재입력해주세요",
   "name_hint": "반려견(묘)이름을 입력해주세요",
-
   "login": "로그인",
   "signup": "회원가입",
   "empty_field": "아이디 또는 비밀번호를 입력해주세요",
   "login_error": "아이디 또는 비밀번호가 일치하지 않습니다",
   "signup_success": "회원가입이 완료되었습니다.",
   "check": "확인",
-
   "id": "아이디",
   "password": "비밀번호",
   "password_confirm": "비밀번호 확인",
   "re_enter_password": "비밀번호를 재입력 해주세요",
   "title_terms": "서비스 이용약관",
-  "personal_information" : "개인정보처리방침(필수)",
-  "service_terms" : "서비스이용약관(필수)",
+  "personal_information": "개인정보처리방침(필수)",
+  "service_terms": "서비스이용약관(필수)",
   "terms_view": "약관보기",
-
   "enterIdMsg": "아이디를 입력해주세요.",
   "idMinLengthMsg": "아이디는 6자 이상 입력해주세요.",
   "duplicateIdMsg": "중복된 아이디입니다.\n다시 입력해주세요.",
   "signupFailed": "회원가입이 정상적으로 처리되지 않았습니다.",
-
   "enterPassMsg": "비밀번호를 입력해주세요.",
   "passValidationMsg": "특수,소문자,숫자 포함 7~15자로\n입력해주세요.",
   "passhintMsg": "특수,소문자,숫자 포함 7~15자",
@@ -43,17 +38,14 @@
   "connectionError": "네트워크 연결 상태를\n확인 해주세요.",
   "badCertificate": "서버 상태가 불안정합니다.\n다시 시도바랍니다.",
   "unknownError": "서버 점검중입니다.\n잠시후 시도해주세요.",
-
   "home_subtitle": " 소변검사로",
   "home_subtitle2": "우리아이 건강을 지킬수 있어요.",
   "home_inspection": "검사하기",
   "home_history": "검사 내역",
   "home_analysis": "성분 분석",
   "home_trends": "성분별 추이",
-
   "location_info": "위치정보",
   "location_content": "휴대폰의 위치정보를 켜주시기 바랍니다.",
-
   "insp_title": "소변검사",
   "insp_hello": "안녕하세요.",
   "insp_connection": "검사기를 연결해주세요.",
@@ -68,15 +60,12 @@
   "insp_guide_1": "모든 준비가 완료 되면 자동으로 검사가 진행됩니다.",
   "insp_guide_4": "잠시후 검사를 시작합니다.",
   "insp_start": "검사 진행",
-
   "positive": "양성",
   "negative": "음성",
   "test_error": "검사 오류",
-
   "re-search": "재 검색",
   "reconnect": "재 연결",
   "re-examination": "재 검사",
-
   "title_scan": "검사기 찾는 중",
   "title_connect": "검사기 연결 중",
   "title_inspection": "소변 검사 중",
@@ -86,7 +75,6 @@
   "title_inspection_error": "검사기로부터 응답받지 못했습니다.",
   "title_strip_error": "스트립이 비어있습니다.",
   "title_cutoff": "검사기와의 연결이 끊어졌습니다.",
-
   "subtitle_scan": "검사기를 찾는 중입니다.",
   "subtitle_connect": "검사기를 기기와 연결 중입니다.",
   "subtitle_inspection": "소변을 검사 중입니다.",
@@ -94,11 +82,8 @@
   "subtitle_connect_error": "검사기가 켜져있는지 확인해주세요.",
   "subtitle_unable_error": "다시 시도 해주세요.",
   "subtitle_inspection_error": "다시 시도 해주세요.",
-  "subtitle_strip_error" :"스트립 삽입 후 재검사 버튼을 눌러주세요.",
-  "subtitle_cutoff" : "기기를 끄거나 조작하지 말아주세요.\n재검색이 필요합니다.",
-
-
-
+  "subtitle_strip_error": "스트립 삽입 후 재검사 버튼을 눌러주세요.",
+  "subtitle_cutoff": "기기를 끄거나 조작하지 말아주세요.\n재검색이 필요합니다.",
   "blue_state_scan": "검사기를 찾는 중입니다.",
   "blue_state_connect": "연결 중입니다.\n잠시만 기다려 주세요.",
   "blue_state_inspection": "검사진행 중입니다.\n잠시만 기다려 주세요.",
@@ -108,18 +93,15 @@
   "blue_state_inspectionError": "검사기로부터 응답 받지 못했습니다.\n다시 시도 바랍니다.",
   "blue_state_stripError": "스트립이 비어 있습니다.\n 삽입 후 재검사 버튼을 눌러주세요.",
   "blue_state_cutoff": "검사기와 연결이 끊어졌습니다.\n 재검색이 필요합니다.",
-
-
   "history": "검사 내역",
   "history_empty": "검사 내역이 없습니다.",
-  "year":"년",
+  "year": "년",
   "month": "월",
   "day": "일",
   "hour": ":",
   "m": "",
   "his_recent": "최근",
   "his_all": "전체",
-
   "result_title": "소변 검사 결과",
   "header_title": "가정에서 정기적으로\n소변건강 상태를 체크하세요.",
   "blood": "잠혈",
@@ -149,7 +131,6 @@
   "guide1": "✓ 가장 최근 7일간의 검사 결과를 보여줍니다.",
   "guide2": "✓ 좌측 부터 가장 최근 데이터 입니다.",
   "guide3": "✓ 하루에 여러번 검사시 가장 최근 데이터 기준으로 표기됩니다.",
-
   "trans_blood": "Q.나의 잠혈 추이는??",
   "trans_bilirubin": "Q.나의 빌리루빈 추이는?",
   "trans_urobilnogen": "Q.나의 우로빌리노겐 추이는?",
@@ -161,7 +142,6 @@
   "trans_gravity": "Q.나의 비중 추이는?",
   "trans_leukocytes": "Q.나의 백혈구 추이는?",
   "trans_vitamins": "Q.나의 비타민 추이는?",
-
   "what_blood": "Q.잠혈이란?",
   "what_bilirubin": "Q.빌리루빈이란?",
   "what_urobilnogen": "Q.우로빌리노겐이란?",
@@ -173,7 +153,6 @@
   "what_gravity": "Q.비중이란?",
   "what_leukocytes": "Q.백혈구란?",
   "what_vitamins": "Q.비타민이란?",
-
   "desc_blood": "소변에 피가 섞여 나오는지 확인하는 검사입니다.\n신장이나 전립선, 방광, 요도 등의 기관에 문제가 있을 때 발생할 수 있지만, 원인은 다양합니다.\n육안으로 스트립 색상이 초록색이면 수의사와 상담하세요.\n격한 운동 후 1~2일 동안 잠혈이 나타날 수 있으며, 이는 곧 정상으로 돌아옵니다.",
   "desc_bilirubin": "간에 문제가 생기면, 혈액 내 빌리루빈 수치가 증가하고 소변으로 배출될 수있습니다.\n빌리루빈 수치가 높아지면 황달 증상이 나타날 수 있습니다.\n육안으로 스트립 색상이 분홍색이 나오면 간 질환, 담관 폐쇄, 혈액 질환 등의 가능성이 있으니 반드시 동물 병원에서 진단을 받아야합니다.",
   "desc_urobilnogen": "비장에서 만들어진 후 간을 통해 혈액으로 분비되는 빌리루빈은 장에서 재활용되고, 일부는 우로빌리노겐으로 변해 소변으로 배출됩니다.\n높은 농도의 우로빌리노겐은 감염, 간경화, 간암등에서도 나타날 수 있습니다.\n육안으로 스트립 색상이 붉은색을 보이면 변원에서 진찰을 받아보시는 것이 좋습니다.",
@@ -185,9 +164,7 @@
   "desc_gravity": "신장 기능이 저하되면 소변의 농축력과 배설력이 떨어질 수 있습니다. 소변 비중은 소변에 포함된 물질의 양을 나타냅니다. 건강한 반려동물의 정상 비중은 1.015에서 1.060 사이입니다.\n비중은 수분 섭취에 따라서 달라질 수 있고, 증가 시 탈수, 당뇨, 항이뇨호르몬 이상이 감소시 수분 과잉 섭취, 이뇨제 사용, 신부전 등의 원인일 수 있습니다.\n육안으로 스트립 색상이 잩은남색과 진한 노란색의 결과는 주의가 필요합니다.",
   "desc_leukocytes": "백혈구는 신장, 요로, 혹은 전립선이 세균에 감여되었을 때 증가 할 수 있습니다.\n육안으로 스트립 색상이 짙은 보라색을 띠면 반려동물의 몸에 세균이 있을 가능성이 있으므로, 동물 병원에서 진단을 받아야합니다. 몸의 세균 감염은 아질선염 검사 결과와 함께 확인할 수 있습니다. 백혈구 수치가 낮더라도, 아질산염 검사 결과가 분홍색이면 세균 감염의 가능성이 있습니다.",
   "desc_vitamins": "비타민의 높은 농도는 포도당, 잠혈,빌리루빈,아질산염의 결과에 영향을 줄 수 있습니다.",
-
-
-  "analysis_dialog":"데이터 분석중입니다.",
+  "analysis_dialog": "데이터 분석중입니다.",
   "analysis_header": "성분 분석 결과",
   "see_more": "더보기",
   "adjText1": "✓ 측정된 성분과 관련된 질환은",
@@ -203,7 +180,6 @@
   "tract_grade_2": "=> 요로감염 수치가 있으며 알카리뇨도 확인바랍니다.",
   "symptoms": "✓ 예상 증상",
   "health_care_guide": " ✓ 건강관리 가이드",
-
   "trends_title": "성분별 추이",
   "transition_header": "✓ 추이 검색",
   "period_direct": "직접",
@@ -212,7 +188,6 @@
   "period_six_month": "6개월",
   "search": "검색",
   "tip": "Tip) 좌우로 이동 가능합니다.",
-
   "setting": "설정",
   "version_info": "버전 정보",
   "trm_policy": "이용약관 및 정책",
@@ -222,7 +197,6 @@
   "logout_success": "로그아웃 되었습니다.",
   "app_version": "앱 버전",
   "current_version": "현재 앱 버전",
-
   "kidneys": "만성신장질환",
   "bladder": "방광염",
   "pancreas": "췌장염",
@@ -235,8 +209,6 @@
   "hepatitis": "간염(A형)",
   "kidneydisease": "신장질환, 신우염, 신부전",
   "health": "정기 검사",
-
-
   "related_diseases": "관련 질환",
   "related_blood": "잠혈, 급성신장염, 만성신장염, 빈혈, 요로감염 등",
   "related_bilirubin": "간염, 담석, 췌장염, 담도폐쇄 등",
@@ -249,7 +221,6 @@
   "related_gravity": "저비중 : 신부전, 신우신염\n고비중 : 당뇨병, 탈수증, 설사 등",
   "related_leukocytes": "방광염, 신우신염, 요로결석, 신장결핵 등",
   "related_vitamins": "비타민C 과잉의경우 요당, 단백질, 알칼리요등이 측정오류가 발생 할 수 있습니다.",
-
   "kidneys_symptoms": "• 소변의 양이 감소 또는 증가하는 경우\n• 복통,허리 통증이 발생하는 경우\n• 두통, 혈압상승, 호흡곤란 등의 증상이 나타나는 경우\n• 손발이 저리거나 근육 경련 등의 증상이 나타나는 경우",
   "kidneys_guide": "• 당뇨병: 고혈당으로 인해 신장의 혈관과 신장 조직이 손상되는 경우에 발생할 수 있습니다.\n• 고혈압: 고혈압이 지속되면 신장의 혈관이 손상되어 신장 기능이 저하될 수 있습니다.\n• 만성 신염: 장기적으로 발생하는 신염으로, 신장 조직에 손상을 일으켜 신장 기능이 저하될 수 있습니다.\n• 다른 질환에 의한 합병증: 대사성 질환, 면역성 질환, 갑상선 기능저하증, 난치성 질환 등 다양한 질병들이 신장 기능 저하를 유발할 수 있습니다.",
   "bladder_symptoms": "• 자주 소변을 볼 때\n• 급작스럽게 소변을 볼 필요성을 느낄 때\n• 소변을 보는 데에 통증이나 따끔거림을 느낄 때\n• 발열이 동반",
@@ -274,22 +245,25 @@
   "kidneydisease_guide": "• 물마시기: 하루에 2L 이상의 물을 섭취하는것이 중요합니다.\n• 채소와 과일 섭취하기: 딸기, 수박, 당근, 파인애플, 포도, 사과, 브로콜리 등 채소와 과일을 섭취\n• 잡곡류먹기: 밥을 해먹을 때 현미나 귀리, 보리, 콩 섭취 권장",
   "health_symptoms": "대부분 음성이 측정되었으며, 꾸준한 관리와 정기적인 검사를 권장합니다.",
   "health_guide": "1)건강한 식습관: 나트륨 섭취를 줄이고, 충분한 수분을 섭취하세요. 과일, 채소, 통곡물을 충분히 섭취하는 것도 중요합니다.\n2)적당한 운동: 규칙적인 운동으로 건강을 유지하세요. 하지만 너무 무리한 운동은 피해야 합니다.\n3)정기적인 검사: 신장 기능이 어떻게 변하는지 주기적으로 확인하고, 혈압도 꾸준히 체크해야합니다.",
-
   "yes": "예",
   "cancel": "취소",
   "data_erorr": "데이터 손상이 있습니다. 다시 시도해주세요",
-
   "unexpected_error": "죄송합니다.\n예기치 않은 문제가 발생했습니다",
   "connection_error": "네트워크 연결 상태를\n확인 해주세요",
   "bad_certificate": "서버 상태가 불안정합니다.\n다시 시도바랍니다",
   "unknown_error": "서버 점검중입니다.\n잠시후 시도해주세요",
-
   "empty_recent_history": "최근에 검사한 이력이 없습니다.",
-
   "button_ingredient": "성분분석 의뢰",
-
   "warning_message_head": "소변을 묻힌 후",
   "warning_message_seconds": " 60초 ",
-  "warning_message_end": "지나고 검사를 진행해주세요."
+  "warning_message_end": "지나고 검사를 진행해주세요.",
 
+  "title_chagnepass": "비밀번호 변경",
+  "title_beforpass": "현재 비밀번호",
+  "title_newpass": "새 비밀번호",
+  "title_newpass2": "새 비밀번호 확인",
+  "hint_beforpass": "비밀번호를 입력해주세요.",
+
+  "delete_history": "검사 내역 삭제",
+  "delete_content": "검사한 내역을 삭제하시겠습니까?"
 }

@@ -1,11 +1,11 @@
-
-
 const String baseUrl = 'http://optosta.cafe24.com/ws';
 
 /// 테스트 서버
 //const String urineBaseUrl = 'http://192.168.0.54:50010/ws'; // 내부 테스트 서버
 //const String urineBaseUrl = 'http://106.251.70.71:50010/ws';// 외부 서버
 
+// const String testUrl = 'http://221.158.103.5:50010/ws';
+// const String baseUrl = testUrl;
 
 /// 로그인
 const String loginApiUrl = '$baseUrl/public/user/login';

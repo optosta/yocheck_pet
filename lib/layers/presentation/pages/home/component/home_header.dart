@@ -14,7 +14,7 @@ class HomeHeader extends StatelessWidget {
 
     return Container(
       height: size.height * 0.13,
-      margin: const EdgeInsets.only(left: AppDim.large),
+      margin: const EdgeInsets.symmetric(horizontal: AppDim.large),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

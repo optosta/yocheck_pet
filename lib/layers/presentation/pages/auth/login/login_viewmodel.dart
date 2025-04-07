@@ -24,8 +24,12 @@ class LoginViewModel extends ChangeNotifier {
     }
 
     try {
-      LoginDTO? resonse =
-          await LoginUseCase().execute({'userID': id, 'password': pass});
+      LoginDTO? resonse = await LoginUseCase().execute({
+        'userID': id,
+        'password': pass,
+        "userType": "P",
+      });
+
       if (resonse?.status.code == Texts.successCode && resonse != null) {
         Authorization().setValues(
           userID: id,

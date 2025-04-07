@@ -27,6 +27,7 @@ class SignupRowForm extends StatelessWidget {
               text: title,
               fontWeight: AppDim.weightBold,
               size: AppDim.fontSizeSmall,
+              maxLinesCount: 2,
             ),
           ),
 

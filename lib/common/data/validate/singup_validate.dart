@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import '../../common.dart';
+import '../../utils/my_logger.dart';
 
 /// 회원가입 유효성 확인 클래스
 class SignValidate{
@@ -13,7 +16,7 @@ class SignValidate{
     if(SignValidate.checkID(id, (message)=> showErrorDialog(message))&&
         SignValidate.checkPassword(pass, (message)=> showErrorDialog(message))&&
         SignValidate.checkPassword2(pass2, (message)=> showErrorDialog(message))&&
-        SignValidate.checkSamePassword(pass, pass2, (message)=> showErrorDialog(message))&&
+        SignValidate.checkSamePassword(pass, pass2, ()=> showErrorDialog('passMismatchMsg'.tr()))&&
         SignValidate.checkNickName(name, (message)=> showErrorDialog(message))){
       return false; // 위 체크 내용이 true 경우
     }
@@ -70,23 +73,29 @@ class SignValidate{
 
 
   /// 비밀번호 일치 체크
-  static bool checkSamePassword(String value, String value2,  Function(String message) checkMsg){
+  /// 'passMismatchMsg'.tr()
+  static bool checkSamePassword(String value, String value2, VoidCallback checkMsg){
     if(value != value2){
-      checkMsg('passMismatchMsg'.tr());
+      checkMsg;
+      logger.d('value:$value / value2:$value2');
       return false;
     }
     else {
+      logger.d('value:$value / value2:$value2');
       return true;
     }
   }
 
   /// 이전 비밀번호 일치 체크
-  static bool checkSameBeforePassword(String value, String value2, Function(String message) checkMsg){
+  /// 'currentPassMismatchMsg'.tr()
+  static bool checkSameBeforePassword(String value, String value2, VoidCallback checkMsg){
     if(value != value2){
-      checkMsg('currentPassMismatchMsg'.tr());
+      checkMsg;
+      logger.d('value:$value / value2:$value2');
       return false;
     }
     else {
+      logger.d('value:$value / value2:$value2');
       return true;
     }
   }

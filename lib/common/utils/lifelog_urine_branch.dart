@@ -81,26 +81,26 @@ class LifeLogUrineBranch {
   }
 
   /// 소변분석 결과에 따른 색상 설정
-  static  resultStatusToTextColor(String dataDesc, String value) {
-    if (dataDesc == '비타민' || dataDesc == '비중' || dataDesc == '산성도') {
-      return AppColors.urineExceptColor;
-    } else {
-      switch (value) {
-        case '0':
-          return AppColors.urineStageColor1;
-        case '1':
-          return AppColors.urineStageColor1;
-        case '2':
-          return AppColors.urineStageColor2;
-        case '3':
-          return AppColors.urineStageColor3;
-        case '4':
-          return AppColors.urineStageColor4;
-        case '5':
-          return AppColors.urineStageColor5;
-        default:
-          return AppColors.urineStageColor1;
-      }
-    }
-  }
+  // static  resultStatusToTextColor(String dataDesc, String value) {
+  //   if (dataDesc == '비타민' || dataDesc == '비중' || dataDesc == '산성도') {
+  //     return AppColors.urineExceptColor;
+  //   } else {
+  //     switch (value) {
+  //       case '0':
+  //         return AppColors.urineStageColor1;
+  //       case '1':
+  //         return AppColors.urineStageColor1;
+  //       case '2':
+  //         return AppColors.urineStageColor2;
+  //       case '3':
+  //         return AppColors.urineStageColor3;
+  //       case '4':
+  //         return AppColors.urineStageColor4;
+  //       case '5':
+  //         return AppColors.urineStageColor5;
+  //       default:
+  //         return AppColors.urineStageColor1;
+  //     }
+  //   }
+  // }
 }

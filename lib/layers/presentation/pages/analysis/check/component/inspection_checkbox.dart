@@ -74,6 +74,7 @@ class _InspectionCheckBoxState extends State<InspectionCheckBox> {
                 StyleText(
                   text: widget.isActive ? widget.type.subTitle : widget.type.subTitle,
                   softWrap: true,
+                  height: 1.2,
                   maxLinesCount: 2,
                   fontWeight: AppDim.weight400,
                   size: AppDim.fontSizeSmall,

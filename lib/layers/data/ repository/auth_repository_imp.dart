@@ -73,7 +73,6 @@ class AuthRepositoryImp implements AuthRepository {
   /// 비밀번호 변경
   @override
   Future<ChangePassDTO?> changePass(Map<String, dynamic> toMap) async {
-    logger.d(toMap);
     try {
       final response = await DioManager()
           .privateDio

@@ -60,52 +60,55 @@ class _UrineResultViewState extends State<UrineResultView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  StyleText(
-                    text: TextFormat.convertTimestamp(widget.testDate),
-                    color: AppColors.blackTextColor,
-                    size: AppDim.fontSizeLarge,
-                    fontWeight: AppDim.weight600,
-                    maxLinesCount: 1,
+                  Padding(
+                    padding: const EdgeInsets.only(left: AppDim.medium),
+                    child: StyleText(
+                      text: TextFormat.convertTimestamp(widget.testDate),
+                      color: AppColors.blackTextColor,
+                      size: AppDim.fontSizeLarge,
+                      fontWeight: AppDim.weight600,
+                      maxLinesCount: 1,
+                    ),
                   ),
                   AppDim.heightMedium,
 
                   SizedBox(
-                    height: size.height * 0.55,
+                    height: size.height * 0.85,
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 11,
                       itemBuilder: (BuildContext context, int index) {
 
-                        if((index >= 0 && index <= 6) || index == 9){
+                       // if((index >= 0 && index <= 6) || index == 9){
                           return UrineResultListItem(
                             status: widget.urineList[index],
                             index: index,
                           );
-                        } else {
-                          return const SizedBox.shrink(); // 아무것도 렌더링 하지 않음
-                        }
+                        // } else {
+                        //   return const SizedBox.shrink(); // 아무것도 렌더링 하지 않음
+                        // }
                       },
                     ),
                   ),
                   AppDim.heightXLarge,
 
-                  SizedBox(
-                    height: size.height * 0.3,
-                    child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 11,
-                      itemBuilder: (BuildContext context, int index) {
-                        if(index == 7 || index == 8 || index == 10){
-                          return UrineResultListItem(
-                            status: widget.urineList[index],
-                            index: index,
-                          );
-                        } else {
-                          return const SizedBox.shrink(); // 아무것도 렌더링 하지 않음
-                        }
-                      },
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: size.height * 0.3,
+                  //   child: ListView.builder(
+                  //     physics: const NeverScrollableScrollPhysics(),
+                  //     itemCount: 11,
+                  //     itemBuilder: (BuildContext context, int index) {
+                  //       if(index == 7 || index == 8 || index == 10){
+                  //         return UrineResultListItem(
+                  //           status: widget.urineList[index],
+                  //           index: index,
+                  //         );
+                  //       } else {
+                  //         return const SizedBox.shrink(); // 아무것도 렌더링 하지 않음
+                  //       }
+                  //     },
+                  //   ),
+                  // ),
 
 
                 ],

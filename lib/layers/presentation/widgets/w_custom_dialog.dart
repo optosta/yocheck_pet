@@ -577,4 +577,122 @@ class CustomDialog {
         }
     );
   }
+
+
+  /// 검사 기록 삭제 다이얼로그
+  static showDeleteDialog({
+    required String title,
+    required String date,
+    required String text,
+    required BuildContext mainContext,
+    required Function onPressed
+  }) {
+    return showDialog(
+        context: mainContext,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: AppConstants.borderLightRadius),
+            title: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  StyleText(
+                    text: title,
+                    fontWeight: AppDim.weightBold,
+                  ),
+                ],
+              ),
+            ),
+            content: SizedBox(
+              height: 133,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            width: 160,
+                            child: Column(
+                              children: [
+                                StyleText(
+                                  text: date,
+                                  height: 1,
+                                  align: TextAlign.center,
+                                  size: AppDim.fontSizeMedium,
+                                  maxLinesCount: 3,
+                                ),
+                                StyleText(
+                                  text: text,
+                                  height: 1,
+                                  align: TextAlign.center,
+                                  size: AppDim.fontSizeMedium,
+                                  maxLinesCount: 3,
+                                ),
+                              ],
+                            ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 38),
+                    child: Row(
+                      children:
+                      [
+                        Expanded(
+                          child: SizedBox(
+                            width: 60,
+                            height: 45,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                  elevation: 3.0,
+                                  backgroundColor: AppColors.primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: AppConstants.lightRadius))),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: StyleText(
+                                  text: 'cancel'.tr(), color: AppColors.white),
+                            ),
+                          ),
+                        ),
+                        const Gap(1),
+
+                        Expanded(
+                          child: SizedBox(
+                            height: 45,
+                            width: 60,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                  elevation: 5.0,
+                                  backgroundColor: AppColors.primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 1.0,
+                                          color: AppColors.primaryColor),
+                                      borderRadius:  BorderRadius.only(
+                                          bottomRight: AppConstants.lightRadius))),
+                              onPressed: () => onPressed(),
+                              child: StyleText(
+                                text: 'check'.tr(),
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            contentPadding: const EdgeInsets.all(0.0),
+          );
+        });
+  }
 }

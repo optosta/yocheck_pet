@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<privacy>
+  <collection>
+    <purpose>
+      <name>App Functionality</name>
+    </purpose>
+    <data>
+      <type>User ID</type>
+      <category>Identifiers</category>
+    </data>
+    <data>
+      <type>Full Name</type>
+      <category>Contact Info</category>
+    </data>
+  </collection>
+</privacy>

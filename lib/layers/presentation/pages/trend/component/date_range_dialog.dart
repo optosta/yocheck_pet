@@ -78,33 +78,37 @@ class _DateRangeDialogState extends State<DateRangeDialog> {
       ),
       actionsAlignment: MainAxisAlignment.center,
       actionsPadding: const EdgeInsets.all(0.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
       actions: <Widget>[
         Row(
           children: [
             /// 취소 버튼
             Expanded(
               child: SizedBox(
-                height: AppConstants.buttonHeight,
+                height: AppConstants.signupTextFieldHeight,
                 child: TextButton(
                   onPressed: () => Nav.doPop(context),
                   style: TextButton.styleFrom(
-                    backgroundColor: AppColors.brightGrey,
+                    backgroundColor: AppColors.primaryColor,
                     shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
                     ),
                   ),
                   child: StyleText(
                     text: cancelText,
-                    color: AppColors.blackTextColor,
+                      color: AppColors.white,
                   ),
                 ),
               ),
             ),
+            Container(width: 1, color: Colors.white,),
 
             /// 확인 버튼
             Expanded(
               child: SizedBox(
-                height: AppConstants.buttonHeight,
+                height: AppConstants.signupTextFieldHeight,
                 child: TextButton(
                     onPressed: () => {
                           widget.onSubmit(_rangeStart, _rangeEnd),
@@ -112,7 +116,8 @@ class _DateRangeDialogState extends State<DateRangeDialog> {
                         },
                     style: TextButton.styleFrom(
                       shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
+                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(10)),
+
                       ),
                       backgroundColor: AppColors.primaryColor,
                     ),

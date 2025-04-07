@@ -149,6 +149,7 @@ class _SignupViewState extends State<SignupView> {
         'userID': idController.text,
         'password': passController.text,
         'name': nameController.text,
+        "userType" : "P",
       },
       showErrorDialog: (String message) => _showErrorDialog(context, message),
       successSignup: () => _onSignupSuccess(context),

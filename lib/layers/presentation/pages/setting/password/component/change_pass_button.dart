@@ -13,7 +13,6 @@ class ChangePasswordButton extends StatelessWidget {
     required this.onPressed,
   });
 
-  String get btnText => '비밀번호 변경';
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class ChangePasswordButton extends StatelessWidget {
         ),
       ),
       child: StyleText(
-        text: btnText,
+        text: 'title_chagnepass'.tr(),
         color: AppColors.whiteTextColor,
         size: AppDim.fontSizeMedium,
         fontWeight: AppDim.weightBold,

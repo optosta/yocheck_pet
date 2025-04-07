@@ -22,6 +22,7 @@ class UrineRow {
       "dataType": dataType,
       "result": result,
       "status": status,
+      "userType":'P'
     };
     return toMap;
   }

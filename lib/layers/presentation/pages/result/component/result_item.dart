@@ -44,7 +44,7 @@ class UrineResultListItem extends StatelessWidget {
 
               /// 항목
               Expanded(
-                flex: 2,
+                flex: 4,
                 child: StyleText(
                   maxLinesCount: 2,
                   softWrap: true,
@@ -58,9 +58,9 @@ class UrineResultListItem extends StatelessWidget {
               AppDim.widthSmall,
 
               Expanded(
-                flex: 6,
+                flex: 5,
                 child: Container(
-                  height: size.height * 0.05,
+                  height: size.height * 0.04,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
@@ -72,40 +72,42 @@ class UrineResultListItem extends StatelessWidget {
                     ],
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: UrineItemType.values[index] == UrineItemType.nitrate
-                        ? _buildLevelGaugeNitrate()
-                        : _buildLevelGaugeCommon(index)
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children:
+                          UrineItemType.values[index] == UrineItemType.nitrate
+                              ? _buildLevelGaugeNitrate()
+                              : UrineItemType.values[index] == UrineItemType.gravity ||
+                                      UrineItemType.values[index] == UrineItemType.ph
+                                  ? _buildLevel2()
+                                  : _buildLevelGaugeCommon(index),
                   ),
                 ),
               ),
               AppDim.widthMedium,
 
-              /// 결과 Text
+              /// 결과 text
               Expanded(
-                flex: 1,
-                child: Container(
-                  constraints: const BoxConstraints(
-                    minWidth: 50,
-                    maxWidth: 50,
-                    minHeight: 20,
-                  ),
-                  padding: const EdgeInsets.all(2),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    color: Branch.resultStatusToBgColor(status, index),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 2),
-                    child: StyleText(
-                      text: Branch.resultStatusToText(status, index),
-                      color: Branch.resultStatusToColor(status, index),
-                      fontWeight: AppDim.weightBold,
-                      maxLinesCount: 2,
-                      softWrap: true,
-                      align: TextAlign.center,
+                flex: 3,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min, // 자식 크기에 맞춰 Row 크기 조정
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        color: Branch.resultStatusToBgColor(status, index),
+                      ),
+                      child: StyleText(
+                        text: Branch.resultStatusToText(status, index),
+                        color: Branch.resultStatusToColor(status, index),
+                        fontWeight: AppDim.weightBold,
+                        maxLinesCount: 2,
+                        softWrap: true,
+                        align: TextAlign.center,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
 
@@ -132,13 +134,13 @@ class UrineResultListItem extends StatelessWidget {
     }
 
     return List.generate(
-      5,
+      4,
       (pos) => Container(
-        width: 25,
-        height: 25,
-        margin: const EdgeInsets.all(5.0),
+        width: 20,
+        height: 20,
+        margin: const EdgeInsets.all(3.0),
         decoration: BoxDecoration(
-            color: (index == 7 || index ==  8 || index == 10)?
+            color: (index == 10)?
               AppColors.levelGrayColors[statusIndex][pos]
               : AppColors.level5Colors[statusIndex][pos]),
       ),
@@ -150,11 +152,24 @@ class UrineResultListItem extends StatelessWidget {
       2,
       (pos) => Expanded(
         child: Container(
-          margin: const EdgeInsets.all(8.0),
+          margin: const EdgeInsets.all(9.0),
+          decoration: BoxDecoration(
+              color: AppColors.level2GrayColors[int.parse(status)][pos]),
+        ),
+      ),
+    );
+  }
+  _buildLevel2() {
+    return List.generate(
+      2,
+          (pos) => Expanded(
+        child: Container(
+          margin: const EdgeInsets.all(9.0),
           decoration: BoxDecoration(
               color: AppColors.level2Colors[int.parse(status)][pos]),
         ),
       ),
     );
   }
+
 }

@@ -21,6 +21,7 @@ class WarningMessage extends StatefulWidget {
 
 class _WarningMessageState extends State<WarningMessage>
     with SingleTickerProviderStateMixin {
+
   late AnimationController _controller;
 
   @override
@@ -30,6 +31,12 @@ class _WarningMessageState extends State<WarningMessage>
       vsync: this,
       duration: const Duration(milliseconds: 500),
     )..repeat(reverse: true); // 반복하며 깜박이도록 설정
+  }
+  
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override

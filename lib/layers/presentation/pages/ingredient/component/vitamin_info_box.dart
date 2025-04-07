@@ -40,7 +40,7 @@ class VitaminInfoBox extends StatelessWidget {
 
           Container(
             height: 130,
-            padding: const EdgeInsets.symmetric(vertical: AppDim.small, horizontal: AppDim.medium),
+            padding: const EdgeInsets.symmetric(vertical: AppDim.small, horizontal: AppDim.large),
             color: AppColors.containerBg,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

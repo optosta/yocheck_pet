@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yocheck_pet/common/common.dart';
 
-import '../../../../common/utils/app_keyboard_util.dart';
 import '../style_text.dart';
 
 class FrameScaffold extends StatelessWidget {

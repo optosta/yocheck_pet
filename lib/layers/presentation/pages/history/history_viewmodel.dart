@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../../common/utils/dio/dio_exceptions.dart';
 import '../../../../common/utils/my_logger.dart';
+import '../../../domain/usecase/urine/delete_history_usecase.dart';
 import '../../../domain/usecase/urine/history_usecase.dart';
 import '../../../domain/usecase/urine/urine_result_usecase.dart';
 import '../../../entity/history_dto.dart';
@@ -53,6 +54,29 @@ class HistoryViewModel extends ChangeNotifier {
         } else {
           _historyList.addAll(historyDTO?.data ?? []);
         }
+      }
+
+      _isLoading = false;
+      notifyListeners();
+    } on DioException catch (e) {
+      final msg = DioExceptions.fromDioError(e).toString();
+      notifyError(msg);
+    } catch (e) {
+      logger.e(e.toString());
+      final msg = 'unexpected_error'.tr();
+      notifyError(msg);
+    }
+  }
+
+  /// 검사 히스토리 삭제
+  Future<void> deleteHistory(String dateTime) async {
+    try {
+      final result = await DeleteHistoryCase().execute(dateTime);
+      if (result == 'Success') {
+        if (_historyList.isNotEmpty) {
+          _historyList.removeWhere((history) => history.datetime == dateTime);
+          notifyListeners();
+        }
       } else {
         _historyList = [];
       }
@@ -64,7 +88,7 @@ class HistoryViewModel extends ChangeNotifier {
       notifyError(msg);
     } catch (e) {
       logger.e(e.toString());
-      final msg = 'unexpected_error'.tr();
+      const msg = '죄송합니다.\n예기치 않은 문제가 발생했습니다.';
       notifyError(msg);
     }
   }
@@ -99,12 +123,12 @@ class HistoryViewModel extends ChangeNotifier {
   /// 다음 페이지 데이터를 불러온다.
   addScrollListener() {
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels >
-          _scrollController.position.maxScrollExtent - 100) {
-        if (_historyList.length % 10 == 0) {
-          ++_page;
-          getHistoryDio();
-        }
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent - 100 &&
+          !_isLoading ) {
+        // 끝 감지 플래그 추가
+        ++_page;
+        getHistoryDio();
       }
     });
   }

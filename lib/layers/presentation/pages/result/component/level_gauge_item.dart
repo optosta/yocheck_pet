@@ -47,7 +47,7 @@ class LevelGaugeItem extends StatelessWidget {
         height: 20,
         margin: const EdgeInsets.all(5.0),
         decoration: BoxDecoration(
-            color: AppColors.level2Colors[0][index]
+            color: AppColors.level2GrayColors[0][index]
         )
 
             //

@@ -12,6 +12,7 @@ import '../../../enums/pos_neg_type.dart';
 import '../../../routes/route_path.dart';
 import '../../../widgets/frame_container.dart';
 import '../../../widgets/style_text.dart';
+import '../../../widgets/w_custom_dialog.dart';
 import '../../result/result_view.dart';
 
 class HistoryListItem extends StatelessWidget {
@@ -73,10 +74,27 @@ class HistoryListItem extends StatelessWidget {
                   )
                 ],
               ),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: AppColors.greyTextColor,
-                size: AppDim.iconXSmall,
+              InkWell(
+                onTap: () {
+                  CustomDialog.showDeleteDialog(
+                    title: 'delete_history'.tr(),
+                    date: '${TextFormat.convertTimestamp(history.datetime)}',
+                    text: 'delete_content'.tr(),
+                    mainContext: context,
+                    onPressed: () => {
+                      context.read<HistoryViewModel>().deleteHistory(history.datetime),
+                      Nav.doPop(context)
+                    },
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.delete,
+                    color: AppColors.grey,
+                    size: AppDim.iconSmall,
+                  ),
+                ),
               ),
             ],
           ),

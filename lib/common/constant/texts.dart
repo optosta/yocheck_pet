@@ -5,7 +5,7 @@ class Texts {
   static const appVersion = '1.0.0';
   static const androidBuildVersion = '1';
   static const iosBuildVersion = '1';
-  static const currentYear = '2024';
+  static const currentYear = '2025';
 
 
   static const passwordRegExp = '^(?=.*[0-9])(?=.*[a-z])(?=.*\\W).{7,15}';

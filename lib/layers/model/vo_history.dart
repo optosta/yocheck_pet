@@ -17,6 +17,7 @@ class History {
       'page': page,
       'searchStartDate': searchStartDate,
       'searchEndDate': searchEndDate,
+      "userType" : "P",
     };
   }
 }

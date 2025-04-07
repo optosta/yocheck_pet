@@ -14,6 +14,7 @@ import '../../../model/authorization.dart';
 class UrineRepositoryImp implements UrineRepository {
 
   /// 히스토리 조회(최근, 전체)
+  /// userType 수정완료
   @override
   Future<HistoryDTO?> getHistory(History history) async {
     try {
@@ -34,13 +35,14 @@ class UrineRepositoryImp implements UrineRepository {
   }
 
   /// 특정날짜 검사 결과 상세
+  /// userType 수정완료
   @override
   Future<UrineResultDTO?> getUrineResult(String dateTime) async {
     try {
       final response = await DioManager()
           .publicDio
           .get(dateTime == '' ? recentResultApiUrl : urineResultApiUrl,
-          queryParameters: {'userID': Authorization().userID, 'datetime': dateTime});
+          queryParameters: {'userID': Authorization().userID, 'datetime': dateTime, 'userType': 'P'});
 
       logger.d(response.data);
       if (response.statusCode == 200) {
@@ -54,6 +56,7 @@ class UrineRepositoryImp implements UrineRepository {
   }
 
   /// 검사 결과 추이 차트
+  /// userType 수정완료
   @override
   Future<UrineChartDTO?> fetchUrineChart(Map<String, dynamic> searchDateMap) async {
     try {
@@ -116,7 +119,10 @@ class UrineRepositoryImp implements UrineRepository {
           .privateDio
           .get(
             getUserNameApiUrl,
-            queryParameters: {'userID': Authorization().userID},
+            queryParameters: {
+              'userType': 'P',
+              'userID': Authorization().userID
+            },
       );
       logger.d(response.data);
       if (response.statusCode == 200) {

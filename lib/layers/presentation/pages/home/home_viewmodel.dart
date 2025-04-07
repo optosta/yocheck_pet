@@ -16,7 +16,6 @@ class HomeViewModel extends ChangeNotifier {
 
   HomeViewModel(this.context) {
     getUserName();
-    //fectchAppVersion();
   }
 
   /// 유저 이름
@@ -40,31 +39,33 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   /// 최신 버전 정보 가져오기
-  Future<void> fectchAppVersion() async {
-    const iosPlatform = MethodChannel('com.wonpl.urine/appstore');
-    const androidPlatform = MethodChannel('com.wonpl.urine/playstore');
+  /// 출시 이후 id값이 정해지면 기능활성화 예장
+  // Future<void> fectchAppVersion() async {
+  //   const iosPlatform = MethodChannel('com.wonpl.urine/appstore');
+  //   const androidPlatform = MethodChannel('com.wonpl.urine/playstore');
+  //
+  //   try {
+  //     final response = await GetAppVersionUseCase().execute();
+  //     if (Texts.appVersion != response) {
+  //       if(context.mounted){
+  //         CustomDialog.showVersionDialog(
+  //           title: '업데이트가 필요합니다!',
+  //           text: '월할한 서비스 이용을 위해 최신\n버전으로 업데이트 필요합니다.',
+  //           mainContext: context,
+  //           onPressed: () async {
+  //             if (Platform.isAndroid) {
+  //               await androidPlatform.invokeMethod('redirectToPlayStore');
+  //             } else {
+  //               await iosPlatform.invokeMethod('openAppStore');
+  //             }
+  //           },
+  //         );
+  //       }
+  //
+  //     }
+  //   } catch (error) {
+  //     logger.e(error);
+  //   }
+  // }
 
-    try {
-      final response = await GetAppVersionUseCase().execute();
-      if (Texts.appVersion != response) {
-        if(context.mounted){
-          CustomDialog.showVersionDialog(
-            title: '업데이트가 필요합니다!',
-            text: '월할한 서비스 이용을 위해 최신\n버전으로 업데이트 필요합니다.',
-            mainContext: context,
-            onPressed: () async {
-              if (Platform.isAndroid) {
-                await androidPlatform.invokeMethod('redirectToPlayStore');
-              } else {
-                await iosPlatform.invokeMethod('openAppStore');
-              }
-            },
-          );
-        }
-
-      }
-    } catch (error) {
-      logger.e(error);
-    }
-  }
 }

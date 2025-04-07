@@ -85,6 +85,7 @@ class Authorization {
   Future<void> login() async {
     try {
       LoginDTO? response = await LoginUseCase().execute({
+        'userType': 'P',
         'userID': userID,
         'password': password,
       });
