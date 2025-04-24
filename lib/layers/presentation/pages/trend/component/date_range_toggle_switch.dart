@@ -6,15 +6,11 @@ import 'package:yocheck_pet/layers/presentation/enums/date_range_type.dart';
 import '../../../widgets/style_text.dart';
 
 class DateRangeToggleSwitch extends StatelessWidget {
-  // final int toggleIndex;
-  // final Function(int?) onToggle;
   final TabController dateToggleController;
 
   const DateRangeToggleSwitch({
     super.key,
     required this.dateToggleController,
-    // required this.toggleIndex,
-    // required this.onToggle,
   });
 
   @override
@@ -36,6 +32,8 @@ class DateRangeToggleSwitch extends StatelessWidget {
           labelColor: AppColors.blackTextColor,
           unselectedLabelStyle: const TextStyle(fontWeight: AppDim.weight400),
           unselectedLabelColor: AppColors.grey,
+          indicatorSize: TabBarIndicatorSize.tab,
+          dividerColor: Colors.transparent,
           tabs: List.generate(
             DateRangeType.values.length,
             (index) => StyleText(

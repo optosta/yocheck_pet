@@ -9,6 +9,7 @@ import 'package:yocheck_pet/layers/presentation/pages/setting/setting_viewmodel.
 
 import '../../../../common/common.dart';
 import '../../../../common/utils/snackbar_utils.dart';
+import '../../../domain/usecase/auth_usecase.dart';
 import '../../routes/route_path.dart';
 import '../../widgets/scaffold/frame_scaffold.dart';
 import '../../widgets/style_text.dart';
@@ -48,6 +49,7 @@ class _SettingViewState extends State<SettingView>{
                     _buildMenu('version_info'.tr(), context),
                     _buildMenu('trm_policy'.tr(), context),
                     _buildMenu('opensource_license'.tr(), context),
+                    _buildMenu('user_delete'.tr(), context),
                     _buildMenu('logout'.tr(), context),
                     AppDim.heightXXLarge,
                   ],
@@ -75,6 +77,13 @@ class _SettingViewState extends State<SettingView>{
               Nav.doPush(context, TermsFullView());
             } else if (text == 'opensource_license'.tr()) {
               Nav.doPush(context, const OpensourceView());
+            } else if (text == 'user_delete'.tr()) {
+              CustomDialog.showSettingDialog(
+                  title: 'user_delete'.tr(),
+                  text: 'user_delete_content'.tr(),
+                  mainContext: context,
+                  onPressed: () => deleteUser(context)
+              );
             } else if (text == 'logout'.tr()) {
               CustomDialog.showSettingDialog(
                 title: 'logout'.tr(),
@@ -123,5 +132,25 @@ class _SettingViewState extends State<SettingView>{
       'logout_success'.tr(),
     );
     context.go(RoutePath.login);
+  }
+
+  Future<void> deleteUser(BuildContext context) async {
+    Nav.doPop(context); // 회원탈퇴 다이얼로그 닫기
+
+    final result = await DeleteUserUseCase().execute();
+    if (result  == '200' && context.mounted) {
+      Authorization().clean();
+      SnackBarUtils.showPrimarySnackBar(
+        context,
+        'delete_user_success'.tr(),
+      );
+      context.go(RoutePath.login);
+    } else {
+      SnackBarUtils.showPrimarySnackBar(
+        context,
+        'delete_user_fail'.tr(),
+      );
+    }
+
   }
 }

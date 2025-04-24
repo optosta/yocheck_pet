@@ -56,3 +56,16 @@ class ChangePassUseCase implements BaseUseCase<void, Map<String, dynamic>> {
     return _authRepository.changePass(toMap);
   }
 }
+
+/// 회원탈퇴 유스케이스
+class DeleteUserUseCase implements NoParamUseCase<void, void> {
+  final AuthRepository _authRepository;
+
+  DeleteUserUseCase([AuthRepository? authRepository])
+      : _authRepository = authRepository ?? locator();
+
+  @override
+  Future<String> execute() {
+    return _authRepository.deleteUser();
+  }
+}

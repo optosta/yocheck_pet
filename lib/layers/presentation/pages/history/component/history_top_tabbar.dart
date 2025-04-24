@@ -26,6 +26,7 @@ class HistoryTopTabBar extends StatelessWidget {
         padding: const EdgeInsets.all(3.0),
         child: TabBar(
           controller: tabController,
+          indicatorWeight: 0,
           indicator: BoxDecoration(
             color: AppColors.whiteTextColor,
             borderRadius: BorderRadius.all(AppConstants.lightRadius),
@@ -33,6 +34,8 @@ class HistoryTopTabBar extends StatelessWidget {
           labelColor: AppColors.blackTextColor,
           unselectedLabelStyle: const TextStyle(fontWeight: AppDim.weight400),
           unselectedLabelColor: AppColors.grey,
+          indicatorSize: TabBarIndicatorSize.tab,
+          dividerColor: Colors.transparent,
           tabs: [
             StyleText(
               text: 'his_recent'.tr(),

@@ -48,3 +48,6 @@ const String getAppVersionUrl = '$baseUrl/app/version';
 
 /// 검사 내역 삭제
 const String deleteHistoryUrl = '$baseUrl/urine/result/delete';
+
+/// 회원 탈퇴
+const String deleteUserUrl ='$baseUrl/private/user/delete';

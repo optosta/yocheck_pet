@@ -2,6 +2,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:yocheck_pet/layers/domain/usecase/auth_usecase.dart';
 
 import '../../../../common/utils/nav.dart';
 import '../../../../common/utils/snackbar_utils.dart';
@@ -9,6 +10,8 @@ import '../../../model/authorization.dart';
 import '../../routes/route_path.dart';
 
 class SettingViewModel extends ChangeNotifier {
+
+
 
   /// 로그아웃
   Future<void> logout(context) async {

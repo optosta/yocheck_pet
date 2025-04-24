@@ -11,4 +11,5 @@ abstract interface class AuthRepository {
   Future<SignupDTO?> signup(Map<String, dynamic> toMap);
   Future<LogoutDTO?> logout();
   Future<ChangePassDTO?> changePass(Map<String, dynamic> toMap);
+  Future<String> deleteUser();
 }

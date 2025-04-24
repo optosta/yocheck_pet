@@ -24,6 +24,8 @@ class UrineItemTabbar extends StatelessWidget {
       labelColor: AppColors.primaryColor,
       unselectedLabelStyle: const TextStyle(fontWeight: AppDim.weight400),
       unselectedLabelColor: AppColors.grey,
+      indicatorSize: TabBarIndicatorSize.tab,
+      dividerColor: Colors.transparent,
       tabs: List.generate(
         UrineItemType.values.length,
         (index) => SizedBox(

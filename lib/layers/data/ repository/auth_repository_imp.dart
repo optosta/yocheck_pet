@@ -3,10 +3,12 @@ import 'package:yocheck_pet/common/utils/dio/dio_manager.dart';
 import 'package:yocheck_pet/layers/entity/change_pass_dto.dart';
 import 'package:yocheck_pet/layers/entity/login_dto.dart';
 import 'package:yocheck_pet/layers/entity/logout_dto.dart';
+import 'package:yocheck_pet/layers/model/authorization.dart';
 
 import '../../../common/utils/my_logger.dart';
 import '../../domain/repository/auth_repository.dart';
 import '../../entity/signup_dto.dart';
+import '../../entity/status_dto.dart';
 
 class AuthRepositoryImp implements AuthRepository {
 
@@ -83,6 +85,27 @@ class AuthRepositoryImp implements AuthRepository {
         return ChangePassDTO.fromJson(response.data);
       } else {
         return null;
+      }
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> deleteUser() async {
+    logger.i('deleteUser:${Authorization().userID}');
+    try {
+      final response = await DioManager().privateDio.post(
+          deleteUserUrl, data: {
+        'userID': Authorization().userID,
+        'userType': 'P',
+      });
+
+      logger.i(response);
+      if (response.statusCode == 200) {
+        return '200';
+      } else {
+        return '-1';
       }
     } catch (error) {
       rethrow;

@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<privacy>
-  <collection>
-    <purpose>
-      <name>App Functionality</name>
-    </purpose>
-    <data>
-      <type>User ID</type>
-      <category>Identifiers</category>
-    </data>
-    <data>
-      <type>Full Name</type>
-      <category>Contact Info</category>
-    </data>
-  </collection>
-</privacy>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSPrivacyTracking</key>
+    <false/>
+    <key>NSPrivacyTrackingDomains</key>
+    <array/>
+    <key>NSPrivacyAccessedAPICategories</key>
+    <array>
+        <dict>
+            <key>NSPrivacyAccessedAPICategory</key>
+            <string>NSPrivacyAccessedAPICategoryNetwork</string>
+            <key>NSPrivacyAccessedAPICategoryReasons</key>
+            <array>
+                <string>C617</string>
+            </array>
+        </dict>
+        <dict>
+            <key>NSPrivacyAccessedAPICategory</key>
+            <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+            <key>NSPrivacyAccessedAPICategoryReasons</key>
+            <array>
+                <string>35F9.1</string>
+            </array>
+        </dict>
+    </array>
+    <key>NSPrivacyThirdPartySDKs</key>
+    <array/>
+</dict>
+</plist>
