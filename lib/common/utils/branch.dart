@@ -78,12 +78,12 @@ class Branch {
 
     else if(index == 7){ // PH
       switch(status){
-        case '0' : return 'acidic'.tr();
-        case '1' : return 'mild_acidic'.tr();
-        case '2' : return 'neutrality'.tr();
-        case '3' : return 'alkaline'.tr();
-        case '4' : return 'strong_alkaline'.tr();
-        default  : return '-';
+        case '0' : return '5';//'acidic'.tr();
+        case '1' : return '6';//'mild_acidic'.tr();
+        case '2' : return '6.5';'neutrality'.tr();
+        case '3' : return '7';'alkaline'.tr();
+        case '4' : return '8';'strong_alkaline'.tr();
+        case '5' : return '9';'strong_alkaline'.tr();
       }
     }
 
@@ -100,9 +100,9 @@ class Branch {
     else if(index == 2){ // 우로빌리노겐
       switch(status){
         case '0' : return 'negative'.tr();
-        case '1' : return 'negative'.tr();
-        case '2' : return 'caution'.tr();
-        case '3' : return 'danger'.tr();
+        case '1' : return 'caution'.tr();
+        case '2' : return 'danger'.tr();
+        case '3' : return 'serious'.tr();
         case '4' : return 'serious'.tr();
         default  : return '-';
       }
@@ -121,9 +121,9 @@ class Branch {
     else if(index == 4) { // 단백질
       switch(status){
         case '0' : return 'negative'.tr();
-        case '1' : return 'negative'.tr();
-        case '2' : return 'caution'.tr();
-        case '3' : return 'danger'.tr();
+        case '1' : return 'caution'.tr();
+        case '2' : return 'danger'.tr();
+        case '3' : return 'serious'.tr();
         case '4' : return 'serious'.tr();
         default  : return '-';
       }
@@ -381,10 +381,10 @@ class Branch {
 
       case 'DT03': // 우로빌리노겐
         if (x >= 33) return "0"; // 음성
-        if (x >= 26.5 && x < 33) return "1"; // 음성
-        if (x >= 22 && x < 26.6) return "2"; // 주의
-        if (x >= 17 && x < 22) return "3"; // 위험
-        if (x < 17) return "4"; // 심각
+        if (x >= 26.5 && x < 33) return "0"; // 음성
+        if (x >= 22 && x < 26.6) return "1"; // 주의
+        if (x >= 17 && x < 22) return "2"; // 위험
+        if (x < 17) return "3"; // 심각
         break;
 
       case 'DT04': //케톤체
@@ -397,10 +397,10 @@ class Branch {
 
       case 'DT05': //단백질
         if (x <= 73) return "0"; // 음성
-        if (x > 73 && x <= 89) return "1"; // 음성
-        if (x > 89  && x <= 105.8) return "2"; // 주의
-        if (x > 105.8 && x <= 117.9) return "3"; // 위험
-        if (x > 117.9) return "4"; // 심각
+        if (x > 73 && x <= 89) return "0"; // 음성
+        if (x > 89  && x <= 105.8) return "1"; // 주의
+        if (x > 105.8 && x <= 117.9) return "2"; // 위험
+        if (x > 117.9) return "3"; // 심각
         break;
 
       case 'DT06': //아질산염
@@ -414,11 +414,12 @@ class Branch {
         break;
 
       case 'DT08': //산성도
-        if (x < 26.4) return "0"; // 산성
-        if (x >= 26.4 && x < 47.7) return "1"; // 약산성
-        if (x >= 47.7 && x < 82.8) return "2"; // 중성
-        if (x >= 82.8 && x < 128.7) return "3"; // 알칼리성
-        if (x >= 128.7) return "4"; // 강알칼리성
+        if (x < 26.4) return "0"; // 산성 - 5
+        if (x >= 26.4 && x < 47.7) return "1"; // 약산성 - 6
+        if (x >= 47.7 && x < 82.8) return "2"; // 중성 - 6.5
+        if (x >= 82.8 && x < 128.7) return "3"; // 알칼리성 -7
+        if (x >= 128.7 && x < 167.3) return "4"; // 강알칼리성 - 8
+        if (x >= 167.3) return "5"; // 강강?알칼리성 - 9
         break;
 
       case 'DT09': //비중

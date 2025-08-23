@@ -76,12 +76,7 @@ class UrineResultListItem extends StatelessWidget {
                       children:
                           UrineItemType.values[index] == UrineItemType.nitrate
                               ? _buildLevelGaugeNitrate()
-                             // :
-                         // UrineItemType.values[index] == UrineItemType.gravity
-                         //     ||
-                                     // UrineItemType.values[index] == UrineItemType.ph
-                                 // ? _buildLevel2()
-                                  : _buildLevelGaugeCommon(index),
+                              : _buildLevelGaugeCommon(index),
                   ),
                 ),
               ),
@@ -120,7 +115,7 @@ class UrineResultListItem extends StatelessWidget {
 
   _buildLevelGaugeCommon(int index) {
     int statusIndex = 0;
-    if(index == 8){
+    if(index == 8){ // 비중
       switch(int.parse(status)){
         case 0:
         case 1: statusIndex = 0;
@@ -131,7 +126,17 @@ class UrineResultListItem extends StatelessWidget {
         case 6:
         case 7: statusIndex = 3;
       }
-    } else {
+    } else if(index == 7){ // ph
+      switch(int.parse(status)){
+        case 0:
+        case 1: statusIndex = 0;
+        case 2: statusIndex = 1;
+        case 3:
+        case 4: statusIndex = 2;
+        case 5: statusIndex = 3;
+      }
+    }
+    else {
       statusIndex = int.parse(status) > 4 ?  4 : int.parse(status);
     }
 
