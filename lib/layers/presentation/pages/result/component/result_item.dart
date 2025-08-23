@@ -76,9 +76,11 @@ class UrineResultListItem extends StatelessWidget {
                       children:
                           UrineItemType.values[index] == UrineItemType.nitrate
                               ? _buildLevelGaugeNitrate()
-                              : UrineItemType.values[index] == UrineItemType.gravity ||
-                                      UrineItemType.values[index] == UrineItemType.ph
-                                  ? _buildLevel2()
+                             // :
+                         // UrineItemType.values[index] == UrineItemType.gravity
+                         //     ||
+                                     // UrineItemType.values[index] == UrineItemType.ph
+                                 // ? _buildLevel2()
                                   : _buildLevelGaugeCommon(index),
                   ),
                 ),
@@ -122,12 +124,12 @@ class UrineResultListItem extends StatelessWidget {
       switch(int.parse(status)){
         case 0:
         case 1: statusIndex = 0;
-        case 2: statusIndex = 1;
-        case 3: statusIndex = 2;
-        case 4: statusIndex = 3;
-        case 5:
+        case 2:
+        case 3: statusIndex = 1;
+        case 4:
+        case 5: statusIndex = 2;
         case 6:
-        case 7: statusIndex = 4;
+        case 7: statusIndex = 3;
       }
     } else {
       statusIndex = int.parse(status) > 4 ?  4 : int.parse(status);
@@ -140,7 +142,7 @@ class UrineResultListItem extends StatelessWidget {
         height: 20,
         margin: const EdgeInsets.all(3.0),
         decoration: BoxDecoration(
-            color: (index == 10)?
+            color: (index == 10 || index == 8 || index == 7)?
               AppColors.levelGrayColors[statusIndex][pos]
               : AppColors.level5Colors[statusIndex][pos]),
       ),
@@ -161,12 +163,11 @@ class UrineResultListItem extends StatelessWidget {
   }
   _buildLevel2() {
     return List.generate(
-      2,
-          (pos) => Expanded(
+      2, (pos) => Expanded(
         child: Container(
           margin: const EdgeInsets.all(9.0),
           decoration: BoxDecoration(
-              color: AppColors.level2Colors[int.parse(status)][pos]),
+              color: AppColors.levelGrayColors[int.parse(status)][pos]),
         ),
       ),
     );
